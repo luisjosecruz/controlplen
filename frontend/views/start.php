@@ -1,38 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control</title>
-    <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/base.css';?>">
-    <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/style.css';?>">
-    <link rel="shortcut icon" href="<?=URLSERVER.'/assets/images/logo.png';?>" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700&family=Roboto&display=swap" rel="stylesheet">
-</head>
+<?php require_once ('templates/header.php'); ?>
 <body>
     <main>
-        <nav>
-            <div class="logo">
-                <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="logo">
-                <p>Control</p> 
-            </div>
-            <ul>
-                <li><a href="#" class="item-menu active"><span class="lj lj-home"></span> Inicio</a></li>
-                <li><a href="#" class="item-menu"><span class="lj lj-dice"></span> Habitos</a></li>
-                <li><a href="#" class="item-menu"><span class="lj lj-database"></span> Proyectos</a></li>
-                <li><a href="#" class="item-menu"><span class="lj lj-calendar-full"></span> Calendario</a></li>
-                <li><a href="#" class="item-menu"><span class="lj lj-cog"></span> Configuración</a></li>
-            </ul>
-        </nav>
+        <?php require_once ('templates/navbar.php'); ?>
         <article>
             <section class="sec-left">
                 <div class="dashboard">
                     <div class="dashboard-top">
                         <p class="dashboard-top__title">Dashboard</p>
-                        <p>Sábado 5 de febrero, 2022</p>
+                        <p><?=$date;?></p>
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
@@ -57,8 +32,30 @@
                                 <p class="normal-text">Aprendizaje</p>
                             </div>
                         </div>
-                        <p class="title-divider">Tareas para hacer hoy</p>
-                        <div class="todo">
+                        <p class="title-divider">Objetivos</p>
+                        <div class="home-grid">
+                            <div class="home-grid__box home-grid__one"></div>
+                            <div class="home-grid__box home-grid__two"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__one"></div>
+                            <div class="home-grid__box home-grid__two"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__one"></div>
+                            <div class="home-grid__box home-grid__two"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__one"></div>
+                            <div class="home-grid__box home-grid__two"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__three"></div>
+                        </div>
+                        <!-- <div class="todo">
                             <div class="todo-task">
                                 <table>
                                     <tbody>
@@ -67,32 +64,10 @@
                                                 <label class="habits-list__text">
                                                     <input type="checkbox"> 
                                                     <p>
-                                                        <span class="normal-text">Terminar la aplicación de control</span> 
-                                                        <span class="small-text">Mañana | Hora</span>
+                                                        <span class="normal-text">---</span> 
+                                                        <span class="small-text">...</span>
                                                     </p>
                                                 </label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="habits-list__text">
-                                                        <input type="checkbox"> 
-                                                        <p>
-                                                            <span class="normal-text">Terminar la aplicación de control</span> 
-                                                            <span class="small-text">Mañana | Hora</span>
-                                                        </p>
-                                                    </label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label class="habits-list__text">
-                                                        <input type="checkbox"> 
-                                                        <p>
-                                                            <span class="normal-text">Terminar la aplicación de control</span> 
-                                                            <span class="small-text">Mañana | Hora</span>
-                                                        </p>
-                                                    </label>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -100,16 +75,10 @@
                             </div>
                             <div class="todo-metrics">
                                 <div class="todo-metrics__card">
-                                    <p><span>10</span> Tareas totales</p>
-                                </div>
-                                <div class="todo-metrics__card">
-                                    <p><span>1</span> Tareas completadas</p>
-                                </div>
-                                <div class="todo-metrics__card">
-                                    <p><span>9</span> Tareas pendientes</p>
+                                    <p><span>-</span> ---</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </section>
@@ -220,5 +189,6 @@
 
     <script src="<?=URLSERVER.'/assets/scripts/userFunctions.js';?>"></script>
     <script src="<?=URLSERVER.'/assets/scripts/logout.js';?>"></script>
+    <script src="<?=URLSERVER.'/assets/scripts/interactive.js';?>"></script>
 </body>
 </html>

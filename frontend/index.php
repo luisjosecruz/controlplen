@@ -7,14 +7,24 @@ $route = $uriParts[1];
 // url server
 define("URLSERVER", (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]");
 
+date_default_timezone_set('America/El_Salvador');
+setlocale(LC_ALL, 'es-SV');
+$date = strftime('%e de %B de %Y');
+
 switch($route){
     case '':
         session_start();
         if (!isset($_SESSION["userId"])) header('Location: /login');
         require_once ('views/start.php');
+
         break;
     case 'login':
         require_once ('views/login.php');
+
+        break;
+    case 'habits':
+        require_once ('views/habits.php');
+
         break;
     default:
         require_once('views/404.php');
