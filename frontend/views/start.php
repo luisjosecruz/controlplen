@@ -32,7 +32,15 @@
                                 <p class="normal-text">Aprendizaje</p>
                             </div>
                         </div>
-                        <p class="title-divider">Objetivos</p>
+                        <div class="title-divider">
+                            <p>Páginas individuales</p>
+                            <div class="options">
+                                <button id="open-button" class="open-button">
+                                    <span class="lj lj-plus-circle"></span> 
+                                    <span class="small-text">Agregar</span>
+                                </button>
+                            </div>
+                        </div>
                         <div class="home-grid">
                             <div class="home-grid__box home-grid__one"></div>
                             <div class="home-grid__box home-grid__two"></div>
@@ -187,8 +195,20 @@
         </article>
     </main>
 
+    <div class="modal-overlay closed" id="modal-overlay"></div>
+
+    <div class="modal closed" id="modal">
+    <button class="close-button" id="close-button">Obvious Close Button</button>
+    <div class="modal-guts">
+        <h1>Modal Example</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
+    </div>
+    </div>
+
     <script src="<?=URLSERVER.'/assets/scripts/userFunctions.js';?>"></script>
     <script src="<?=URLSERVER.'/assets/scripts/logout.js';?>"></script>
     <script src="<?=URLSERVER.'/assets/scripts/interactive.js';?>"></script>
+    <script src="<?=URLSERVER.'/assets/scripts/app.js';?>"></script>
 </body>
 </html>
