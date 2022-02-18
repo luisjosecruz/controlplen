@@ -198,12 +198,50 @@
     <div class="modal-overlay closed" id="modal-overlay"></div>
 
     <div class="modal closed" id="modal">
-    <button class="close-button" id="close-button">Obvious Close Button</button>
-    <div class="modal-guts">
-        <h1>Modal Example</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae expedita corrupti laudantium aperiam, doloremque explicabo ipsum earum dicta saepe delectus totam vitae ipsam doloribus et obcaecati facilis eius assumenda, cumque.</p>
-    </div>
+        <button class="close-button" id="close-button">X</button>
+        <div class="modal-guts">
+            <h1 class="modal-title">Agregar nuevo objetivo</h1>
+            <div class="modal-content">
+                <form class="modal-form">
+                    <label for="objectiveDesc">
+                        <input id="objectiveDesc" type="text" placeholder="Objetivo">
+                        <select name="objectiveType" id="objectiveType">
+                            <option disabled="disabled" selected value="0">Tipo</option>
+                            <option value="Salud">Salud</option>
+                            <option value="Arte">Arte</option>
+                            <option value="Felicidad">Felicidad</option>
+                            <option value="Amor y paz">Amor y paz</option>
+                            <option value="Aprendizaje">Aprendizaje</option>
+                        </select>
+                    </label>
+                    <label for="objectiveEnd">
+                        <input type="date" name="objectiveEnd" id="objectiveEnd" value="<?php echo date("Y-m-d");?>">
+                        <select name="objectiveStatus" id="objectiveStatus">
+                            <option disabled="disabled" selected value="0">Estado</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="En proceso">En proceso</option>
+                            <option value="Alcanzado">Alcanzado</option>
+                        </select>
+                    </label>
+                    <label for="objectives">
+                        Este objetivo para ser alcanzado ¿Depende de otro?
+                        <select name="objectives" id="objectives">
+                            <option disabled="disabled" selected value="0">Objetivo</option>
+                            <?php 
+                                $goal = new Goals();
+                            ?>
+                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
+                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
+                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
+                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
+                        </select>
+                    </label>
+                    <input class="form-btn" id="saveObjective" type="submit" value="Guardar">
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="<?=URLSERVER.'/assets/scripts/userFunctions.js';?>"></script>

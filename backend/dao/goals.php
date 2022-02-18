@@ -6,6 +6,8 @@ class Goals
         $stmt = $conn->query("SELECT * FROM objectives");
         return $stmt;
     }
+
+    
 }
 
 ?>
