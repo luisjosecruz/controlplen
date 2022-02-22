@@ -1,67 +1,77 @@
 <?php require_once ('templates/header.php'); ?>
 <body>
     <main>
-        <?php require_once ('templates/navbar.php'); ?>
+        <?php 
+            require_once ('templates/navbar.php'); 
+            require_once ('../backend/bootstrap.php');
+            require_once ('../backend/dao/goals.php');
+            $goal = new Goals();
+        ?>
         <article>
             <section class="sec-left">
                 <div class="dashboard">
                     <div class="dashboard-top">
-                        <p class="dashboard-top__title">Dashboard</p>
-                        <p><?=$date;?></p>
+                        <p class="dashboard-top__title options">
+                            <button id="open-button" class="open-button">
+                                <span class="lj lj-plus-circle"></span> 
+                                <span class="small-text">Nuevo proyecto</span>
+                            </button>
+                        </p>
+                        <p class="dashboard-top__date"><?=$date;?></p>
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
                             <div class="dashboard-numbers__item">
-                                <p class="dashboard-number__bigNumber">5</p>
-                                <p class="normal-text">Salud</p>
+                                <p class="dashboard-number__bigNumber">25</p>
+                                <p class="normal-text">Proyectos totales</p>
                             </div>
                             <div class="dashboard-numbers__item">
                                 <p class="dashboard-number__bigNumber">6</p>
-                                <p class="normal-text">Arte</p>
+                                <p class="normal-text">Proyectos en progreso</p>
                             </div>
                             <div class="dashboard-numbers__item">
                                 <p class="dashboard-number__bigNumber">15</p>
-                                <p class="normal-text">Felicidad</p>
-                            </div>
-                            <div class="dashboard-numbers__item">
-                                <p class="dashboard-number__bigNumber">4</p>
-                                <p class="normal-text">Amor y paz</p>
-                            </div>
-                            <div class="dashboard-numbers__item">
-                                <p class="dashboard-number__bigNumber">5</p>
-                                <p class="normal-text">Aprendizaje</p>
+                                <p class="normal-text">Proyectos completados</p>
                             </div>
                         </div>
                         <div class="title-divider">
-                            <p>Páginas individuales</p>
+                            <p>Proyectos recientes</p>
                             <div class="options">
-                                <button id="open-button" class="open-button">
-                                    <span class="lj lj-plus-circle"></span> 
-                                    <span class="small-text">Agregar</span>
-                                </button>
+                                <a class="a-link">Ver todos</a>
                             </div>
                         </div>
                         <div class="home-grid">
-                            <div class="home-grid__box home-grid__one"></div>
+                            <?php 
+
+                                $proyectos = $goal->getProjects($conn);
+                                $result = $proyectos->fetchAll();
+                                foreach($result as $element) {
+                                    echo '
+                                        <div class="home-grid__box home-grid__one">
+                                            <a class="box-cog"><span class="lj lj-cog"></span></a>
+                                            <div class="box-body">
+                                                <div class="box-head">
+                                                    <span class="box-icon lj lj-heart-pulse"></span>
+                                                    <h4 class="box-name">'.$element['proyectoNombre'].'</h4>
+                                                </div>
+                                                <p class="box-desc">'.$element['proyectoDescripcion'].'</p>
+                                                <span class="box-status badge">'.$element['proyectoEstado'].'</span>
+                                                <span class="box-goals badge">15 metas</span>
+                                                <div class="box-todo">
+                                                    <p class="box-task">2 metas completadas</p>
+                                                    <p class="box-dates">10%</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ';
+                                }
+                            
+                            ?>
                             <div class="home-grid__box home-grid__two"></div>
                             <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__one"></div>
-                            <div class="home-grid__box home-grid__two"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__one"></div>
-                            <div class="home-grid__box home-grid__two"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__one"></div>
-                            <div class="home-grid__box home-grid__two"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__three"></div>
+                            <div class="home-grid__box home-grid__four"></div>
+                            <div class="home-grid__box home-grid__five"></div>
+                            <div class="home-grid__box home-grid__six"></div>
                         </div>
                         <!-- <div class="todo">
                             <div class="todo-task">
@@ -93,10 +103,10 @@
             <section class="sec-right">
                 <div class="user-area">
                     <div class="user-area__account">
-                        <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="userpicture">
+                        <img src="<?=URLSERVER.'/assets/images/user.png';?>" alt="userpicture">
                         <ul>
                             <li class="normal-text">Luis José Cruz</li>
-                            <li class="small-text">Es bueno verte otra vez</li>
+                            <li class="small-text">El tiempo está pasando</li>
                         </ul>
                     </div>
                     <div class="user-area__notify">
@@ -104,7 +114,10 @@
                     </div>
                 </div>
                 <div class="widget">
-                    <p class="widget-title"><span class="lj lj-select"></span> Hábitos</p>
+                    <div id="clock" class="clock" onload="showTime()"></div>                
+                </div>
+                <div class="widget">
+                    <p class="widget-title"><span class="lj lj-select"></span> Tareas de hoy</p>
                     <div class="habits-list">
                         <ul>
                             <li>

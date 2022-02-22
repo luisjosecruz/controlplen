@@ -2,8 +2,8 @@
 
 class Goals
 {
-    public function getObjectives($conn){
-        $stmt = $conn->query("SELECT * FROM objectives");
+    public function getProjects($conn){
+        $stmt = $conn->query("SELECT * FROM proyectos");
         return $stmt;
     }
 

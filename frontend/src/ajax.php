@@ -11,15 +11,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [$_POST['username'], $_POST['password']];
             $userObj = new User();
             handleLogin($data, $userObj, $conn);
+
             break;
-        
         case 'logout':
             session_start();
             unset($_SESSION["usuarioId"]);
             unset($_SESSION["usuarioCorreo"]);
             echo 'logout 200';
+
             break;
-        
         default:
             echo 'ajax 404 '.$_POST['ajax'];
             break;

@@ -4,14 +4,14 @@ main {
     justify-content: space-between;
     width: 100%;
     height: 100vh;
-    background-color: #ecf3fe;
+    background-color: var(--bg-color);
 }
 
 nav {
     position: fixed;
     width: 15%;
     height: 100%;
-    background: white;
+    background: var(--just-white);
 }
 
 article {
@@ -26,7 +26,7 @@ article {
 .sec-left {
     width: 70%;
     height: 100%;
-    background-color: #ecf3fe;
+    background-color: var(--bg-color);
     overflow-y: auto;
 }
 
@@ -59,7 +59,7 @@ LOGO / NAVBAR
     color: #232323;
     font-weight: 700;
     font-family: 'Raleway', sans-serif;
-    text-shadow: 0 2px 4px white;
+    text-shadow: 0 2px 4px var(--just-white);
 }
 
 nav ul li a {
@@ -83,10 +83,10 @@ nav ul li a .lj {
 }
 
 .item-menu.active {
-    background-color: #2b98e8;
+    background-color: var(--dark-green);
     border-radius: 4px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.26);
-    color: white;
+    color: var(--just-white);
 }
 
 /* 
@@ -180,11 +180,11 @@ LEFT AREA / DASHBOARD
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 40px;
+    padding: 20px 20px 0;
 }
 
-.dashboard-top__title {
-    font-size: 2.4rem;
+.dashboard-top__date {
+    font-size: 1.4rem;
 }
 
 .dashboard-body {
@@ -199,20 +199,19 @@ LEFT AREA / DASHBOARD
 .dashboard-numbers {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    margin: 20px 40px;
-    border: 1px solid #dddddd;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: -2px 2px 6px rgba(0,0,0,0.0575);
+    margin: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: var(--just-white);
 }
 
 .dashboard-numbers__item {
-    width: 20%;
+    padding: 0 40px;
     margin: 20px 0;
     text-align: center;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #eeeeee;
 }
 
 .dashboard-numbers__item:last-child {
@@ -220,14 +219,15 @@ LEFT AREA / DASHBOARD
 }
 
 .dashboard-number__bigNumber {
-    color: #232323;
-    font-size: 3rem;
+    color: var(--black);
+    font-size: 3.2rem;
     font-weight: bold;
 }
 
 .dashboard-numbers__item .normal-text {
-    color: #565656;
-    font-size: 1.4rem;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+    margin-top: 4px;
 }
 
 /* TASK */
@@ -239,8 +239,7 @@ LEFT AREA / DASHBOARD
     width: 100%;
     font-size: 1.8rem;
     color: #565656;
-    padding: 20px 40px 0px;
-    font-family: 'Raleway', sans-serif;
+    padding: 20px 20px 0px;
     font-weight: 500;
 }
 
@@ -248,25 +247,25 @@ LEFT AREA / DASHBOARD
     display: flex;
     align-items: center;
     padding: 6px 10px;
-    border: 1px solid #5046bb;
+    border: 1px solid var(--dark-green);
     border-radius: 4px;
-    background-color: #5046bb;
+    background-color: var(--dark-green);
     cursor: pointer;
     box-shadow: -1px 1px 12px rgba(0,0,0,0.26); 
 }
 
 .options button .small-text {
-    color: white;
+    color: var(--just-white);
     margin-left: 4px;
 }
 
 .options button .lj {
-    color: white;
+    color: var(--just-white);
 }
 
 .home-grid {
     width: 100%;
-    padding: 20px 40px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -274,15 +273,72 @@ LEFT AREA / DASHBOARD
 }
 
 .home-grid__box {
-    min-width: 200px;
-    min-height: 100px;
+    position: relative;
+    min-width: 31.8%;
+    max-width: 32%;
+    min-height: 150px;
     margin: 0 0 20px;
-    background-color: #cccccc;
+    padding: 24px;
+    background-color: var(--just-white);
+    box-shadow: 0 0 6px rgba(0, 0, 0, .087);
+    border-radius: 4px;
+}
+
+.box-cog {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.box-head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.box-icon {
+    font-weight: bold;
+    margin-right: 5px;
+    color: var(--black);
+}
+
+.box-name {
+    font-size: 1.4rem;
+    color: var(--black);
+}
+
+.box-desc {
+    font-size: 1.2rem;
+    color: var(--black);
+    padding: 6px 0px 20px;
+}
+
+.box-todo {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.box-todo p {
+    padding: 0 10px 0 0;
+    font-size: 1.2rem;
+}
+
+.badge {
+    font-size: 1.2rem;
+    padding: 4px 8px;
+    background: var(--red);
+    color: var(--just-white);
+    border-radius: 4px;
 }
 
 .todo {
     width: 100%;
-    margin: 20px 40px;
+    margin: 20px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -293,7 +349,7 @@ LEFT AREA / DASHBOARD
     padding: 20px;
     border: 1px solid #eeeeee;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--just-white);
     box-shadow: -2px 2px 6px rgba(0,0,0,0.0575);
 }
 
@@ -328,6 +384,15 @@ LEFT AREA / DASHBOARD
     color: #565656;
 }
 
+.clock {
+    color: var(--red);
+    font-size: 5.4rem;
+    line-height: 0rem;
+    font-family: monospace;
+    letter-spacing: 1px;
+    font-weight: 900;
+}
+
 /* MODAL */
 
 .modal {
@@ -341,7 +406,7 @@ LEFT AREA / DASHBOARD
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background: var(--just-white);
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, .46);
     border-radius: 6px;
     opacity: 1;
@@ -395,7 +460,7 @@ LEFT AREA / DASHBOARD
     border: 0;
     border-radius: 4px;
     background: black;
-    color: white;
+    color: var(--just-white);
     padding: 5px 10px;
     font-size: 1.3rem;
     cursor: pointer;
@@ -438,9 +503,15 @@ LEFT AREA / DASHBOARD
     bottom: 20px;
     right: 20px;
     padding: 10px 16px;
-    color: white;
+    color: var(--just-white);
     background-color: #232323;
     cursor: pointer;
     border: 1px solid #000;
     border-radius: 4px;
+}
+
+.a-link {
+    color: var(--dark-green);
+    font-size: 1.4rem;
+    cursor: pointer;
 }
