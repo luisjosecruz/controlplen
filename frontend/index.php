@@ -14,7 +14,7 @@ $date = strftime('%e de %B de %Y');
 switch($route){
     case '':
         session_start();
-        if (!isset($_SESSION["userId"])) header('Location: /login');
+        if (!isset($_SESSION["usuarioId"])) header('Location: /login');
         require_once ('../backend/dao/goals.php');
         require_once ('views/start.php');
 

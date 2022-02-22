@@ -15,8 +15,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         case 'logout':
             session_start();
-            unset($_SESSION["userId"]);
-            unset($_SESSION["userEmail"]);
+            unset($_SESSION["usuarioId"]);
+            unset($_SESSION["usuarioCorreo"]);
             echo 'logout 200';
             break;
         
@@ -37,10 +37,10 @@ function handleLogin ($data, $userObj, $conn) {
     if ($row) {
         
         session_start();
-        $_SESSION['userId'] = $row['userId'];
-        $_SESSION['userEmail'] = $row['userEmail'];
+        $_SESSION['usuarioId'] = $row['usuarioId'];
+        $_SESSION['usuarioCorreo'] = $row['usuarioCorreo'];
 
-        if (isset($_SESSION["userId"])) {
+        if (isset($_SESSION["usuarioId"])) {
             echo 'login 200';
         } else {
             echo 'login 500';
