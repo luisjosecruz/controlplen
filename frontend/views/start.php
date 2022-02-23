@@ -113,8 +113,10 @@
                         <button id="logout" title="Cerrar sesión"><span class="lj lj-power-switch"></span></button>
                     </div>
                 </div>
-                <div class="widget">
-                    <div id="clock" class="clock" onload="showTime()"></div>                
+                <div class="widget widget-clock">
+                    <div class="clock-wrap">
+                        <div id="clock" class="clock" onload="showTime()"></div> 
+                    </div>               
                 </div>
                 <div class="widget">
                     <p class="widget-title"><span class="lj lj-select"></span> Tareas de hoy</p>
@@ -211,47 +213,56 @@
     <div class="modal-overlay closed" id="modal-overlay"></div>
 
     <div class="modal closed" id="modal">
-        <button class="close-button" id="close-button">X</button>
         <div class="modal-guts">
-            <h1 class="modal-title">Agregar nuevo objetivo</h1>
+            <div class="modal-header">
+                <p class="modal-title">Crear nuevo proyecto</p>
+                <button class="close-button" id="close-button">X</button>
+            </div>
             <div class="modal-content">
                 <form class="modal-form">
-                    <label for="objectiveDesc">
-                        <input id="objectiveDesc" type="text" placeholder="Objetivo">
-                        <select name="objectiveType" id="objectiveType">
-                            <option disabled="disabled" selected value="0">Tipo</option>
-                            <option value="Salud">Salud</option>
-                            <option value="Arte">Arte</option>
-                            <option value="Felicidad">Felicidad</option>
-                            <option value="Amor y paz">Amor y paz</option>
-                            <option value="Aprendizaje">Aprendizaje</option>
-                        </select>
-                    </label>
-                    <label for="objectiveEnd">
-                        <input type="date" name="objectiveEnd" id="objectiveEnd" value="<?php echo date("Y-m-d");?>">
-                        <select name="objectiveStatus" id="objectiveStatus">
-                            <option disabled="disabled" selected value="0">Estado</option>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                            <option value="Pendiente">Pendiente</option>
-                            <option value="En proceso">En proceso</option>
-                            <option value="Alcanzado">Alcanzado</option>
-                        </select>
-                    </label>
-                    <label for="objectives">
-                        Este objetivo para ser alcanzado ¿Depende de otro?
-                        <select name="objectives" id="objectives">
-                            <option disabled="disabled" selected value="0">Objetivo</option>
-                            <?php 
-                                $goal = new Goals();
-                            ?>
-                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
-                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
-                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
-                            <option value="0">¿Este objetivo para ser alcanzado depende de otro?</option>
-                        </select>
-                    </label>
-                    <input class="form-btn" id="saveObjective" type="submit" value="Guardar">
+                    <div class="form-left">
+                        <div class="form-group">
+                            <label for="project-name">Nombre:</label>
+                            <input id="project-name" type="text" placeholder="Proyecto">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción del proyecto"></textarea>
+                        </div>
+                        <div class="form-group select-tags">
+                            <label for="project-name">Metas</label>
+                            <input id="project-name" type="text" placeholder="Crear metas">
+                        </div>
+                    </div>
+                    <div class="form-right">
+                        <div class="form-right-title">
+                            <p>Atributos</p>
+                            <span class="lj lj-clock"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="attributes" for="project-status">Estado</label>
+                            <select name="project-status" id="project-status">
+                                <option disabled="disabled" selected value="0">Estado</option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Alcanzado">Alcanzado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="attributes" for="project-start-date">Inicio</label>
+                            <input type="date" name="project-start-date" id="project-start-date" value="<?php echo date("Y-m-d");?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="attributes" for="project-end-date">Fin</label>
+                            <input type="date" name="project-end-date" id="project-end-date" >
+                        </div>
+                        <div class="form-group select-tags">
+                            <label class="attributes" for="project-tags">Etiquetas</label>
+                            <textarea type="text" name="project-tags" id="project-tags" ></textarea>
+                        </div>
+                        <input class="form-btn" id="saveObjective" type="submit" value="Guardar">
+                    </div>
                 </form>
             </div>
         </div>
