@@ -51,7 +51,7 @@
                                             <a class="box-cog"><span class="lj lj-cog"></span></a>
                                             <div class="box-body">
                                                 <div class="box-head">
-                                                    <span class="box-icon lj lj-heart-pulse"></span>
+                                                    <span class="box-icon lj lj-bookmark"></span>
                                                     <h4 class="box-name">'.$element['proyectoNombre'].'</h4>
                                                 </div>
                                                 <p class="box-desc">'.$element['proyectoDescripcion'].'</p>
