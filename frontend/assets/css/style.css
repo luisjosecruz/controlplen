@@ -392,7 +392,7 @@ LEFT AREA / DASHBOARD
     align-items: center;
     justify-content: center;
     border-radius: 4px;
-    box-shadow: 0px 0px 12px rgba(0,0,0,0.6);
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.26);
 }
 
 .clock {
@@ -402,7 +402,7 @@ LEFT AREA / DASHBOARD
     font-family: 'Linearicons-Free';
     letter-spacing: 1px;
     font-weight: 900;
-    text-shadow: 0px 0px 12px #3abd20;
+    text-shadow: 0px 0px 24px #3abd20;
 }
 
 .widget-clock {
@@ -476,6 +476,9 @@ LEFT AREA / DASHBOARD
 }
 
 .modal .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -484,9 +487,10 @@ LEFT AREA / DASHBOARD
     font-size: 1.2rem;
     border: none;
     border-radius: 2px;
-    background: var(--text-color-light);
-    color: var(--just-white);
+    background: #dddddd;
+    color: var(--text-color-light);
     cursor: pointer;
+    z-index: 10;
 }
 
 .modal-form {
@@ -540,7 +544,7 @@ LEFT AREA / DASHBOARD
     width: 34%;
 }
 
-.form-group input[type="text"] {
+.form-group .input-project {
     width: 100%;
     height: 40px;
     margin: 0px 10px 0px 0px;
@@ -550,6 +554,63 @@ LEFT AREA / DASHBOARD
     font-weight: 700;
     outline: none;
     color: var(--black);
+}
+
+.create-goals {
+    width: 100%;
+    display: flex;
+    border-left: 2px solid var(--bg-color);
+    padding-top: 12px;
+    padding-left: 12px;
+}
+
+.create-goals .input-goal {
+    width: 88%;
+    height: 30px;
+    font-size: 1.4rem;
+    border: 2px solid #efefef;
+    padding: 0 6px;
+    outline: none;
+    transition: all .26s;
+}
+
+.create-goals .input-goal:focus {
+    background-color: #f6ffdf;
+    border-color: #cacaca;
+}
+
+.create-goals .add-goal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 14px;
+    padding: 0 6px;
+    font-size: 3.6rem;
+    border: 1px solid var(--dark-green);
+    background-color: var(--dark-green);
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 0;
+    color: var(--just-white);
+    border-radius: 25px;
+}
+
+.create-goals-list {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    padding-top: 0px;
+}
+
+.create-goals-list input,
+.create-tags-list input {
+    width: 100%;
+    padding: 3px 0;
+    border: none;
+    outline: none;
+    color: var(--dark-green);
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .form-group textarea {
@@ -577,7 +638,6 @@ LEFT AREA / DASHBOARD
     font-weight: 700;
     outline: none;
     color: var(--dark-green);
-    background-color: #D8E9A8;
 } 
 
 .form-right-title {
@@ -593,6 +653,11 @@ LEFT AREA / DASHBOARD
     font-size: 1.4rem;
     font-weight: bold;
     color: var(--text-color-light);
+}
+
+.form-right select, 
+.form-right input[type="date"] {
+    background-color: #D8E9A8;
 }
 
 .select-tags {
