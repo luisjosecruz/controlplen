@@ -4,8 +4,8 @@
         <?php 
             require_once ('templates/navbar.php'); 
             require_once ('../backend/bootstrap.php');
-            require_once ('../backend/dao/goals.php');
-            $goal = new Goals();
+            require_once ('../backend/dao/project.php');
+            $project = new Project();
         ?>
         <article>
             <section class="sec-left">
@@ -21,16 +21,30 @@
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
+                        <?php 
+                            $totals = $project->getCountProjectByStatus('%', $conn);
+                            $totalQty = $totals['qty'];
+                            $pending = $project->getCountProjectByStatus('Pendiente', $conn);
+                            $pendingQty = $pending['qty'];
+                            $progress = $project->getCountProjectByStatus('En progreso', $conn);
+                            $progressQty = $progress['qty'];
+                            $complete = $project->getCountProjectByStatus('Completado', $conn);
+                            $completeQty = $complete['qty'];
+                        ?>
                             <div class="dashboard-numbers__item">
-                                <p class="dashboard-number__bigNumber">25</p>
+                                <p class="dashboard-number__bigNumber"><?=$totalQty?></p>
                                 <p class="normal-text">Proyectos totales</p>
                             </div>
                             <div class="dashboard-numbers__item">
-                                <p class="dashboard-number__bigNumber">6</p>
+                                <p class="dashboard-number__bigNumber"><?=$pendingQty?></p>
+                                <p class="normal-text">Proyectos pendientes</p>
+                            </div>
+                            <div class="dashboard-numbers__item">
+                                <p class="dashboard-number__bigNumber"><?=$progressQty?></p>
                                 <p class="normal-text">Proyectos en progreso</p>
                             </div>
                             <div class="dashboard-numbers__item">
-                                <p class="dashboard-number__bigNumber">15</p>
+                                <p class="dashboard-number__bigNumber"><?=$completeQty?></p>
                                 <p class="normal-text">Proyectos completados</p>
                             </div>
                         </div>
@@ -43,7 +57,7 @@
                         <div class="home-grid">
                             <?php 
 
-                                $proyectos = $goal->getProjects($conn);
+                                $proyectos = $project->getProjects($conn);
                                 $result = $proyectos->fetchAll();
                                 foreach($result as $element) {
                                     echo '
@@ -67,11 +81,7 @@
                                 }
                             
                             ?>
-                            <div class="home-grid__box home-grid__two"></div>
-                            <div class="home-grid__box home-grid__three"></div>
-                            <div class="home-grid__box home-grid__four"></div>
-                            <div class="home-grid__box home-grid__five"></div>
-                            <div class="home-grid__box home-grid__six"></div>
+                            <!-- <div class="home-grid__box home-grid__two"></div> -->
                         </div>
                         <!-- <div class="todo">
                             <div class="todo-task">
@@ -207,9 +217,4 @@
         </div>
     </div>
 
-    <script src="<?=URLSERVER.'/assets/scripts/userFunctions.js';?>"></script>
-    <script src="<?=URLSERVER.'/assets/scripts/logout.js';?>"></script>
-    <script src="<?=URLSERVER.'/assets/scripts/interactive.js';?>"></script>
-    <script src="<?=URLSERVER.'/assets/scripts/app.js';?>"></script>
-</body>
-</html>
+<?php require_once ('templates/footer.php'); ?>

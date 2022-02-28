@@ -24,7 +24,8 @@
             </section>
         </article>
     </main>
-    <script src="<?=URLSERVER.'/assets/scripts/userFunctions.js';?>"></script>
+    <script src="<?=URLSERVER.'/assets/scripts/utils.js';?>"></script>
+    <script src="<?=URLSERVER.'/assets/scripts/handleAjax.js';?>"></script>
     <script src="<?=URLSERVER.'/assets/scripts/login.js';?>"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) { 
 
     let route = window.location.pathname;
+    let date = moment();
 
     // seleccion del menu principal
     let menuItem = document.getElementsByClassName('item-menu');
@@ -18,13 +19,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         menuItem[i].classList.remove('active');
     }
 
+    console.log(route);
+
     switch (route) {
         case '/':
             menuItem[0].classList.add('active');
         
             break;
-        case '/habits':
+        case '/projects':
             menuItem[1].classList.add('active');
+        
+            break;
+        case '/habits':
+            menuItem[2].classList.add('active');
 
             break;
         default:
@@ -61,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                             <div class="form-left">
                                 <div class="form-group">
                                     <label for="project-name">Nombre:</label>
-                                    <input class="input-project" id="project-name" type="text" placeholder="Proyecto" autocomplete="off">
+                                    <input class="input-project" id="project-name" name="project-name" type="text" placeholder="Proyecto" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción del proyecto"></textarea>
@@ -70,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                     <label for="inputGoal">Metas</label>
                                     <div class="create-goals">
                                         <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
-                                        <a id="createGoal" class="add-goal">+</a>
+                                        <a id="createGoal" class="add-goal" onclick="addGoal(this)"><span class="lj lj-plus-circle"></span></a>
                                     </div>
                                     <div class="create-goals">
                                         <div class="create-goals-list"></div>
@@ -83,17 +90,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                     <span class="lj lj-bookmark"></span>
                                 </div>
                                 <div class="form-group">
+                                    <label class="attributes" for="project-value">Valor</label>
+                                    <select name="project-value" id="project-value">
+                                        <option value="1" selected>Salud</option>
+                                        <option value="2">Arte</option>
+                                        <option value="3">Felicidad</option>
+                                        <option value="4">Amor y Paz</option>
+                                        <option value="5">Aprendizaje</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label class="attributes" for="project-status">Estado</label>
                                     <select name="project-status" id="project-status">
-                                        <option disabled="disabled" selected value="0">Estado</option>
-                                        <option value="Pendiente">Pendiente</option>
-                                        <option value="En progreso">Inactivo</option>
+                                        <option disabled="disabled" value="0">Estado</option>
+                                        <option value="Pendiente" selected>Pendiente</option>
+                                        <option value="En progreso">En progreso</option>
                                         <option value="Completado">Completado</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="attributes" for="project-start-date">Inicio</label>
-                                    <input type="date" name="project-start-date" id="project-start-date" value="<?php echo date("Y-m-d");?>">
+                                    <input type="date" name="project-start-date" id="project-start-date" value="${date.format('Y-MM-DD')}">
                                 </div>
                                 <div class="form-group">
                                     <label class="attributes" for="project-end-date">Fin</label>
@@ -103,50 +120,56 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                     <label class="attributes" for="project-tags">Etiquetas</label>
                                     <div class="create-goals">
                                         <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
-                                        <a id="createTag" class="add-goal">+</a>
+                                        <a id="createTag" onclick="addTag(this)" class="add-goal"><span class="lj lj-plus-circle"></span></a>
                                     </div>
                                     <div class="create-goals">
                                         <div class="create-tags-list"></div>
                                     </div>
                                 </div>
-                                <input class="form-btn" id="saveObjective" type="submit" value="Guardar">
                             </div>
                         </form>
+                        <p id="modalMessage" class="modal-message"></p>
+                        <input class="form-btn" onclick="saveProject()" type="submit" value="Guardar">
                     </div>
         `;
 
         modalData.innerHTML = data;
     });
+});
 
-    // create goals (modal add project)
-    let addGoal = document.getElementById("createGoal");
+// create goals (modal add project)
+function addGoal(i) {
     let inputGoal = document.getElementById("inputGoal");
     let goalsList = document.querySelector(".create-goals-list");
-    
-    addGoal.addEventListener("click", () => {
+    if (inputGoal.value.trim().length > 0) {
         const input = document.createElement('input');
+        let cant = document.getElementsByClassName("fast-goal");
         input.setAttribute("type", "text");
+        input.setAttribute("class", "fast-goal");
+        input.setAttribute("name", "fast-goal_" + (cant.length + 1));
         input.setAttribute("readonly", "true");
         input.setAttribute("value", "— " + inputGoal.value);
         goalsList.appendChild(input);
         inputGoal.value = "";
-    });
+    }
+}
 
-    // create project tags (modal add project)
-    let addTag = document.getElementById("createTag");
+// create project tags (modal add project)
+function addTag(i) {
     let inputTag = document.getElementById("inputTag");
     let tagList = document.querySelector(".create-tags-list");
-    
-    addTag.addEventListener("click", () => {
+    if (inputTag.value.trim().length > 0) {
         const input = document.createElement('input');
+        let cant = document.getElementsByClassName("fast-tag");
         input.setAttribute("type", "text");
+        input.setAttribute("class", "fast-tag");
+        input.setAttribute("name", "fast-tag_" + (cant.length + 1));
         input.setAttribute("readonly", "true");
         input.setAttribute("value", "— " + inputTag.value);
         tagList.appendChild(input);
         inputTag.value = "";
-    });
-
-});
+    }
+}
 
 function showTime(){
     var date = new Date();

@@ -71,8 +71,12 @@
         </article>
     </main>
 
-    <script src="<?=URLSERVER.'/assets/scripts/userFunctions.js';?>"></script>
-    <script src="<?=URLSERVER.'/assets/scripts/logout.js';?>"></script>
-    <script src="<?=URLSERVER.'/assets/scripts/interactive.js';?>"></script>
-</body>
-</html>
+    <div class="modal-overlay closed" id="modal-overlay"></div>
+
+    <div class="modal closed" id="modal">
+        <button class="close-button" id="close-button">X</button>
+        <div class="modal-guts" id="modal-data">
+        </div>
+    </div>
+
+<?php require_once ('templates/footer.php'); ?>

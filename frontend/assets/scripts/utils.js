@@ -1,37 +1,3 @@
-const handleAjax = (data) => {
-	// console.log(data);
-	// return false;
-	switch (data) {
-		case 'login 200': 
-			window.location.href = "/";
-			
-			break;
-		case 'login 404':
-			alert('Usuario o contraseña incorrectos');
-			
-			break;
-		case 'login 500':
-			console.error('SESSION ERROR');
-			
-			break;
-		case 'ajax 404':
-			console.error('AJAX POST ERROR');
-			
-			break;
-		case 'not method post':
-			console.error('METHOD POST ERROR');
-			
-			break;
-		case 'logout 200':
-			alert('Cerrando la sesión...');
-			window.location.href = "/";
-			
-			break;
-		default: 
-			console.log('Handle Ajax Switch Default');
-	}
-}
-
 const sendAjax = (url, data) => {
 	let ajax = new XMLHttpRequest();
 	ajax.open('POST', url);
@@ -48,7 +14,8 @@ const sendAjax = (url, data) => {
 	ajax.send(data);
 }
 
-const validateData = (data) => {
+// validate user data
+function validateData(data) {
 	switch (data.get('ajax')) {
 		case 'login':
 			if (data.get('username').trim().length == 0 && data.get('password').trim().length == 0) {
@@ -64,10 +31,16 @@ const validateData = (data) => {
 				return false;
 			}
 			return true;
+			
 			break;
-	
-		default:
+		case 'save-project':
+			if (data.get('project-name').trim().length <= 0 || data.get('project-description').trim().length <= 0 || data.get('project-end-date').trim().length <= 0) {
+				let modalMessage = document.getElementById("modalMessage");
+				modalMessage.textContent = "Existen datos requeridos sin completar.";
+			} else {
+				return true;
+			}
+			
 			break;
 	}
 }
-

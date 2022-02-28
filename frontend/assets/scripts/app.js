@@ -9,9 +9,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
         // sendAjax('/src/ajax.php', formData);
     // });
 
-
-    
-
-
 });
 

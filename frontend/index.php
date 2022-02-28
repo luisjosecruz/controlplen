@@ -15,13 +15,16 @@ switch($route){
     case '':
         session_start();
         if (!isset($_SESSION["usuarioId"])) header('Location: /login');
-        require_once ('../backend/dao/goals.php');
         require_once ('views/start.php');
 
         break;
     case 'login':
         require_once ('views/login.php');
 
+        break;
+    case 'projects':
+        require_once ('views/projects.php');
+    
         break;
     case 'habits':
         require_once ('views/habits.php');
