@@ -23,7 +23,12 @@ switch($route){
 
         break;
     case 'projects':
-        require_once ('views/projects.php');
+        if (isset($uriParts[2])) {
+            $projectLink = $uriParts[2];
+            require_once ('views/project-details.php');
+        } else {
+            require_once ('views/projects.php');
+        }
     
         break;
     case 'habits':

@@ -329,6 +329,18 @@ LEFT AREA / DASHBOARD
     font-size: 1.2rem;
 }
 
+.box-todo .badge {
+    margin-right: 4px;
+}
+
+.box-body {
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
 .badge {
     font-size: 1.2rem;
     padding: 4px 8px;
@@ -709,4 +721,26 @@ LEFT AREA / DASHBOARD
 
 .widget input[type="date"] {
     padding: 0px 0px 0px 10px;
+}
+
+/* VALUES COLORS */
+
+.Salud {
+	background-color: var(--dark-green);
+}
+
+.Arte {
+	background-color: #BC8CF2;
+}
+
+.Felicidad {
+	background-color: #2185D5;
+}
+
+.Amor {
+	background-color: #F33535;
+}
+
+.Aprendizaje {
+	background-color: #5DA7AE;
 }

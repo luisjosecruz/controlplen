@@ -19,18 +19,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
         menuItem[i].classList.remove('active');
     }
 
-    console.log(route);
-
-    switch (route) {
-        case '/':
+    
+    route = route.split('/');
+    console.log("Ruta: "+route[1]);
+    
+    switch (route[1].trim()) {
+        case '':
             menuItem[0].classList.add('active');
         
             break;
-        case '/projects':
+        case 'projects':
             menuItem[1].classList.add('active');
         
             break;
-        case '/habits':
+        case 'habits':
             menuItem[2].classList.add('active');
 
             break;

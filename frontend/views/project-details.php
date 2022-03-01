@@ -85,7 +85,7 @@
                         <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="userpicture">
                         <ul>
                             <li class="normal-text">Luis José Cruz</li>
-                            <li class="small-text">Tus proyectos son importantes</li>
+                            <li class="small-text">Detalle del proyecto</li>
                         </ul>
                     </div>
                     <div class="user-area__notify">
@@ -93,55 +93,7 @@
                     </div>
                 </div>
                 <div class="widget">
-                    <!-- <p class="widget-title"><span class="lj lj-enter"></span> Proyectos</p> -->
-                    
-                    <div class="form-group">
-                        <!-- <label for="project-name">Nombre:</label> -->
-                        <input class="input-project" id="project-name" type="text" placeholder="Proyecto" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción"></textarea>
-                    </div>
-                    <!-- <div class="form-right-title">
-                        <p>Atributos</p>
-                        <span class="lj lj-bookmark"></span>
-                    </div> -->
-                    <div class="form-group">
-                        <select name="project-value" id="project-value">
-                            <option value="1" selected>Salud</option>
-                            <option value="2">Arte</option>
-                            <option value="3">Felicidad</option>
-                            <option value="4">Amor y Paz</option>
-                            <option value="5">Aprendizaje</option>
-                        </select>
-                        <select name="project-status" id="project-status">
-                            <option disabled="disabled" selected value="0">Estado</option>
-                            <option value="Pendiente">Pendiente</option>
-                            <option value="En progreso">Inactivo</option>
-                            <option value="Completado">Completado</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="date" name="project-start-date" id="project-start-date" value="<?php echo date("Y-m-d");?>">
-                        <input type="date" name="project-end-date" id="project-end-date" >
-                    </div>
-                    <div class="form-group select-tags">
-                        <div class="create-goals">
-                            <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
-                            <a id="createTag" class="add-goal">+</a>
-                        </div>
-                        <div class="create-goals">
-                            <div class="create-tags-list"></div>
-                        </div>
-                    </div>
-                    <div class="create-goals">
-                        <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
-                        <a id="createGoal" class="add-goal">+</a>
-                    </div>
-                    <div class="create-goals">
-                        <div class="create-goals-list"></div>
-                    </div>
-                    <input class="form-btn" id="saveObjective" type="submit" value="Guardar">
+                    Hola Mundo
                 </div>
             </section>
         </article>

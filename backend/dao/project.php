@@ -3,12 +3,21 @@
 class Project
 {
     public function getProjects($conn){
-        $stmt = $conn->query("SELECT * FROM proyectos ORDER BY proyectoId DESC LIMIT 3");
+        $stmt = $conn->query("
+            SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value FROM proyectos AS p
+            INNER JOIN metas AS m ON p.proyectoId = m.metaProyecto
+            INNER JOIN valores AS v ON p.proyectoValor = v.valorId
+            GROUP BY p.proyectoId ORDER BY p.proyectoId DESC LIMIT 3");
         return $stmt;
     }
 
     public function getAllProjects($conn){
-        $stmt = $conn->query("SELECT * FROM proyectos ORDER BY proyectoId DESC");
+        $stmt = $conn->query("
+            SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value FROM proyectos AS p
+            INNER JOIN metas AS m ON p.proyectoId = m.metaProyecto
+            INNER JOIN valores AS v ON p.proyectoValor = v.valorId
+            GROUP BY p.proyectoId ORDER BY p.proyectoId DESC
+        ");
         return $stmt;
     }
 
@@ -33,37 +42,39 @@ class Project
             $tags .= $data['fast-tag_' . $i];
             $tags .= ($i == $cantags ? "" : ", ");
         }
+        $tags = str_replace("— ", "", $tags);
 
-        $stmt = $conn->query("
-            INSERT INTO proyectos VALUES (null, $value, '$name', '$desc', '$status', '$tags', '$start', '$end', null);
-        ");
-
-        if ($cantgoals >= 1) {
-            $lastId = $conn->insert_id;
-            /*if (self::createGoal($data, $lastId,  $conn)) {
-                return ($stmt == true) ? 'created-project' : 'error-create-project';
-            } else{
-                return "error-create-goals";
-            }*/
-
-            return self::createGoal($data, $lastId,  $conn);
+        $query = "INSERT INTO proyectos VALUES (null, $value, '$name', '$desc', '$status', '$tags', '$start', '$end', null, null);";
+        
+        if ($conn->query($query)) {
+            $projectId = $conn->lastInsertId();
+            if ($cantgoals >= 1) {
+                return self::createGoal($data, $projectId,  $conn);
+            } else {
+                return 'created-project';
+            }
+        } else {
+            return 'error-create-project';
         }
-
     }
 
     public function createGoal($data, $projectId, $conn) {
         $cantgoals = $data['cantgoals'];
+        $status = $data['project-status'];
+        $start = $data['project-start-date'];
+        $end = $data['project-end-date'];
+        $cont = 0;
 
-        /*$goal = "";
         for ($i=1; $i <= $cantgoals; $i++) { 
-             $goal .= $data['fast-goal_' . $i];
-            
-             $stmt = $conn->query("
-                 INSERT INTO metas VALUES (null, $value, '$name', '$desc', '$status', '$tags', '$start', '$end', null);
-             ");
-        }*/
+            $goal = $data['fast-goal_' . $i];
+            $goal = str_replace("— ", "", $goal);
+            $query = "INSERT INTO metas VALUES (null, $projectId, '$goal', '$status', '$start', '$end', 'proyecto', null);";
+            if ($conn->query($query)) {
+                $cont = $i;
+            } 
+        }
 
-        return $projectId;
+        return ($cont > 0) ? 'created-goal' : 'error-create-goal Cont: ';
     }
 
 }

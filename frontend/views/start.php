@@ -51,7 +51,7 @@
                         <div class="title-divider">
                             <p>Proyectos recientes</p>
                             <div class="options">
-                                <a class="a-link">Ver todos</a>
+                                <a href="<?=URLSERVER."/projects";?>" class="a-link">Ver todos</a>
                             </div>
                         </div>
                         <div class="home-grid">
@@ -66,14 +66,12 @@
                                             <div class="box-body">
                                                 <div class="box-head">
                                                     <span class="box-icon lj lj-bookmark"></span>
-                                                    <h4 class="box-name">'.$element['proyectoNombre'].'</h4>
+                                                    <a href="'.URLSERVER.'/projects/'.$element['proyectoLink'].'"><h4 class="box-name">'.$element['proyectoNombre'].'</h4></a>
                                                 </div>
                                                 <p class="box-desc">'.$element['proyectoDescripcion'].'</p>
-                                                <span class="box-status badge">'.$element['proyectoEstado'].'</span>
-                                                <span class="box-goals badge">15 metas</span>
                                                 <div class="box-todo">
-                                                    <p class="box-task">2 metas completadas</p>
-                                                    <p class="box-dates">10%</p>
+                                                    <span class="box-goals badge '.$element['value'].'">'.$element['cantidad_metas'].' metas</span>
+                                                    <span class="box-status badge '.$element['value'].'">'.$element['proyectoEstado'].'</span>
                                                 </div>
                                             </div>
                                         </div>
