@@ -11,89 +11,76 @@
             <section class="sec-left">
                 <div class="dashboard">
                     <div class="dashboard-top">
-                        <!-- <p class="dashboard-top__title">Proyectos</p> -->
                         <div id="clock" class="clock" onload="showTime()"></div> 
                         <p class="dashboard-top__date"><?=$date;?></p>
                     </div>
                     <div class="dashboard-body">
-                        <div class="dashboard-numbers">
-                            <?php 
-                                $totals = $project->getCountProjectByStatus('%', $conn);
-                                $totalQty = $totals['qty'];
-                                $pending = $project->getCountProjectByStatus('Pendiente', $conn);
-                                $pendingQty = $pending['qty'];
-                                $progress = $project->getCountProjectByStatus('En progreso', $conn);
-                                $progressQty = $progress['qty'];
-                                $complete = $project->getCountProjectByStatus('Completado', $conn);
-                                $completeQty = $complete['qty'];
-                            ?>
-                                <div class="dashboard-numbers__item">
-                                    <p class="dashboard-number__bigNumber"><?=$totalQty?></p>
-                                    <p class="normal-text">Proyectos totales</p>
-                                </div>
-                                <div class="dashboard-numbers__item">
-                                    <p class="dashboard-number__bigNumber"><?=$pendingQty?></p>
-                                    <p class="normal-text">Proyectos pendientes</p>
-                                </div>
-                                <div class="dashboard-numbers__item">
-                                    <p class="dashboard-number__bigNumber"><?=$progressQty?></p>
-                                    <p class="normal-text">Proyectos en progreso</p>
-                                </div>
-                                <div class="dashboard-numbers__item">
-                                    <p class="dashboard-number__bigNumber"><?=$completeQty?></p>
-                                    <p class="normal-text">Proyectos completados</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="title-divider">
-                            <p>Todos los proyectos</p>
+                            <p>Detalle del proyecto</p>
                             <div class="options">
                                 <a class="a-link"><span class="lj lj-menu"></span></a>
-                                <a class="a-link"><span class="lj lj-crop"></span></a>
                             </div>
                         </div>
-                        <div class="home-grid">
+
+                        <div class="wrapro">
                             <?php 
-                                $proyectos = $project->getAllProjects($conn);
-                                $result = $proyectos->fetchAll();
-                                foreach($result as $element) {
-                                    echo '
-                                        <div class="home-grid__box home-grid__one">
-                                            <a class="box-cog"><span class="lj lj-cog"></span></a>
-                                            <div class="box-body">
-                                                <div class="box-head">
-                                                    <span class="box-icon lj lj-bookmark"></span>
-                                                    <a href="'.URLSERVER.'/projects/'.$element['proyectoLink'].'"><h4 class="box-name">'.$element['proyectoNombre'].'</h4></a>
-                                                </div>
-                                                <p class="box-desc">'.$element['proyectoDescripcion'].'</p>
-                                                <div class="box-todo">
-                                                    <span class="box-goals badge '.$element['value'].'">'.$element['cantidad_metas'].' metas</span>
-                                                    <span class="box-status badge '.$element['value'].'">'.$element['proyectoEstado'].'</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ';
-                                }    
+                            
+                            $proyecto = $project->getProjectByRandom($projectLink, $conn);
+                            $result = $proyecto->fetchAll();
+                            foreach($result as $row) {
+                                echo '
+                                <div class="wrapro-header">
+                                    <div class="wrapro-name">
+                                        <h4 class="wrapro-title '.$row['valorNombre'].'">'.$row['proyectoNombre'].'</h4>
+                                        <h4 class="wrapro-desc">'.$row['proyectoDescripcion'].'</h4>
+                                    </div>
+                                    <div class="wrapro-det">
+                                        <p class="badge '.$row['valorNombre'].'">'.$row['valorNombre'].'</p>
+                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoEstado'].'</p>
+                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoFechaInicio'].'</p>
+                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoFechaFin'].'</p>
+                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoEtiquetas'].'</p>
+                                    </div>
+                                </div>';
+                            }
+
                             ?>
+
+                            <h5>Metas</h5>
+
+                            <div class="container">
+                                <div class="header">
+                                    <span>➤</span>
+                                    
+                                </div>
+                                <div class="content">
+                                    <ul>
+                                        <li>This is just some random content.</li>
+                                        <li>This is just some random content.</li>
+                                        <li>This is just some random content.</li>
+                                        <li>This is just some random content.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="header"><span>➤</span>
+
+                                </div>
+                                <div class="content">
+                                    <ul>
+                                        <li>This is just some random content.</li>
+                                        <li>This is just some random content.</li>
+                                        <li>This is just some random content.</li>
+                                        <li>This is just some random content.</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section class="sec-right">
-                <div class="user-area">
-                    <div class="user-area__account">
-                        <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="userpicture">
-                        <ul>
-                            <li class="normal-text">Luis José Cruz</li>
-                            <li class="small-text">Detalle del proyecto</li>
-                        </ul>
-                    </div>
-                    <div class="user-area__notify">
-                        <button id="logout" title="Cerrar sesión"><span class="lj lj-power-switch"></span></button>
-                    </div>
-                </div>
                 <div class="widget">
-                    Hola Mundo
+                    <?=$projectLink;?>
                 </div>
             </section>
         </article>
@@ -108,3 +95,24 @@
     </div>
 
 <?php require_once ('templates/footer.php'); ?>
+
+<script>
+
+$(".header").click(function () {
+
+$header = $(this);
+    //getting the next element
+    $content = $header.next();
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(100, function () {
+        //execute this after slideToggle is done
+        //change text of header based on visibility of content div
+        $header.text(function () {
+            //change text based on condition
+            return $content.is(":visible") ? "▼" : "➤";
+        });
+    });
+
+});
+
+</script>

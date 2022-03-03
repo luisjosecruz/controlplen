@@ -1,7 +1,7 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'ProductSans-Regular', Arial, Helvetica, sans-serif;
 }
 
 *,
@@ -40,6 +40,40 @@ a {
 ul, ol {
     list-style: none;
 }
+
+/* FONTS */
+
+@font-face {
+	font-family: 'ProductSans-Thin';
+	src: url('../font/ProductSans-Thin.ttf');
+}
+
+@font-face {
+	font-family: 'ProductSans-Light';
+	src: url('../font/ProductSans-Light.ttf');
+}
+
+@font-face {
+	font-family: 'ProductSans-Regular';
+	src: url('../font/ProductSans-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'ProductSans-Medium';
+	src: url('../font/ProductSans-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'ProductSans-Black';
+	src: url('../font/ProductSans-Black.ttf');
+}
+
+@font-face {
+	font-family: 'ProductSans-Bold';
+	src: url('../font/ProductSans-Bold.ttf');
+}
+
+/* ICONS */
 
 @font-face {
 	font-family: 'Linearicons-Free';

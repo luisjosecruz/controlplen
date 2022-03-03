@@ -80,18 +80,6 @@
                 </div>
             </section>
             <section class="sec-right">
-                <div class="user-area">
-                    <div class="user-area__account">
-                        <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="userpicture">
-                        <ul>
-                            <li class="normal-text">Luis José Cruz</li>
-                            <li class="small-text">Tus proyectos son importantes</li>
-                        </ul>
-                    </div>
-                    <div class="user-area__notify">
-                        <button id="logout" title="Cerrar sesión"><span class="lj lj-power-switch"></span></button>
-                    </div>
-                </div>
                 <div class="widget">
                     <!-- <p class="widget-title"><span class="lj lj-enter"></span> Proyectos</p> -->
                     

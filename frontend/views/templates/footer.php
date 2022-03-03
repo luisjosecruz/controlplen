@@ -1,3 +1,10 @@
+<div class="modal-overlay closed" id="modal-overlay"></div>
+
+    <div class="modal closed" id="modal">
+        <button class="close-button" id="close-button">X</button>
+        <div class="modal-guts" id="modal-data"></div>
+    </div>
+    
     <script src="<?=URLSERVER.'/assets/scripts/lib/jquery-3.6.0.min.js'?>"></script>
     <script src="<?=URLSERVER.'/assets/scripts/lib/moment.js'?>"></script>
 

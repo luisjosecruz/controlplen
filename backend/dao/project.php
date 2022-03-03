@@ -5,7 +5,7 @@ class Project
     public function getProjects($conn){
         $stmt = $conn->query("
             SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value FROM proyectos AS p
-            INNER JOIN metas AS m ON p.proyectoId = m.metaProyecto
+            LEFT JOIN metas AS m ON p.proyectoId = m.metaProyecto
             INNER JOIN valores AS v ON p.proyectoValor = v.valorId
             GROUP BY p.proyectoId ORDER BY p.proyectoId DESC LIMIT 3");
         return $stmt;
@@ -14,15 +14,36 @@ class Project
     public function getAllProjects($conn){
         $stmt = $conn->query("
             SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value FROM proyectos AS p
-            INNER JOIN metas AS m ON p.proyectoId = m.metaProyecto
+            LEFT JOIN metas AS m ON p.proyectoId = m.metaProyecto
             INNER JOIN valores AS v ON p.proyectoValor = v.valorId
             GROUP BY p.proyectoId ORDER BY p.proyectoId DESC
         ");
         return $stmt;
     }
 
+    public function getProjectByRandom($random, $conn){
+        $stmt = $conn->query("
+            SELECT proyectos.*, valores.valorNombre FROM proyectos 
+            LEFT JOIN valores ON valores.valorId = proyectos.proyectoValor WHERE proyectoLink = '$random'");
+        return $stmt;
+    }
+
     public function getCountProjectByStatus($status, $conn) {
         $stmt = $conn->query("SELECT COUNT(proyectoId) qty FROM proyectos WHERE proyectoEstado LIKE '$status'");
+        $qty = $stmt->fetch();
+        return $qty;
+    }
+
+    public function getQtyData($conn) {
+        $stmt = $conn->query("
+            SELECT 
+            COUNT(proyectos.proyectoId) cantProyectos, 
+            (SELECT COUNT(metas.metaId) FROM metas) cantMetas, 
+            (SELECT COUNT(metas.metaId) FROM metas WHERE metas.metaEstado = 'Completado') cantMetasCompletas,
+            (SELECT COUNT(tareas.tareaId) FROM tareas) cantTareas, 
+            (SELECT COUNT(tareas.tareaId) FROM tareas WHERE tareas.tareaEstado = 'Completado') cantTareasCompletas
+            FROM proyectos
+        ");
         $qty = $stmt->fetch();
         return $qty;
     }
@@ -76,7 +97,6 @@ class Project
 
         return ($cont > 0) ? 'created-goal' : 'error-create-goal Cont: ';
     }
-
 }
 
 ?>
