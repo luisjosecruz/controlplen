@@ -756,9 +756,17 @@ LEFT AREA / DASHBOARD
 /* PROJECT DETAILS */
 .wrapro {
     width: 100%;
-    height: calc(100vh - 80px);
     padding: 20px;
-    overflow-y: auto;
+}
+
+.wrapro h5 {
+    display: flex;
+    align-items: center;
+}
+
+.wrapro h5 span {
+    padding: 4px 5px;
+    margin-right: 4px;
 }
 
 .wrapro-header {
@@ -776,45 +784,145 @@ LEFT AREA / DASHBOARD
 }
 
 .wrapro-title {
-    font-size: 2.2rem;
-    padding: 8px 20px 8px 12px;
-    color: var(--just-white);
-    border-radius: 0px 25px 25px 0px;
+    font-size: 3rem;
 }
 
 .wrapro-desc {
+    font-size: 1.4rem;
     font-weight: 100;
     color: var(--text-color-light);
     padding: 4px 0px 10px 0px;
 }
 
-.wrapro-det {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 50%;
+.wrapro-body {
+    height: calc(100vh - 180px);
+    margin-top: 10px;
+    padding: 20px;
+    background-color: var(--just-white);
+    border-radius: 4px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 9%);
+    overflow-y: scroll;
 }
 
-.wrapro-det p {
-    display: inline-block;
+.wrapro-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0 10px;
+    border-bottom: 2px solid #dddddd;
+}
+
+.wrapro-section h6 {
+    color: #565656;
+}
+
+.wrapro-section-options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapro-section-options .goal-dates {
+    margin-right: 10px;
+}
+
+.wrapro-section-options .goal-dates p {
+    font-size: 1.2rem;
+}
+
+.wrapro-subsection {
+    border-left: 2px solid #dddddd;
+    margin-bottom: 20px;
+}
+
+.wrapro-subsection ul {
+    padding: 10px 0;
+}
+
+.wrapro-subsection ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item {
+    width: 100%;
+} 
+
+.wrapro-subsection ul li .wrapro-subsection-item .line {
+    width: 26px;
+    height: 2px;
+    background-color: #dddddd;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #dddddd;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .task .task-desc {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 2px;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .task .task-desc p {
+    font-size: 1.4rem;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .task .task-desc input {
+    margin: 0px 6px 0px 0px;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .subtasks {
+    padding-left: 20px;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .subtask {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-left: 2px solid #dddddd;
+    padding: 6px 0 6px 0px;
+    margin-left: 12px;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .subtask p {
+    font-size: 1.2rem;
+    color: var(--text-color-light);
+}
+
+
+.wrapro-subsection ul li .wrapro-subsection-item .subtask input {
     margin: 0 4px;
 }
 
-
-.container {
-    width: 100%;
-    border: 1px solid #d3d3d3;
+.wrapro-subsection ul li .wrapro-subsection-item .task-opts {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.container .header {
-    background-color:#d3d3d3;
-    padding: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 10px 20px;
+.wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-dates {
+    width: 50%;
+    margin: 0 6px;
 }
 
-.container .content {
-    display: none;
-    padding: 0 20px;
+.wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-dates p {
+    font-size: 1.2rem;
+}
+
+.wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-attrs {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

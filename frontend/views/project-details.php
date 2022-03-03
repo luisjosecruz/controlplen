@@ -15,12 +15,6 @@
                         <p class="dashboard-top__date"><?=$date;?></p>
                     </div>
                     <div class="dashboard-body">
-                        <div class="title-divider">
-                            <p>Detalle del proyecto</p>
-                            <div class="options">
-                                <a class="a-link"><span class="lj lj-menu"></span></a>
-                            </div>
-                        </div>
 
                         <div class="wrapro">
                             <?php 
@@ -31,49 +25,263 @@
                                 echo '
                                 <div class="wrapro-header">
                                     <div class="wrapro-name">
-                                        <h4 class="wrapro-title '.$row['valorNombre'].'">'.$row['proyectoNombre'].'</h4>
+                                        <h4 class="wrapro-title ">'.$row['proyectoNombre'].'</h4>
                                         <h4 class="wrapro-desc">'.$row['proyectoDescripcion'].'</h4>
-                                    </div>
-                                    <div class="wrapro-det">
-                                        <p class="badge '.$row['valorNombre'].'">'.$row['valorNombre'].'</p>
-                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoEstado'].'</p>
-                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoFechaInicio'].'</p>
-                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoFechaFin'].'</p>
-                                        <p class="badge '.$row['valorNombre'].'">'.$row['proyectoEtiquetas'].'</p>
+                                        <!--div class="wrapro-det">
+                                            <p class="badge '.$row['valorNombre'].'">'.$row['valorNombre'].'</p>
+                                            <p class="badge '.$row['valorNombre'].'">'.$row['proyectoEstado'].'</p>
+                                            <p class="badge '.$row['valorNombre'].'">'.$row['proyectoEtiquetas'].'</p>
+                                        </div-->
                                     </div>
                                 </div>';
                             }
-
                             ?>
 
-                            <h5>Metas</h5>
+                            <h5><span class="badge">25</span> Metas</h5>
+                            <div class="wrapro-body">
+                                <div class="wrapro-section">
+                                    <div class="wrapro-section-header">
+                                        <h6>Meta numero 1 para este proyecto</h6>
+                                        <div class="wrapro-section-options">
+                                            <div class="goal-dates">
+                                                <p>22/01/2022 - 26/05/2022</p>
+                                            </div>
+                                            <div class="goal-opts">
+                                                <span class="badge">Pendiente</span>
+                                                <span class="badge">5 Tareas</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wrapro-subsection">
+                                        <ul>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Primera tarea para la meta 1 proyecto</p>
+                                                        </label>
+                                                        <div class="task-opts">
+                                                            <div class="task-dates">
+                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
+                                                            </div>
+                                                            <div class="task-attrs">
+                                                                <span class="badge">Habito</span>
+                                                                <span class="badge">Pendiente</span>
+                                                                <a class="badge Salud">Detalles</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subtasks">
 
-                            <div class="container">
-                                <div class="header">
-                                    <span>➤</span>
-                                    
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li>This is just some random content.</li>
-                                        <li>This is just some random content.</li>
-                                        <li>This is just some random content.</li>
-                                        <li>This is just some random content.</li>
-                                    </ul>
-                                </div>
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo sdfs sdfsfd</p>
+                                                        </label>
+                                                        <div class="task-opts">
+                                                            <div class="task-dates">
+                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
+                                                            </div>
+                                                            <div class="task-attrs">
+                                                                <span class="badge">Una vez</span>
+                                                                <span class="badge">Pendiente</span>
+                                                                <a class="badge Salud">Detalles</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo sdfsd sdfsd sds</p>
+                                                        </label>
+                                                        <div class="task-opts">
+                                                            <div class="task-dates">
+                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
+                                                            </div>
+                                                            <div class="task-attrs">
+                                                                <span class="badge">Habito</span>
+                                                                <span class="badge">En progreso</span>
+                                                                <a class="badge Salud">Detalles</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        <label class="subtask">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox"><p>Tarea 1</p>
+                                                        </label>
+                                                        <label class="subtask">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox"><p>Tarea 2</p>
+                                                        </label>
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo</p>
+                                                        </label>
+                                                        <div class="task-opts">
+                                                            <div class="task-dates">
+                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
+                                                            </div>
+                                                            <div class="task-attrs">
+                                                                <span class="badge">Habito</span>
+                                                                <span class="badge">Pendiente</span>
+                                                                <a class="badge Salud">Detalles</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        <label class="subtask">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox"><p>Tarea 1</p>
+                                                        </label>
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo</p>
+                                                        </label>
+                                                        <div class="task-opts">
+                                                            <div class="task-dates">
+                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
+                                                            </div>
+                                                            <div class="task-attrs">
+                                                                <span class="badge">Habito</span>
+                                                                <span class="badge">Pendiente</span>
+                                                                <a class="badge Salud">Detalles</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        <label class="subtask">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox"><p>Tarea 1</p>
+                                                        </label>
+                                                    </div>
+                                               </div>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                <div class="header"><span>➤</span>
-
-                                </div>
-                                <div class="content">
-                                    <ul>
-                                        <li>This is just some random content.</li>
-                                        <li>This is just some random content.</li>
-                                        <li>This is just some random content.</li>
-                                        <li>This is just some random content.</li>
-                                    </ul>
+                                    <div class="wrapro-section-header">
+                                        <h6>Meta numero 2 para este proyecto</h6>
+                                        <div class="wrapro-section-options">
+                                            <div class="goal-dates">
+                                                <p>22/01/2022 - 26/05/2022</p>
+                                            </div>
+                                            <div class="goal-opts">
+                                                <span class="badge">Pendiente</span>
+                                                <span class="badge">5 Tareas</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wrapro-subsection">
+                                        <ul>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Primera tarea para la meta 1 proyecto</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        <label class="subtask">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox"><p>Tarea 1 sdfs dxfsdf</p>
+                                                        </label>
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo sdfs sdfsfd</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo sdfsd sdfsd sds</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        
+                                                    </div>
+                                               </div>
+                                            </li>
+                                            <li>
+                                               <div class="wrapro-subsection-item">
+                                                   <div class="task">
+                                                       <label class="task-desc">
+                                                            <p class="line"></p>
+                                                            <input type="checkbox">
+                                                            <p>Hola Mundo</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="subtasks">
+                                                        
+                                                    </div>
+                                               </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -95,24 +303,3 @@
     </div>
 
 <?php require_once ('templates/footer.php'); ?>
-
-<script>
-
-$(".header").click(function () {
-
-$header = $(this);
-    //getting the next element
-    $content = $header.next();
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(100, function () {
-        //execute this after slideToggle is done
-        //change text of header based on visibility of content div
-        $header.text(function () {
-            //change text based on condition
-            return $content.is(":visible") ? "▼" : "➤";
-        });
-    });
-
-});
-
-</script>
