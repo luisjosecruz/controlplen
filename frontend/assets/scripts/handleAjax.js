@@ -1,6 +1,6 @@
 const handleAjax = (data) => {
 	console.log(data);
-	return false;
+	// return false;
 	switch (data) {
 		case 'login 200': 
 			window.location.href = "/";
@@ -25,6 +25,22 @@ const handleAjax = (data) => {
 		case 'logout 200':
 			alert('Cerrando la sesión...');
 			window.location.href = "/";
+			
+			break;
+		case 'created-goal':
+			setTimeout(() => {
+				document.querySelector("#modal").classList.add("closed");
+				document.querySelector("#modal-overlay").classList.add("closed");
+				location.reload();
+			}, 1000);
+			
+			break;
+		case 'created-project':
+			setTimeout(() => {
+				document.querySelector("#modal").classList.add("closed");
+				document.querySelector("#modal-overlay").classList.add("closed");
+				location.reload();
+			}, 1000);
 			
 			break;
 		default: 

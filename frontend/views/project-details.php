@@ -11,8 +11,8 @@
             <section class="sec-left">
                 <div class="dashboard">
                     <div class="dashboard-top">
-                        <div id="clock" class="clock" onload="showTime()"></div> 
                         <p class="dashboard-top__date"><?=$date;?></p>
+                        <div id="clock" class="clock" onload="showTime ()"></div> 
                     </div>
                     <div class="dashboard-body">
 
@@ -37,248 +37,65 @@
                             }
                             ?>
 
-                            <h5><span class="badge">25</span> Metas</h5>
                             <div class="wrapro-body">
                                 <div class="wrapro-section">
-                                    <div class="wrapro-section-header">
-                                        <h6>Meta numero 1 para este proyecto</h6>
-                                        <div class="wrapro-section-options">
-                                            <div class="goal-dates">
-                                                <p>22/01/2022 - 26/05/2022</p>
-                                            </div>
-                                            <div class="goal-opts">
-                                                <span class="badge">Pendiente</span>
-                                                <span class="badge">5 Tareas</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrapro-subsection">
-                                        <ul>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Primera tarea para la meta 1 proyecto</p>
-                                                        </label>
-                                                        <div class="task-opts">
-                                                            <div class="task-dates">
-                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
-                                                            </div>
-                                                            <div class="task-attrs">
-                                                                <span class="badge">Habito</span>
-                                                                <span class="badge">Pendiente</span>
-                                                                <a class="badge Salud">Detalles</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="subtasks">
 
+                                <?php 
+                                    $metas = $project->getGoalsByRandom($projectLink, $conn);
+                                    $metasResult = $metas->fetchAll();
+                                    $contador = 1;
+                                    foreach($metasResult as $goal) {
+                                        echo '
+                                            <div class="wrapro-section-header">
+                                                <h6>'.$contador.'. '.$goal['metaDescripcion'].'</h6>
+                                                <div class="wrapro-section-options">
+                                                    <div class="goal-dates">
+                                                        <p>'.date_format(date_create($goal['metaFechaInicio']), 'd/m/Y').' — '.date_format(date_create($goal['metaFechaFin']), 'd/m/Y').'</p>
                                                     </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo sdfs sdfsfd</p>
-                                                        </label>
-                                                        <div class="task-opts">
-                                                            <div class="task-dates">
-                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
-                                                            </div>
-                                                            <div class="task-attrs">
-                                                                <span class="badge">Una vez</span>
-                                                                <span class="badge">Pendiente</span>
-                                                                <a class="badge Salud">Detalles</a>
-                                                            </div>
-                                                        </div>
+                                                    <div class="goal-opts">
+                                                        <span class="badge">Meta '.$goal['metaEstado'].'</span>
                                                     </div>
-                                                    <div class="subtasks">
-                                                        
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo sdfsd sdfsd sds</p>
-                                                        </label>
-                                                        <div class="task-opts">
-                                                            <div class="task-dates">
-                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
-                                                            </div>
-                                                            <div class="task-attrs">
-                                                                <span class="badge">Habito</span>
-                                                                <span class="badge">En progreso</span>
-                                                                <a class="badge Salud">Detalles</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        <label class="subtask">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox"><p>Tarea 1</p>
-                                                        </label>
-                                                        <label class="subtask">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox"><p>Tarea 2</p>
-                                                        </label>
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo</p>
-                                                        </label>
-                                                        <div class="task-opts">
-                                                            <div class="task-dates">
-                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
-                                                            </div>
-                                                            <div class="task-attrs">
-                                                                <span class="badge">Habito</span>
-                                                                <span class="badge">Pendiente</span>
-                                                                <a class="badge Salud">Detalles</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        <label class="subtask">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox"><p>Tarea 1</p>
-                                                        </label>
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo</p>
-                                                        </label>
-                                                        <div class="task-opts">
-                                                            <div class="task-dates">
-                                                                <p>22/01/2022 05:30 - 26/05/2022 12:00</p>
-                                                            </div>
-                                                            <div class="task-attrs">
-                                                                <span class="badge">Habito</span>
-                                                                <span class="badge">Pendiente</span>
-                                                                <a class="badge Salud">Detalles</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        <label class="subtask">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox"><p>Tarea 1</p>
-                                                        </label>
-                                                    </div>
-                                               </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="wrapro-section-header">
-                                        <h6>Meta numero 2 para este proyecto</h6>
-                                        <div class="wrapro-section-options">
-                                            <div class="goal-dates">
-                                                <p>22/01/2022 - 26/05/2022</p>
+                                                </div>
                                             </div>
-                                            <div class="goal-opts">
-                                                <span class="badge">Pendiente</span>
-                                                <span class="badge">5 Tareas</span>
+                                            <div class="wrapro-subsection">
+                                                <ul>';
+                                                $tareas = $project->getTasksByMeta($goal['metaId'], $conn);
+                                                $tareasResult = $tareas->fetchAll();
+                                                $contador++;
+                                                
+                                                foreach($tareasResult as $task) { 
+                                                echo'<li>
+                                                        <div class="wrapro-subsection-item">
+                                                            <div class="task">
+                                                                <label class="task-desc">
+                                                                    <p class="line"></p>
+                                                                    <input type="checkbox">
+                                                                    <p>'.$task['tareaDescripcion'].'</p>
+                                                                </label>
+                                                                <div class="task-opts">
+                                                                    <div class="task-dates">
+                                                                        <p>'.date_format(date_create($task['tareaFechaInicio']), 'd/m/Y').' — '.date_format(date_create($task['tareaFechaFin']), 'd/m/Y').'</p>
+                                                                    </div>
+                                                                    <div class="task-attrs">
+                                                                        <span class="badge">'.$task['tareaTipo'].'</span>
+                                                                        <span class="badge">'.$task['tareaEstado'].'</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="subtasks">
+                                                                <!--label class="subtask">
+                                                                    <p class="line"></p>
+                                                                    <input type="checkbox"><p>Tarea 1</p>
+                                                                </label-->
+                                                            </div>
+                                                        </div>
+                                                    </li>';
+                                                }
+                                            echo'</ul>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrapro-subsection">
-                                        <ul>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Primera tarea para la meta 1 proyecto</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        <label class="subtask">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox"><p>Tarea 1 sdfs dxfsdf</p>
-                                                        </label>
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo sdfs sdfsfd</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo sdfsd sdfsd sds</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        
-                                                    </div>
-                                               </div>
-                                            </li>
-                                            <li>
-                                               <div class="wrapro-subsection-item">
-                                                   <div class="task">
-                                                       <label class="task-desc">
-                                                            <p class="line"></p>
-                                                            <input type="checkbox">
-                                                            <p>Hola Mundo</p>
-                                                        </label>
-                                                    </div>
-                                                    <div class="subtasks">
-                                                        
-                                                    </div>
-                                               </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                        ';
+                                    }    
+                                ?>
                                 </div>
                             </div>
                             

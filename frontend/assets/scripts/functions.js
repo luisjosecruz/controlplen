@@ -1,21 +1,22 @@
 // save a new projects
-function saveProject() {
+function saveProject(id) {
 
-	let formCreateProject = document.getElementById("formCreateProject");
+	let formCreateProject = document.getElementById(id);
     let formData = new FormData(formCreateProject);
 	formData.append('ajax', 'save-project');
-	
-    let projectName = document.getElementById("project-name").value;
-    let projectDescription = document.getElementById("project-description").value;
-    let projectEndDate = document.getElementById("project-end-date").value;
 
 	if (validateData(formData)) {
 		let modalMessage = document.getElementById("modalMessage");
-		modalMessage.textContent = "Guardando información ...";
+		// modalMessage.textContent = "Guardando información ...";
+		console.log("Guardando información ...");
 		let cantags = document.getElementsByClassName("fast-tag");
 		let cantgoals = document.getElementsByClassName("fast-goal");
 		formData.append('cantags', cantags.length);
 		formData.append('cantgoals', cantgoals.length);
+		
 		sendAjax('/src/ajax.php', formData);
+
+		let btn = document.querySelector('.form-btn')
+		btn.disabled = true;
 	}
 }

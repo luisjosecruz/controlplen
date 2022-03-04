@@ -11,8 +11,8 @@
             <section class="sec-left">
                 <div class="dashboard">
                     <div class="dashboard-top">
-                        <div id="clock" class="clock" onload="showTime()"></div> 
                         <p class="dashboard-top__date"><?=$date;?></p>
+                        <div id="clock" class="clock" onload="showTime()"></div> 
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
@@ -73,6 +73,7 @@
                                                 <div class="box-todo">
                                                     <span class="box-goals badge '.$element['value'].'">'.$element['cantidad_metas'].' metas</span>
                                                     <span class="box-status badge '.$element['value'].'">'.$element['proyectoEstado'].'</span>
+                                                    <span class="box-status badge '.$element['value'].'">'.$element['value'].'</span>
                                                 </div>
                                             </div>
                                         </div>

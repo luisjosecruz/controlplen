@@ -759,16 +759,6 @@ LEFT AREA / DASHBOARD
     padding: 20px;
 }
 
-.wrapro h5 {
-    display: flex;
-    align-items: center;
-}
-
-.wrapro h5 span {
-    padding: 4px 5px;
-    margin-right: 4px;
-}
-
 .wrapro-header {
     display: flex;
     align-items: center;
@@ -784,7 +774,7 @@ LEFT AREA / DASHBOARD
 }
 
 .wrapro-title {
-    font-size: 3rem;
+    font-size: 3.2rem;
 }
 
 .wrapro-desc {
@@ -813,7 +803,7 @@ LEFT AREA / DASHBOARD
 }
 
 .wrapro-section h6 {
-    color: #565656;
+    color: #434343;
 }
 
 .wrapro-section-options {
@@ -830,20 +820,24 @@ LEFT AREA / DASHBOARD
     font-size: 1.2rem;
 }
 
+.wrapro-section-options .goal-opts span {
+    background-color: #565656;
+}
+
 .wrapro-subsection {
     border-left: 2px solid #dddddd;
     margin-bottom: 20px;
 }
 
 .wrapro-subsection ul {
-    padding: 10px 0;
+    padding: 0px;
 }
 
 .wrapro-subsection ul li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 4px 0;
+    padding: 0px;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item {
@@ -861,8 +855,8 @@ LEFT AREA / DASHBOARD
     align-items: center;
     justify-content: space-between;
     padding: 10px 0;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #dddddd;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task .task-desc {
@@ -875,6 +869,7 @@ LEFT AREA / DASHBOARD
 
 .wrapro-subsection ul li .wrapro-subsection-item .task .task-desc p {
     font-size: 1.4rem;
+    color: #535353;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task .task-desc input {
@@ -913,7 +908,7 @@ LEFT AREA / DASHBOARD
 
 .wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-dates {
     width: 50%;
-    margin: 0 6px;
+    margin: 0 6px 0 0;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-dates p {

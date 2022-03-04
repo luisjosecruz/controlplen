@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                             </div>
                         </form>
                         <p id="modalMessage" class="modal-message"></p>
-                        <input class="form-btn" onclick="saveProject()" type="submit" value="Guardar">
+                        <input class="form-btn" onclick="saveProject('formCreateProject')" type="submit" value="Guardar">
                     </div>
         `;
 

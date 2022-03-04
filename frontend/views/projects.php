@@ -12,8 +12,8 @@
                 <div class="dashboard">
                     <div class="dashboard-top">
                         <!-- <p class="dashboard-top__title">Proyectos</p> -->
-                        <div id="clock" class="clock" onload="showTime()"></div> 
                         <p class="dashboard-top__date"><?=$date;?></p>
+                        <div id="clock" class="clock" onload="showTime()"></div> 
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
@@ -69,6 +69,7 @@
                                                 <div class="box-todo">
                                                     <span class="box-goals badge '.$element['value'].'">'.$element['cantidad_metas'].' metas</span>
                                                     <span class="box-status badge '.$element['value'].'">'.$element['proyectoEstado'].'</span>
+                                                    <span class="box-status badge '.$element['value'].'">'.$element['value'].'</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -81,55 +82,50 @@
             </section>
             <section class="sec-right">
                 <div class="widget">
-                    <!-- <p class="widget-title"><span class="lj lj-enter"></span> Proyectos</p> -->
-                    
-                    <div class="form-group">
-                        <!-- <label for="project-name">Nombre:</label> -->
-                        <input class="input-project" id="project-name" type="text" placeholder="Proyecto" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción"></textarea>
-                    </div>
-                    <!-- <div class="form-right-title">
-                        <p>Atributos</p>
-                        <span class="lj lj-bookmark"></span>
-                    </div> -->
-                    <div class="form-group">
-                        <select name="project-value" id="project-value">
-                            <option value="1" selected>Salud</option>
-                            <option value="2">Arte</option>
-                            <option value="3">Felicidad</option>
-                            <option value="4">Amor y Paz</option>
-                            <option value="5">Aprendizaje</option>
-                        </select>
-                        <select name="project-status" id="project-status">
-                            <option disabled="disabled" selected value="0">Estado</option>
-                            <option value="Pendiente">Pendiente</option>
-                            <option value="En progreso">Inactivo</option>
-                            <option value="Completado">Completado</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="date" name="project-start-date" id="project-start-date" value="<?php echo date("Y-m-d");?>">
-                        <input type="date" name="project-end-date" id="project-end-date" >
-                    </div>
-                    <div class="form-group select-tags">
-                        <div class="create-goals">
-                            <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
-                            <a id="createTag" class="add-goal">+</a>
+                    <form id="formAddNewProject">
+                        <div class="form-group">
+                            <input class="input-project" name="project-name" type="text" placeholder="Proyecto" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="project-description" name="project-description" cols="10" rows="2" placeholder="Descripción"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select name="project-value">
+                                <option value="1" selected>Salud</option>
+                                <option value="2">Arte</option>
+                                <option value="3">Felicidad</option>
+                                <option value="4">Amor y Paz</option>
+                                <option value="5">Aprendizaje</option>
+                            </select>
+                            <select name="project-status">
+                                <option disabled="disabled" value="0">Estado</option>
+                                <option value="Pendiente" selected>Pendiente</option>
+                                <option value="En progreso">En progreso</option>
+                                <option value="Completado">Completado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="project-start-date" value="<?php echo date("Y-m-d");?>">
+                            <input type="date" name="project-end-date" id="project-end-date" >
+                        </div>
+                        <div class="form-group select-tags">
+                            <div class="create-goals">
+                                <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
+                                <a id="createTag" onclick="addTag(this)" class="add-goal"><span class="lj lj-plus-circle"></span></a>
+                            </div>
+                            <div class="create-goals">
+                                <div class="create-tags-list"></div>
+                            </div>
                         </div>
                         <div class="create-goals">
-                            <div class="create-tags-list"></div>
+                            <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
+                            <a id="createGoal" class="add-goal" onclick="addGoal(this)"><span class="lj lj-plus-circle"></span></a>
                         </div>
-                    </div>
-                    <div class="create-goals">
-                        <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
-                        <a id="createGoal" class="add-goal">+</a>
-                    </div>
-                    <div class="create-goals">
-                        <div class="create-goals-list"></div>
-                    </div>
-                    <input class="form-btn" id="saveObjective" type="submit" value="Guardar">
+                        <div class="create-goals">
+                            <div class="create-goals-list"></div>
+                        </div>
+                    </form>
+                    <input class="form-btn" onclick="saveProject('formAddNewProject')" type="submit" value="Guardar">
                 </div>
             </section>
         </article>

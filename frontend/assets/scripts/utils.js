@@ -36,7 +36,8 @@ function validateData(data) {
 		case 'save-project':
 			if (data.get('project-name').trim().length <= 0 || data.get('project-description').trim().length <= 0 || data.get('project-end-date').trim().length <= 0) {
 				let modalMessage = document.getElementById("modalMessage");
-				modalMessage.textContent = "Existen datos requeridos sin completar.";
+				// modalMessage.textContent = "Existen datos requeridos sin completar.";
+				alert("Existen datos requeridos sin completar.");
 			} else {
 				return true;
 			}

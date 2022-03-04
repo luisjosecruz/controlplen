@@ -97,6 +97,21 @@ class Project
 
         return ($cont > 0) ? 'created-goal' : 'error-create-goal Cont: ';
     }
+
+    /* GOALS */
+    public function getGoalsByRandom($random, $conn){
+        $stmt = $conn->query("
+            SELECT metas.* FROM metas INNER JOIN proyectos ON proyectos.proyectoId = metas.metaProyecto 
+            WHERE proyectos.proyectoLink = '$random'");
+        return $stmt;
+    }
+    
+    /* TASKS */
+    public function getTasksByMeta($goalId, $conn){
+        $stmt = $conn->query("SELECT tareas.* FROM tareas INNER JOIN metas ON metaId = tareaMeta WHERE metaId = '$goalId'");
+        return $stmt;
+    }
+
 }
 
 ?>

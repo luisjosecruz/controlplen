@@ -35,6 +35,11 @@ switch($route){
         require_once ('views/habits.php');
 
         break;
+    
+    case 'calendar':
+        require_once ('views/habits.php');
+
+        break;
     default:
         require_once('views/404.php');
 }
