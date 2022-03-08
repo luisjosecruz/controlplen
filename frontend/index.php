@@ -14,14 +14,18 @@ $date = utf8_encode(strftime('%A %e de %B, %Y'));
 switch($route){
     case '':
         session_start();
-        if (!isset($_SESSION["usuarioId"])) header('Location: /login');
+        if (!isset($_SESSION["usuarioId"])) header('Location: /signin');
         require_once ('views/start.php');
 
         break;
-    case 'login':
+    case 'signin':
         require_once ('views/login.php');
 
         break;
+    case 'signup':
+        require_once ('views/register.php');
+
+        break;    
     case 'projects':
         if (isset($uriParts[2])) {
             $projectLink = $uriParts[2];

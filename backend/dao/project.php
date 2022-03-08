@@ -75,9 +75,20 @@ class Project
                 return 'created-project';
             }
         } else {
-            return 'error-create-project';
+            return 'error-create-project '.$query;
         }
     }
+
+    // — Eliminar la grasa de mi cuerpo
+    // — Reducir el consumo de alimientos no saludables
+    // — Disminuir mis niveles de estres
+    // — Eliminar las ojeras
+    // — Eliminar los puntos negros de mi cara
+    // — Mejorar el aspecto de mis manos
+    // — Mejorar el aspecto de mis pies
+    // — Mantener un cabello saludable
+    
+
 
     public function createGoal($data, $projectId, $conn) {
         $cantgoals = $data['cantgoals'];
@@ -104,6 +115,20 @@ class Project
             SELECT metas.* FROM metas INNER JOIN proyectos ON proyectos.proyectoId = metas.metaProyecto 
             WHERE proyectos.proyectoLink = '$random'");
         return $stmt;
+    }
+
+    public function addGoal($data, $conn) {
+        $goal = $data['goal-desc'];
+        $link = $data['project-link'];
+        $dateEnd = $data['goal-date'];
+
+        // $query = "INSERT INTO metas VALUES (null, $projectId, '$goal', 'Pendiente', 'NOW()', 'NOW()', 'proyecto', null);";
+        // if ($conn->query($query)) {
+        //     $cont = $i;
+        // } 
+
+        // return ($cont > 0) ? 'created-goal' : 'error-create-goal Cont: ';
+        return $goal;
     }
     
     /* TASKS */

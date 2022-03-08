@@ -25,6 +25,13 @@ html {
   --text-color-light: #777777;
   --blue: #45ADFE;
   --red: #E94560;
+
+  --claro: #FFFFFF;
+  --verde-verde: #4E9F3D;
+  --celeste-claro: #eff3f8;
+  --negro: #191A19;
+  --azul-negro: #2f2e41;
+  --gris: #cacaca;
 }
 
 :root.dark {

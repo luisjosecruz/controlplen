@@ -1,12 +1,20 @@
-<?php require_once ('templates/header.php'); ?>
-<body>
+<?php 
+require_once ('templates/header.php'); 
+require_once ('../backend/bootstrap.php');
+require_once ('../backend/dao/project.php');
+$project = new Project();
+
+$totals = $project->getCountProjectByStatus('%', $conn);
+$totalQty = $totals['qty'];
+$pending = $project->getCountProjectByStatus('Pendiente', $conn);
+$pendingQty = $pending['qty'];
+$progress = $project->getCountProjectByStatus('En progreso', $conn);
+$progressQty = $progress['qty'];
+$complete = $project->getCountProjectByStatus('Completado', $conn);
+$completeQty = $complete['qty'];    
+?>
     <main>
-        <?php 
-            require_once ('templates/navbar.php'); 
-            require_once ('../backend/bootstrap.php');
-            require_once ('../backend/dao/project.php');
-            $project = new Project();
-        ?>
+        <?php require_once ('templates/navbar.php'); ?>
         <article>
             <section class="sec-left">
                 <div class="dashboard">
@@ -17,16 +25,6 @@
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
-                            <?php 
-                                $totals = $project->getCountProjectByStatus('%', $conn);
-                                $totalQty = $totals['qty'];
-                                $pending = $project->getCountProjectByStatus('Pendiente', $conn);
-                                $pendingQty = $pending['qty'];
-                                $progress = $project->getCountProjectByStatus('En progreso', $conn);
-                                $progressQty = $progress['qty'];
-                                $complete = $project->getCountProjectByStatus('Completado', $conn);
-                                $completeQty = $complete['qty'];
-                            ?>
                                 <div class="dashboard-numbers__item">
                                     <p class="dashboard-number__bigNumber"><?=$totalQty?></p>
                                     <p class="normal-text">Proyectos totales</p>
@@ -54,6 +52,7 @@
                         </div>
                         <div class="home-grid">
                             <?php 
+
                                 $proyectos = $project->getAllProjects($conn);
                                 $result = $proyectos->fetchAll();
                                 foreach($result as $element) {
@@ -75,6 +74,7 @@
                                         </div>
                                     ';
                                 }    
+                                
                             ?>
                         </div>
                     </div>
@@ -130,13 +130,5 @@
             </section>
         </article>
     </main>
-
-    <div class="modal-overlay closed" id="modal-overlay"></div>
-
-    <div class="modal closed" id="modal">
-        <button class="close-button" id="close-button">X</button>
-        <div class="modal-guts" id="modal-data">
-        </div>
-    </div>
 
 <?php require_once ('templates/footer.php'); ?>

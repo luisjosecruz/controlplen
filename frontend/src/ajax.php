@@ -19,6 +19,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         case 'save-project': handleSaveProject($_POST, $conn);
 
             break;
+        case 'save-goal': handleSaveGoal($_POST, $conn);
+
+            break;
         default:
             echo 'ajax 404 '.$_POST['ajax'];
             break;

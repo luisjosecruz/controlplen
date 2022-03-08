@@ -14,22 +14,24 @@
             <section class="login-img">
                 <div class="login-intro">
                     <h3 class="title">Control Plen</h3>
-                    <h3>Es el momento para tomar el control.</h3>
-                    <p>Sabemos que el tiempo es lo mas valioso que tenemos, 
-                        entonces no lo desperdiciemos buscando múltiples herramientas para organizarnos.
-                        En un solo lugar podemos llevar el control de nuestra vida.</p>
+                    <h3>Crear una cuenta te puede cambiar la vida.</h3>
+                    <p>Este paso es importante para alcanzar tus objetivos.
+                        ¿Estás pensando en ser tu mejor versión?
+                    </p>
                 </div>
                 <img src="<?=URLSERVER.'/assets/images/login.svg';?>" alt="login">
                 <div class="login-intro">
-                    <p>Si no tienes una cuenta todavía, <br> puedes registrarte haciendo click <a href="/signup">aquí.</a></p>
+                    <p>Si ya tienes una cuenta, <br> puedes iniciar sesión haciendo click <a href="/signin">aquí.</a></p>
                 </div>
             </section>
             <section class="login-form">
-                <p>Control Plen</p>
+                <p>Registro</p>
                 <form id="loginForm">
-                    <input type="text" id="username" name="username" placeholder="Usuario" autocomplete="off">
+                    <input type="text" id="name" name="name" placeholder="Nombre" autocomplete="off">
+                    <input type="text" id="lastname" name="lastname" placeholder="Apellido" autocomplete="off">
+                    <input type="text" id="email" name="email" placeholder="Correo electrónico" autocomplete="off">
                     <input type="password" id="password" name="password" placeholder="Contraseña">
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Guardar">
                 </form>
             </section>
         </article>

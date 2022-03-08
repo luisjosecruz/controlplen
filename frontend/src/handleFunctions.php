@@ -38,4 +38,11 @@ function handleSaveProject($data, $conn) {
     echo $stmt;
 }
 
+function handleSaveGoal($data, $conn) {
+    $project = new Project();
+    $stmt = $project->addGoal($data, $conn);
+    
+    echo $stmt;
+}
+
 ?>

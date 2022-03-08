@@ -1,12 +1,18 @@
-<?php require_once ('templates/header.php'); ?>
-<body>
+<?php 
+require_once ('templates/header.php'); 
+require_once ('../backend/bootstrap.php');
+require_once ('../backend/dao/project.php');
+$project = new Project();
+
+$totals = $project->getQtyData($conn);
+$cantProyectos = $totals['cantProyectos'];
+$cantMetas = $totals['cantMetas'];
+$cantMetasCompletas = $totals['cantMetasCompletas'];
+$cantTareas = $totals['cantTareas'];
+$cantTareasCompletas = $totals['cantTareasCompletas'];
+?>
     <main>
-        <?php 
-            require_once ('templates/navbar.php'); 
-            require_once ('../backend/bootstrap.php');
-            require_once ('../backend/dao/project.php');
-            $project = new Project();
-        ?>
+        <?php require_once ('templates/navbar.php'); ?>
         <article>
             <section class="sec-left">
                 <div class="dashboard">
@@ -16,14 +22,6 @@
                     </div>
                     <div class="dashboard-body">
                         <div class="dashboard-numbers">
-                        <?php 
-                            $totals = $project->getQtyData($conn);
-                            $cantProyectos = $totals['cantProyectos'];
-                            $cantMetas = $totals['cantMetas'];
-                            $cantMetasCompletas = $totals['cantMetasCompletas'];
-                            $cantTareas = $totals['cantTareas'];
-                            $cantTareasCompletas = $totals['cantTareasCompletas'];
-                        ?>
                             <div class="dashboard-numbers__item">
                                 <p class="dashboard-number__bigNumber"><?=$cantProyectos?></p>
                                 <p class="normal-text">Proyectos totales</p>
@@ -79,7 +77,7 @@
                                         </div>
                                     ';
                                 }
-                            
+
                             ?>
                         </div>
                         <!-- <div class="todo">
@@ -131,3 +129,84 @@
     </main>
 
 <?php require_once ('templates/footer.php'); ?>
+
+<script>
+
+// load data into a modal to create a new project
+let createProject = document.getElementById("createProject");
+createProject.addEventListener("click", () => {
+    openModal(` <div class="modal-header">
+                    <p class="modal-title">Crear nuevo proyecto</p>
+                </div>
+                <div class="modal-content">
+                    <form id="formCreateProject" class="modal-form">
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="project-name">Nombre:</label>
+                                <input class="input-project" id="project-name" name="project-name" type="text" placeholder="Proyecto" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción del proyecto"></textarea>
+                            </div>
+                            <div class="form-group select-tags">
+                                <label for="inputGoal">Metas</label>
+                                <div class="create-goals">
+                                    <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
+                                    <a id="createGoal" class="add-goal" onclick="addGoal(this)"><span class="lj lj-plus-circle"></span></a>
+                                </div>
+                                <div class="create-goals">
+                                    <div class="create-goals-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-right">
+                            <div class="form-right-title">
+                                <p>Atributos</p>
+                                <span class="lj lj-bookmark"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="attributes" for="project-value">Valor</label>
+                                <select name="project-value" id="project-value">
+                                    <option value="1" selected>Salud</option>
+                                    <option value="2">Arte</option>
+                                    <option value="3">Felicidad</option>
+                                    <option value="4">Amor y Paz</option>
+                                    <option value="5">Aprendizaje</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="attributes" for="project-status">Estado</label>
+                                <select name="project-status" id="project-status">
+                                    <option disabled="disabled" value="0">Estado</option>
+                                    <option value="Pendiente" selected>Pendiente</option>
+                                    <option value="En progreso">En progreso</option>
+                                    <option value="Completado">Completado</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="attributes" for="project-start-date">Inicio</label>
+                                <input type="date" name="project-start-date" id="project-start-date" value="${moment().format('Y-MM-DD')}">
+                            </div>
+                            <div class="form-group">
+                                <label class="attributes" for="project-end-date">Fin</label>
+                                <input type="date" name="project-end-date" id="project-end-date" >
+                            </div>
+                            <div class="form-group select-tags">
+                                <label class="attributes" for="project-tags">Etiquetas</label>
+                                <div class="create-goals">
+                                    <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
+                                    <a id="createTag" onclick="addTag(this)" class="add-goal"><span class="lj lj-plus-circle"></span></a>
+                                </div>
+                                <div class="create-goals">
+                                    <div class="create-tags-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <p id="modalMessage" class="modal-message"></p>
+                    <input class="form-btn" onclick="saveProject('formCreateProject')" type="submit" value="Guardar">
+                </div>`
+            );
+});
+
+</script>
