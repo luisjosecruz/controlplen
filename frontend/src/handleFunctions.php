@@ -22,6 +22,14 @@ function handleLogin ($data, $conn) {
     } else {
         echo 'login 404';
     }
+
+}
+
+function handleRegister($data, $conn) {
+    $userObj = new User();
+    $stmt = $userObj->register($data, $conn);
+    
+    echo ($stmt == 1) ? "register 200" : "register 500 : ".$stmt;
 }
 
 function handleLogout() {

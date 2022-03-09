@@ -7,12 +7,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $request = $_POST['ajax'];
 
     switch ($request) {
-        case 'login':
-            // $data = [$_POST['username'], $_POST['password']];
-            handleLogin($_POST, $conn);
+        case 'login': handleLogin($_POST, $conn);
 
             break;
         case 'logout': handleLogout();
+
+            break;
+        case 'register': handleRegister($_POST, $conn);
 
             break;
 

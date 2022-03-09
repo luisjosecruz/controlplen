@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Plen</title>
+    <title>Control Plen | Inicio de sesión</title>
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/base.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/login.css';?>">
+    <link rel="shortcut icon" href="<?=URLSERVER.'/assets/images/logo.png';?>" type="image/png">
 </head>
 <body>
     <main class="login-container">
@@ -35,6 +36,23 @@
         </article>
     </main>
     <script src="<?=URLSERVER.'/assets/scripts/utils.js';?>"></script>
-    <script src="<?=URLSERVER.'/assets/scripts/login.js';?>"></script>
 </body>
 </html>
+
+<script>
+
+let loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let formData = new FormData(e.target);
+    formData.append("ajax", "login");
+    // for (var value of formData.values()) { console.log(value); }
+
+    if (validateData(formData)) {
+        sendAjax('/src/ajax.php', formData);
+    }
+});
+
+</script>
