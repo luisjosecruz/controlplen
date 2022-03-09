@@ -19,7 +19,7 @@
                         ¿Estás pensando en ser tu mejor versión?
                     </p>
                 </div>
-                <img src="<?=URLSERVER.'/assets/images/login.svg';?>" alt="login">
+                <img src="<?=URLSERVER.'/assets/images/register.svg';?>" alt="login">
                 <div class="login-intro">
                     <p>Si ya tienes una cuenta, <br> puedes iniciar sesión haciendo click <a href="/signin">aquí.</a></p>
                 </div>
