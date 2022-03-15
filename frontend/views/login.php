@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Plen | Inicio de sesión</title>
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/base.css';?>">
+    <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/loast.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/login.css';?>">
+    <link rel="stylesheet" href="<?=URLSERVER.'/assets/font/fontawesome/css/all.css';?>">
     <link rel="shortcut icon" href="<?=URLSERVER.'/assets/images/logo.png';?>" type="image/png">
 </head>
 <body>
@@ -30,11 +32,12 @@
                 <form id="loginForm">
                     <input type="text" id="username" name="username" placeholder="Usuario" autocomplete="off">
                     <input type="password" id="password" name="password" placeholder="Contraseña">
-                    <input type="submit" value="Login">
+                    <input type="submit" value="Login"> 
                 </form>
             </section>
         </article>
     </main>
+    <script src="<?=URLSERVER.'/assets/scripts/loast.js';?>"></script>
     <script src="<?=URLSERVER.'/assets/scripts/utils.js';?>"></script>
 </body>
 </html>
@@ -45,6 +48,8 @@ let loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    loast.show("Procesando datos ...", "info");
 
     let formData = new FormData(e.target);
     formData.append("ajax", "login");

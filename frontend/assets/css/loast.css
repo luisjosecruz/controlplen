@@ -1,0 +1,107 @@
+.loast{
+    position: fixed;
+    top: 0;
+    left: 60px;
+    margin: auto;
+    width: 300px;
+    height: 70px;
+    max-height: 90px;
+    max-width: 400px;
+    padding: 10px;
+    background: var(--claro);
+    color: var(--negro);
+    text-align: left;
+    border-left: 10px solid var(--negro);
+    border-radius: 4px;
+    box-shadow: 0 3px 6px var(--gris);;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s, top 0.2s, visibility 0.2s;
+
+    z-index: 5;
+}
+
+.loast{
+    display: flex;
+    align-items: center;
+}
+
+.loast_container i{
+    margin-right: 10px;
+}
+
+.loast_container i::before {
+    font-size: 2.6rem;
+}
+
+.loast_container p:first-child{
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.loast_container p:last-child{
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+}
+
+.loast_btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 15px;
+    border: none;
+    font-size: 2rem;
+    color: var(--negro);
+    transition: color .2s;
+    cursor: pointer;
+    background: transparent;
+}
+
+.loast_btn:hover{
+    color: var(--negro);
+}
+
+.loast--visible{
+    top: 60px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.loast--success{
+    border-color: #4e9f3d;
+    background: #eeffee;
+}
+
+.loast--success .loast_container i{
+    color: #4e9f3d;
+}
+
+.loast--error{
+    border-color: #db4d4d;
+    background: #ffeeee;
+}
+
+.loast--error .loast_container i{
+    color: #db4d4d;
+}
+
+.loast--warning{
+    border-color: orange;
+    background: #fff8ee;
+}
+
+.loast--warning .loast_container i{
+    color: orange;
+}
+
+.loast--info{
+    border-color: lightskyblue;
+    background: #eef8ff;
+}
+
+.loast--info .loast_container i{
+    color: lightskyblue;
+}

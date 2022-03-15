@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Plen</title>
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/base.css';?>">
+    <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/loast.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/style.css';?>">
+    <link rel="stylesheet" href="<?=URLSERVER.'/assets/font/fontawesome/css/all.css';?>">
     <link rel="shortcut icon" href="<?=URLSERVER.'/assets/images/logo.png';?>" type="image/png">
 </head>
 <body>

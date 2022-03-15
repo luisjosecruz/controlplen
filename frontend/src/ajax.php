@@ -10,10 +10,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         case 'login': handleLogin($_POST, $conn);
 
             break;
-        case 'logout': handleLogout();
+        case 'logout': handleLogout($conn);
 
             break;
-        case 'register': handleRegister($_POST, $conn);
+        case 'signup': handleSignUp($_POST, $conn);
 
             break;
 

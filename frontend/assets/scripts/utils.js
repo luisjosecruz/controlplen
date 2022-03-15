@@ -17,31 +17,56 @@ const sendAjax = (url, data) => {
 
 // handle responses ajax
 const handleAjax = (data) => {
-	console.log(data);
-	// return false;
+	console.log(data); // return false;
+
 	switch (data) {
-		case 'login 200': window.location.href = "/";
+		case 'login 200': 
+			loast.show("Accediento a la plataforma ...", "success");
+			setTimeout(() => window.location.href = "/", 1000);
 			
 			break;
-		case 'login 404': alert('Usuario o contraseña incorrectos');
+		case 'login 404': loast.show("Usuario o contraseña incorrectos", "error");
 			
 			break;
-		case 'login 500': console.error('SESSION ERROR');
+		case 'login 500': loast.show("SESSION ERROR", "error"); 
 			
 			break;
-		case 'ajax 404': console.error('AJAX POST ERROR');
+		case 'ajax 404': loast.show("USER NOT FOUND", "error");
 			
 			break;
-		case 'not method post': console.error('METHOD POST ERROR');
+		case 'not method post': loast.show("METHOD POST ERROR", "error"); 
 			
 			break;
 		case 'logout 200':
-			alert('Cerrando la sesión...');
-			window.location.href = "/";
+			loast.show("Cerrando sesión", "success");
+			setTimeout(() => window.location.href = "/", 1000);
 			
 			break;
-		case 'register 200': window.location.href = "/";
+		case 'error login log' : loast.show("Login error register log", "error");
+
+			break;
+		case 'error logout log' : loast.show("Logout Error register log", "error");
+
+			break;
+		case 'signUp 200': 
+			loast.show("Usuario registrado correctamente", "success");
+			setTimeout(() => window.location.href = "/", 3000);
 			
+			break;
+		case 'signUp 500': loast.show("Error sign up", "error");	
+
+			break;
+		case 'error format name': loast.show("Nombre incorrecto", "error");
+
+			break;
+		case 'error format lastname': loast.show("Apellido incorrecto", "error");
+
+			break;
+		case 'error format email': loast.show("Correo incorrecto", "error");
+
+			break;
+		case 'user exist': loast.show("El usuario ya tiene cuenta", "error");
+
 			break;
 		case 'created-goal':
 			setTimeout(() => {
@@ -69,15 +94,15 @@ function validateData(data) {
 	switch (data.get('ajax')) {
 		case 'login':
 			if (data.get('username').trim().length == 0 && data.get('password').trim().length == 0) {
-				alert('Ingresa usuario y contraseña');
+				loast.show("Ingresar usuario y contraseña", "warning");
 				return false;
 			}
 			if (data.get('username').trim().length == 0) {
-				alert('Ingresa el usuario');
+				loast.show("Ingresa el usuario", "warning");
 				return false;
 			}
 			if (data.get('password').trim().length == 0) {
-				alert('Ingresa la contraseña');
+				loast.show("Ingresa la contraseña", "warning");
 				return false;
 			}
 			return true;
@@ -87,7 +112,7 @@ function validateData(data) {
 			if (data.get('project-name').trim().length <= 0 || data.get('project-description').trim().length <= 0 || data.get('project-end-date').trim().length <= 0) {
 				let modalMessage = document.getElementById("modalMessage");
 				// modalMessage.textContent = "Existen datos requeridos sin completar.";
-				alert("Existen datos requeridos sin completar.");
+				loast.show("Existen datos requeridos sin completar", "warning");
 			} else {
 				return true;
 			}
@@ -250,4 +275,28 @@ function editGoal (goal) {
 function addOneGoal (formData) {
 	formData.append('ajax', 'save-goal');
 	sendAjax('/src/ajax.php', formData);
+}
+
+// Function to print console logs with colors
+const colorLog = 'color: white;';
+const paddingLog = 'padding: 5px;';
+function printLogs(type, styles){
+    return function msg(str){
+        console.log(`%c ${type}: ${str} `, colorLog + paddingLog + styles);
+    }
+}
+// Closures
+const error   = printLogs('Error', 'background: #FF2442;');
+const warning = printLogs('Warning', 'background: #DF711B;');
+const success = printLogs('Success', 'background: #00A400;');
+const info    = printLogs('Info', 'background: #4B6587;');
+const js      = printLogs('JS', 'background: #f7e018; color: black');
+
+// config global
+function config (arg){
+    let dataConf = {
+        'developer': 'Luis José Cruz Martínez',
+        'url': window.location.origin
+    }
+    return dataConf[arg];
 }
