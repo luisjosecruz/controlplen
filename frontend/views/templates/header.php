@@ -1,3 +1,16 @@
+<?php 
+
+if(!isset($_SESSION)) session_start(); 
+
+require_once ('../backend/bootstrap.php');
+require_once ('../backend/dao/user.php');
+require_once ('../backend/dao/project.php');
+$user = new User();
+$project = new Project();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -1,8 +1,5 @@
 <?php 
 require_once ('templates/header.php'); 
-require_once ('../backend/bootstrap.php');
-require_once ('../backend/dao/project.php');
-$project = new Project();
 
 $totals = $project->getCountProjectByStatus('%', $conn);
 $totalQty = $totals['qty'];

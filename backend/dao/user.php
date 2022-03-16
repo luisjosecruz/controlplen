@@ -130,6 +130,18 @@ class User
         return ($stmt->rowCount() > 0) ? "user exist" : true;
     }
 
+    /* --------------------------- GET USER DATA HOME --------------------------- */
+
+    public function getUserDataHome ($userId, $conn) 
+    {
+        $sql = "SELECT usuarioNombre, usuarioApellido, usuarioUnico, usuarioCorreo, usuarioAvatar, usuarioTipo, usuarioEstado
+                FROM usuarios WHERE usuarioId = :userId";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([ "userId" => $userId ]);
+
+        return $stmt;
+    }
+
 }
 
 ?>

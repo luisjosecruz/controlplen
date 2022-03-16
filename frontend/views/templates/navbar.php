@@ -1,3 +1,10 @@
+<?php 
+
+$userData = $user->getUserDataHome($_SESSION["usuarioId"], $conn);
+$userRow = $userData->fetch();
+
+?>
+
 <nav>
     <div class="logo">
         <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="logo">
@@ -7,8 +14,8 @@
         <div class="user-area__account">
             <img src="<?=URLSERVER.'/assets/images/profile.jpg';?>" alt="userpicture">
             <ul>
-                <li class="normal-text">Luis José Cruz</li>
-                <li class="small-text">Bienvenido</li>
+                <li class="normal-text" id="username"><?=$userRow['usuarioNombre'] .' '.explode(' ', $userRow['usuarioApellido'])[0]?></li>
+                <li class="small-text"><?=$userRow['usuarioUnico']?></li>
             </ul>
         </div>
     </div>

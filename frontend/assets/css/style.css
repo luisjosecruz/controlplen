@@ -243,6 +243,37 @@ LEFT AREA / DASHBOARD
     margin-top: 4px;
 }
 
+/* ------------------------------ HOME WELCOME ------------------------------ */
+
+.welcome {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.welcome-part {
+    padding: 10px;
+}
+
+.welcome-title {
+    padding: 0 0 0 10px;
+    font-size: 2.6rem;
+    line-height: 54px;
+    color: var(--negro);
+}
+
+.welcome-text {
+    padding: 0 0 0 10px;
+    font-size: 1.4rem;
+    color: var(--negro-general);
+}
+
+.welcome-img {
+    width: 200px;
+}
+
 /* TASK */
 
 .title-divider {
@@ -279,10 +310,10 @@ LEFT AREA / DASHBOARD
 
 .options button .small-text {
     color: var(--just-white);
-    margin-left: 4px;
+    margin-left: 6px;
 }
 
-.options button .lj {
+.options button .fa {
     color: var(--just-white);
 }
 
@@ -290,7 +321,7 @@ LEFT AREA / DASHBOARD
     width: 100%;
     padding: 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -305,6 +336,46 @@ LEFT AREA / DASHBOARD
     background-color: var(--just-white);
     box-shadow: 0 0 6px rgba(0, 0, 0, .087);
     border-radius: 4px;
+}
+
+.home-grid-box {
+    width: 33.33%;
+}
+
+.home-values {
+    
+}
+
+.home-pro-temp {
+    margin: 0 0 0 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #8CA1A5;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.175);
+}
+
+.home-pro-temp img {
+    width: 80%;
+}
+
+.home-pro-temp p {
+    padding: 20px 0 4px 0;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--claro);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.home-grid-boxes__item {
+    position: relative;
+    background-color: var(--just-white);
+    margin: 0 0 20px;
+    padding: 24px;
 }
 
 .box-cog {

@@ -34,14 +34,16 @@ class Project
         return $qty;
     }
 
-    public function getQtyData($conn) {
+    public function getQtyData($conn) 
+    {
         $stmt = $conn->query("
             SELECT 
             COUNT(proyectos.proyectoId) cantProyectos, 
             (SELECT COUNT(metas.metaId) FROM metas) cantMetas, 
             (SELECT COUNT(metas.metaId) FROM metas WHERE metas.metaEstado = 'Completado') cantMetasCompletas,
             (SELECT COUNT(tareas.tareaId) FROM tareas) cantTareas, 
-            (SELECT COUNT(tareas.tareaId) FROM tareas WHERE tareas.tareaEstado = 'Completado') cantTareasCompletas
+            (SELECT COUNT(tareas.tareaId) FROM tareas WHERE tareas.tareaEstado = 'Completado') cantTareasCompletas,
+            (SELECT COUNT(valores.valorId) FROM valores) cantValores
             FROM proyectos
         ");
         $qty = $stmt->fetch();
