@@ -274,6 +274,78 @@ LEFT AREA / DASHBOARD
     width: 200px;
 }
 
+.add-values-form {
+    display: flex;
+}
+
+.add-values-form input, 
+.add-values-form select {
+    height: 40px;
+    padding: 0 4px 0 10px;
+    font-size: 1.4rem;
+    margin-right: 6px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+.add-values-form input:first-child {
+    width: 75%;
+}
+
+.add-values-form select {
+    padding: 0 0 0 6px;
+}
+
+.add-values-form input:nth-child(2) {
+    padding: 0 2px;
+    background-color: var(--claro);
+}
+
+.show-values {
+    padding: 10px 0;
+}
+
+.value-item {
+    position: relative;
+    padding: 20px 20px 20px 36px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: var(--claro);
+    border-radius: 4px;
+    box-shadow: 0 0 24px rgba(0,0,0,0.0575);
+}
+
+.value-item i {
+    margin-right: 4px;
+    color: #fff;
+}
+
+.value-item i::before {
+    font-size: 3rem;
+    color: #8CA1A5;
+}
+
+.value-item p {
+    font-size: 1.8rem;
+    background: transparent;
+    padding: 4px 8px;
+    border-radius: 0;
+    color: var(--azul-negro);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.value-color-bar {
+    position: absolute;
+    border-radius: 4px 0 0 4px;
+    left: 0;
+    width: 20px;
+    height: 100%;
+}
+
 /* TASK */
 
 .title-divider {
@@ -342,11 +414,7 @@ LEFT AREA / DASHBOARD
     width: 33.33%;
 }
 
-.home-values {
-    
-}
-
-.home-pro-temp {
+.home-card-temp {
     margin: 0 0 0 20px;
     padding: 20px;
     display: flex;
@@ -358,15 +426,15 @@ LEFT AREA / DASHBOARD
     box-shadow: 0 0 24px rgba(0, 0, 0, 0.175);
 }
 
-.home-pro-temp img {
+.home-card-temp img {
     width: 80%;
+    margin-bottom: 20px;
 }
 
-.home-pro-temp p {
-    padding: 20px 0 4px 0;
+.home-card-value p {
     font-size: 1.4rem;
     font-weight: 500;
-    color: var(--claro);
+    color: var(--azul-negro);
     text-align: center;
     letter-spacing: 0.5px;
 }
@@ -376,6 +444,66 @@ LEFT AREA / DASHBOARD
     background-color: var(--just-white);
     margin: 0 0 20px;
     padding: 24px;
+}
+
+.home-card-info,
+.home-card-value{
+    position: relative;
+    background: var(--claro);
+    margin-bottom: 20px;
+}
+
+.home-card-value {
+    margin: 10px 0 20px 0;
+}
+
+.home-card-info img {
+    width: 90%;
+}
+
+.home-card-info p,
+.home-card-value p {
+    text-align: left;
+}
+
+.home-card-imgtext {
+    position: absolute;
+    font-size: 1.6rem;
+    left: 150px;
+    font-weight: 700;
+    color: #465179;
+    letter-spacing: 0.5px;
+}
+
+.home-card-temp-text {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    color: var(--claro);
+}
+
+.home-card-phrases {
+    background: var(--claro);
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, .017);
+}
+
+.home-phrases {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.home-phrases span {
+    font-size: 1.4rem;
+    color: var(--negro-general);
+    margin-left: 10px;
+}
+
+.home-phrases i {
+    color: var(--verde-verde);
+}
+
+.home-phrases i::before {
+    font-size: 2.8rem;
 }
 
 .box-cog {
@@ -1046,4 +1174,51 @@ LEFT AREA / DASHBOARD
     background-color: var(--dark-green);
     cursor: pointer;
     box-shadow: 0 0 12px rgba(0, 0, 0, rgba(0, 0, 0, .087));
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               GENERAL STYLES                               */
+/* -------------------------------------------------------------------------- */
+
+.textaleft {
+    text-align: left;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               CALENDAR WEEKLY                              */
+/* -------------------------------------------------------------------------- */
+
+.calendar-weekly {
+    width: 100%;
+    background-color: var(--claro);
+    padding: 10px 0;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .087);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.calendar-weekly-days ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.calenda-weekly-ctrls {
+    cursor: pointer;
+}
+
+.calenda-weekly-item {
+    width: 32px;
+    height: 32px;
+    background-color: #ffe3e3;
+    cursor: pointer;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+}
+
+.calenda-weekly-item.active {
+    background-color: var(--celeste-claro);
 }

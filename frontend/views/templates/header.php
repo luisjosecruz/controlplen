@@ -20,6 +20,7 @@ $project = new Project();
     <title>Control Plen</title>
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/base.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/loast.css';?>">
+    <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/weekly.min.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/style.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/font/fontawesome/css/all.css';?>">
     <link rel="shortcut icon" href="<?=URLSERVER.'/assets/images/logo.png';?>" type="image/png">
