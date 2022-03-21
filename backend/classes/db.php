@@ -14,7 +14,9 @@ class Database
         try {
             $this->connect = new \PDO("mysql:host=$servername;port=$port;charset=utf8mb4;dbname=$db", $username, $password);
         } catch (\PDOException $e) {
-             exit($e->getMeesage());
+            // echo 'Connection failed: ' . $e->getMessage();
+            echo 'Error de conexion';
+            exit;
         }
 
         // try {

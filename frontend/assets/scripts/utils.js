@@ -85,6 +85,7 @@ const handleAjax = (data) => {
 			
 			break;
 		default: 
+			loast.show(data, "error");
 			console.log('Handle Ajax Switch Default');
 	}
 }
