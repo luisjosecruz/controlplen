@@ -499,7 +499,7 @@ LEFT AREA / DASHBOARD
 }
 
 .home-phrases i {
-    color: var(--verde-verde);
+    color: #47527a;
 }
 
 .home-phrases i::before {
@@ -1168,7 +1168,7 @@ LEFT AREA / DASHBOARD
 
 .btn-classic {
     padding: 8px 12px;
-    border: 1px solid var(--dark-green);
+    border: 1px solid var(--claro);
     border-radius: 4px;
     color: var(--just-white);
     background-color: var(--dark-green);

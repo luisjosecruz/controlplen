@@ -82,8 +82,8 @@ $cantValores = $totals['cantValores'];
                             <div class="home-grid-box home-values">
                                 <div class="add-values">
                                     <form id="" class="add-values-form">
-                                        <input type="text" placeholder="Cosas que más valoras" name="value-name">
-                                        <input type="color" id="value-color" name="value-color" value="#4E9F3D">
+                                        <input type="text" placeholder="Lo que más valoras" name="value-name">
+                                        <input type="color" id="value-color" name="value-color" value="#47527a">
                                         <select id="value-color" style="font-family: fontAwesome" name="value-icon">
                                             <option value='fa-address-book'>&#xf2b9;</option>
                                             <option value='fa-address-book-o'>&#xf2ba;</option>
