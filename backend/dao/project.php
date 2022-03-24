@@ -4,10 +4,11 @@ class Project
 {
     public function getProjects($conn){
         $stmt = $conn->query("
-            SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value FROM proyectos AS p
+            SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorIcono icon, v.valorColor color 
+            FROM proyectos AS p
             LEFT JOIN metas AS m ON p.proyectoId = m.metaProyecto
             INNER JOIN valores AS v ON p.proyectoValor = v.valorId
-            GROUP BY p.proyectoId ORDER BY p.proyectoId DESC LIMIT 3");
+            GROUP BY p.proyectoId ORDER BY p.proyectoId DESC LIMIT 5");
         return $stmt;
     }
 

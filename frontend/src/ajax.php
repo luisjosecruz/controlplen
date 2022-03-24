@@ -16,7 +16,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         case 'signup': handleSignUp($_POST, $conn);
 
             break;
+        case 'add-value': handleValues($_POST, $conn);
 
+            break;
         case 'save-project': handleSaveProject($_POST, $conn);
 
             break;

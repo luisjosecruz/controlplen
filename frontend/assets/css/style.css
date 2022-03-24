@@ -309,7 +309,7 @@ LEFT AREA / DASHBOARD
 .value-item {
     position: relative;
     padding: 20px 20px 20px 36px;
-    margin: 10px 0;
+    margin: 8px 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -442,8 +442,8 @@ LEFT AREA / DASHBOARD
 .home-grid-boxes__item {
     position: relative;
     background-color: var(--just-white);
-    margin: 0 0 20px;
-    padding: 24px;
+    margin: 0px 0px 2px 20px;
+    padding: 16px;
 }
 
 .home-card-info,
@@ -520,14 +520,20 @@ LEFT AREA / DASHBOARD
 }
 
 .box-icon {
+    display: block;
     font-weight: bold;
     margin-right: 5px;
     color: var(--black);
+    background-color: var(--bg-color);
+    padding: 8px;
+    border-radius: 100px;
+    display: flex;
 }
 
 .box-name {
     font-size: 1.4rem;
     color: var(--black);
+    padding-left: 8px;
 }
 
 .box-desc {
@@ -1285,8 +1291,8 @@ LEFT AREA / DASHBOARD
 .btn-day.active::before {
     position: absolute;
     content: '';
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background: var(--verde-verde);
     border-radius: 4px;
     z-index: -1;
@@ -1369,7 +1375,7 @@ LEFT AREA / DASHBOARD
 }
 
 .calendar {
-    height: 370px;
+    height: 310px;
     width: 324px;
     border-radius: 4px;
     background: #ffffff;
@@ -1383,8 +1389,8 @@ LEFT AREA / DASHBOARD
     justify-content: space-between;
     align-items: center;
     border-radius: 18px 18px 0px 0px;
-    padding: 15px;
-    height: 50px;
+    padding: 10px;
+    height: 40px;
     width: 100%;
     color: #262626;
 }
@@ -1416,7 +1422,7 @@ LEFT AREA / DASHBOARD
     font-size: 1.4rem;
     color: gray;
     font-weight: 400;
-    width: 40px;
+    width: 34px;
     margin: 10px 0;
 }
 
@@ -1426,13 +1432,13 @@ LEFT AREA / DASHBOARD
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    margin: 3px;
+    /* margin: 3px; */
 }
 
 #calendar td {
     display: flex;
-    height: 40px;
-    width: 40px;
+    height: 34px;
+    width: 34px;
     justify-content: center;
     align-items: center;
     text-align: center;

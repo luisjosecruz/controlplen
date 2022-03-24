@@ -11,19 +11,17 @@ date_default_timezone_set('America/El_Salvador');
 setlocale(LC_ALL, 'es-SV');
 $date = utf8_encode(strftime('%A %e de %B, %Y'));
 
+session_start();
+if (!isset($_SESSION["usuarioId"])) header('Location: /signin');
+
 switch($route){
-    case '':
-        session_start();
-        if (!isset($_SESSION["usuarioId"])) header('Location: /signin');
-        require_once ('views/start.php');
+    case '': require_once ('views/start.php');
 
         break;
-    case 'signin':
-        require_once ('views/login.php');
+    case 'signin': require_once ('views/login.php');
 
         break;
-    case 'signup':
-        require_once ('views/register.php');
+    case 'signup': require_once ('views/register.php');
 
         break;    
     case 'projects':
@@ -35,17 +33,14 @@ switch($route){
         }
     
         break;
-    case 'habits':
-        require_once ('views/habits.php');
+    case 'habits': require_once ('views/habits.php');
 
         break;
     
-    case 'calendar':
-        require_once ('views/habits.php');
+    case 'calendar': require_once ('views/habits.php');
 
         break;
-    default:
-        require_once('views/404.php');
+    default: require_once('views/404.php');
 }
 
 ?>

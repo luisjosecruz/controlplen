@@ -68,6 +68,14 @@ const handleAjax = (data) => {
 		case 'user exist': loast.show("El usuario ya tiene cuenta", "error");
 
 			break;
+		case 'value added': 
+			loast.show('Valor agregado correctamente.', 'success');
+			setTimeout(() => location.reload() , 500);
+
+			break;
+		case 'value error': loast.show('Error al agregar el valor.', 'error');
+
+			break;
 		case 'created-goal':
 			setTimeout(() => {
 				document.querySelector("#modal").classList.add("closed");

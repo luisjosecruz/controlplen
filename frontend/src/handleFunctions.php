@@ -1,5 +1,6 @@
 <?php 
 require_once ('../../backend/dao/user.php');
+require_once ('../../backend/dao/value.php');
 require_once ('../../backend/dao/project.php');
 
 function handleLogin ($data, $conn) 
@@ -26,7 +27,20 @@ function handleSignUp($data, $conn)
     echo $stmt;
 }
 
-function handleSaveProject($data, $conn) {
+/* --------------------------------- VALUES --------------------------------- */
+
+function handleValues($data, $conn) 
+{
+    $value = new Value();
+    $stmt = $value->createValue($data, $conn);
+
+    echo $stmt;
+}
+
+/* -------------------------------- PROJECTS -------------------------------- */
+
+function handleSaveProject($data, $conn) 
+{
     $project = new Project();
     $stmt = $project->createProject($data, $conn);
     

@@ -4,8 +4,10 @@ if(!isset($_SESSION)) session_start();
 
 require_once ('../backend/bootstrap.php');
 require_once ('../backend/dao/user.php');
+require_once ('../backend/dao/value.php');
 require_once ('../backend/dao/project.php');
 $user = new User();
+$value = new Value();
 $project = new Project();
 
 ?>

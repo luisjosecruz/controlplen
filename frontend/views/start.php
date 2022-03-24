@@ -7,7 +7,6 @@ $cantMetas = $totals['cantMetas'];
 $cantMetasCompletas = $totals['cantMetasCompletas'];
 $cantTareas = $totals['cantTareas'];
 $cantTareasCompletas = $totals['cantTareasCompletas'];
-$cantValores = $totals['cantValores'];
 
 ?>
     <main>
@@ -20,7 +19,7 @@ $cantValores = $totals['cantValores'];
                         <div id="clock" class="clock" onload="showTime()"></div> 
                     </div>
                     <div class="dashboard-body">
-                        <input type="hidden" id="cantValues" value="<?=$cantValores?>">
+                        <input type="hidden" id="cantValues" value="<?=$value->thereAreValues($conn)?>">
                         <div class="dashboard-numbers">
                             <div class="dashboard-numbers__item">
                                 <p class="dashboard-number__bigNumber"><?=$cantProyectos?></p>
@@ -54,35 +53,10 @@ $cantValores = $totals['cantValores'];
                             </div>
                         </div>
                         <div class="home-grid">
-                            <?php 
-
-                                $proyectos = $project->getProjects($conn);
-                                $result = $proyectos->fetchAll();
-                                foreach($result as $element) {
-                                    echo '
-                                        <div class="home-grid__box home-grid__one">
-                                        <a class="box-cog"><span class="lj lj-cog"></span></a>
-                                            <div class="box-body">
-                                            <div class="box-head">
-                                                    <span class="box-icon lj lj-bookmark"></span>
-                                                    <a href="'.URLSERVER.'/projects/'.$element['proyectoLink'].'"><h4 class="box-name">'.$element['proyectoNombre'].'</h4></a>
-                                                    </div>
-                                                <p class="box-desc">'.$element['proyectoDescripcion'].'</p>
-                                                <div class="box-todo">
-                                                <span class="box-goals badge '.$element['value'].'">'.$element['cantidad_metas'].' metas</span>
-                                                <span class="box-status badge '.$element['value'].'">'.$element['proyectoEstado'].'</span>
-                                                <span class="box-status badge '.$element['value'].'">'.$element['value'].'</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        ';
-                                    }
-                                    
-                                    ?>
                             <div class="home-grid-box home-values">
                                 <div class="add-values">
-                                    <form id="" class="add-values-form">
-                                        <input type="text" placeholder="Lo que más valoras" name="value-name">
+                                    <form id="saveValue" class="add-values-form">
+                                        <input type="text" placeholder="Lo que más valoras" name="value-name" autocomplete="off">
                                         <input type="color" id="value-color" name="value-color" value="#47527a">
                                         <select id="value-color" style="font-family: fontAwesome" name="value-icon">
                                             <option value='fa-address-book'>&#xf2b9;</option>
@@ -874,20 +848,34 @@ $cantValores = $totals['cantValores'];
                                         <button class="btn-classic" type="submit"><span class="fa fa-plus"></span></button>
                                     </form>
                                 </div>  
-                                <div class="show-values" >
-                                    <!-- <div class="value-item"> 
-                                        <div class="value-color-bar" style="background: #F5DF5F"></div>
-                                        <i class="fa fa-info-circle"></i>
-                                        <p class="badge">Felicidad</p>
-                                    </div> -->
-                                    <div class="home-card-temp home-card-value">
-                                        <p class="textaleft">Los valores o prioridades son los principios que rigen todas tus acciones.
-                                            Las cosas que más importancia tienen en tu vida.
-                                        </p>
-                                    </div>
-                                    <div class="home-card-temp home-card-value">
-                                        <p class="textaleft">Algunos ejemplos de prioridades son: Salud, Felicidad, Amor, Arte, etc.</p>
-                                    </div>
+                                <div class="show-values" id="showValues">
+
+                                    <?php 
+                                    $valores = $value->getValues($conn);
+                                    $valoresLista = $valores->fetchAll();
+                                    if ($valores->rowCount() > 0) {
+                                        foreach($valoresLista as $valor) {
+                                            echo '
+                                                <div class="value-item"> 
+                                                    <div class="value-color-bar" style="background: '.$valor['valorColor'].'"></div>
+                                                    <i class="fa '.$valor['valorIcono'].'"></i>
+                                                    <p class="badge">'.$valor['valorNombre'].'</p>
+                                                </div>
+                                            ';
+                                        }
+                                    } else {
+                                        echo '
+                                            <div class="home-card-temp home-card-value">
+                                                <p class="textaleft">Los valores o prioridades son los principios que rigen todas tus acciones.
+                                                    Las cosas que más importancia tienen en tu vida.
+                                                </p>
+                                            </div>
+                                            <div class="home-card-temp home-card-value">
+                                                <p class="textaleft">Algunos ejemplos de prioridades son: Salud, Felicidad, Amor, Arte, etc. A</p>
+                                            </div>
+                                        ';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div class="home-grid-box">
@@ -903,26 +891,32 @@ $cantValores = $totals['cantValores'];
                                 </div>
                             </div>
                             <div class="home-grid-box">
-                                <div class="home-card-temp">
-                                    <img src="../assets/images/addpro.svg">
-                                    <p class="home-card-temp-text" >Comencemos a unir los puntos.</p>
-                                </div>  
-                                <!-- <div class="home-grid-boxes__item">
-                                    <div class="box-body">
-                                        <div class="box-head">
-                                            <span class="box-icon lj lj-bookmark"></span>
-                                            <a href="'.URLSERVER.'/projects/'.$element['proyectoLink'].'"><h4 class="box-name">d dfgdfg dfg'.$element['proyectoNombre'].'</h4></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="home-grid-boxes__item">
-                                    <div class="box-body">
-                                        <div class="box-head">
-                                            <span class="box-icon lj lj-bookmark"></span>
-                                            <a href="'.URLSERVER.'/projects/'.$element['proyectoLink'].'"><h4 class="box-name">'.$element['proyectoNombre'].'</h4></a>
-                                        </div>
-                                    </div>
-                                </div> -->
+
+                            <?php 
+                                $proyectos = $project->getProjects($conn);
+                                $result = $proyectos->fetchAll();
+                                if ($proyectos->rowCount() > 0) {
+                                    foreach($result as $element) {
+                                        echo '
+                                            <div class="home-grid-boxes__item">
+                                                <div class="box-body">
+                                                    <div class="box-head">
+                                                        <span class="box-icon fa '.$element['icon'].'" style="color:'.$element['color'].'"></span>
+                                                        <a href="'.URLSERVER.'/projects/'.$element['proyectoLink'].'"><h4 class="box-name">'.$element['proyectoNombre'].'</h4></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ';
+                                    }
+                                } else {
+                                    echo '
+                                        <div class="home-card-temp">
+                                            <img src="../assets/images/addpro.svg">
+                                            <p class="home-card-temp-text" >Comencemos a unir los puntos.</p>
+                                        </div>  
+                                    ';
+                                }
+                                ?>
                             </div>
                         </div>
                         <!-- <div class="todo">
@@ -1025,7 +1019,10 @@ createProject.addEventListener("click", () => {
                             <div class="form-group">
                                 <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción del proyecto"></textarea>
                             </div>
-                            <div class="form-group select-tags">
+                            <div class="form-group">
+                                <label for="inputGoal">Fecha</label>
+                            </div>
+                            <!--div class="form-group select-tags">
                                 <label for="inputGoal">Metas</label>
                                 <div class="create-goals">
                                     <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
@@ -1033,6 +1030,16 @@ createProject.addEventListener("click", () => {
                                 </div>
                                 <div class="create-goals">
                                     <div class="create-goals-list"></div>
+                                </div>
+                            </div-->
+                            <div class="form-group select-tags">
+                                <label class="attributes" for="project-tags">Etiquetas</label>
+                                <div class="create-goals">
+                                    <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
+                                    <a id="createTag" onclick="addTag(this)" class="add-goal"><span class="lj lj-plus-circle"></span></a>
+                                </div>
+                                <div class="create-goals">
+                                    <div class="create-tags-list"></div>
                                 </div>
                             </div>
                         </div>
@@ -1060,24 +1067,14 @@ createProject.addEventListener("click", () => {
                                     <option value="Completado">Completado</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!--div class="form-group">
                                 <label class="attributes" for="project-start-date">Inicio</label>
                                 <input type="date" name="project-start-date" id="project-start-date" value="${moment().format('Y-MM-DD')}">
                             </div>
-                            <div class="form-group">
+                            <div-- class="form-group">
                                 <label class="attributes" for="project-end-date">Fin</label>
                                 <input type="date" name="project-end-date" id="project-end-date" >
-                            </div>
-                            <div class="form-group select-tags">
-                                <label class="attributes" for="project-tags">Etiquetas</label>
-                                <div class="create-goals">
-                                    <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
-                                    <a id="createTag" onclick="addTag(this)" class="add-goal"><span class="lj lj-plus-circle"></span></a>
-                                </div>
-                                <div class="create-goals">
-                                    <div class="create-tags-list"></div>
-                                </div>
-                            </div>
+                            </div-->
                         </div>
                     </form>
                     <p id="modalMessage" class="modal-message"></p>
@@ -1107,43 +1104,22 @@ if (cantValues == 0) {
             </div>
         </div>
     `;
+
     // scheduleRigth.innerHTML = `<div class="task-today">Aquí podrás ver y completar las tareas del día.</div>`;
 }
-// Serán las categorías que van a englobar todas tus acciones en adelante. <br>
 
+/* ------------------------------- SAVE VALUE ------------------------------- */
 
+let saveValue = document.getElementById('saveValue');
 
+saveValue.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let formData = new FormData(saveValue);
+    formData.append("ajax", "add-value");
+    sendAjax('/src/ajax.php', formData);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* -------------------------------- CALENDAR -------------------------------- */
 
 const months = [
     "Enero",
@@ -1162,9 +1138,7 @@ const months = [
 
 const weekdays = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
-
-
-// Váriavel principal
+// Variable principal
 let date = new Date();
 
 // Função que retorna a data atual do calendário 
@@ -1177,7 +1151,6 @@ function getCurrentDate(element, asString) {
     }
     return date;
 }
-
 
 // Função principal que gera o calendário
 function generateCalendar() {
@@ -1245,8 +1218,6 @@ function generateCalendar() {
             btn.addEventListener('click', function () { changeDate(this) });
             week++;
 
-
-
             // Controle para ele parar exatamente no ultimo dia
             if (i <= lastDay) {
                 i++;
@@ -1292,7 +1263,7 @@ function changeHeader(dateHeader) {
         month.removeChild(month.childNodes[0]);
     }
     const headerMonth = document.createElement("h1");
-    const textMonth = document.createTextNode(months[dateHeader.getMonth()].substring(0, 3) + " " + dateHeader.getFullYear());
+    const textMonth = document.createTextNode(months[dateHeader.getMonth()].substring(0, 9) + " " + dateHeader.getFullYear());
     headerMonth.appendChild(textMonth);
     month.appendChild(headerMonth);
 }
