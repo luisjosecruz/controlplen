@@ -637,9 +637,9 @@ LEFT AREA / DASHBOARD
 
 .modal {
     display: block;
-    width: 760px;
+    width: 560px;
     max-width: 100%;
-    height: 500px;
+    height: 400px;
     max-height: 100%;
     position: fixed;
     z-index: 100;
@@ -648,7 +648,6 @@ LEFT AREA / DASHBOARD
     transform: translate(-50%, -50%);
     background: var(--just-white);
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, .46);
-    border-radius: 6px;
     opacity: 1;
     transition:all 150ms ease-in-out;
 }
@@ -760,6 +759,10 @@ LEFT AREA / DASHBOARD
     padding: 10px 15px;
 }
 
+#formCreateProject .form-group {
+    margin-bottom: 20px;
+}
+
 .form-group {
     display: flex;
     align-items: baseline;
@@ -782,71 +785,14 @@ LEFT AREA / DASHBOARD
 .form-group .input-project {
     width: 100%;
     height: 40px;
-    margin: 0px 10px 0px 0px;
-    padding: 0 20px;
+    margin: 0px 0px 0px 10px;
+    padding: 0px 10px;
     border: none;
-    font-size: 2.6rem;
+    font-size: 2rem;
     font-weight: 700;
     outline: none;
+    border: 2px solid var(--bg-color);
     color: var(--black);
-}
-
-.create-goals {
-    width: 100%;
-    display: flex;
-    border-left: 2px solid var(--bg-color);
-    padding-top: 12px;
-    padding-left: 12px;
-}
-
-.create-goals .input-goal {
-    width: 88%;
-    height: 30px;
-    font-size: 1.4rem;
-    border: 2px solid #efefef;
-    padding: 0 6px;
-    outline: none;
-    transition: all .26s;
-}
-
-.create-goals .input-goal:focus {
-    background-color: #f6ffdf;
-    border-color: #cacaca;
-}
-
-.create-goals .add-goal {
-    width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 14px;
-    padding-left: 2px;
-    font-size: 3.6rem;
-    border: 1px solid var(--dark-green);
-    background-color: var(--dark-green);
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 0;
-    color: var(--just-white);
-    border-radius: 25px;
-}
-
-.create-goals-list {
-    width: 100%;
-    min-height: 80px;
-    padding: 12px;
-    padding-top: 0px;
-}
-
-.create-goals-list input,
-.create-tags-list input {
-    width: 100%;
-    padding: 3px 0;
-    border: none;
-    outline: none;
-    color: var(--dark-green);
-    font-size: 1.2rem;
-    font-weight: 600;
 }
 
 .form-group textarea {
@@ -862,12 +808,10 @@ LEFT AREA / DASHBOARD
     border-color: #cacaca;
 }
 
-.form-group select,
-.form-group input[type="date"] {
+.form-group select{
     width: 100%;
     height: 32px;
     padding: 0 6px;
-    margin: 20px 0px 0px 20px; 
     border: none;
     border-radius: 4px;
     font-size: 1.4rem;
@@ -883,6 +827,7 @@ LEFT AREA / DASHBOARD
     justify-content: space-between;
     border-bottom: 2px solid #dedede;
     padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .form-right-title p {
@@ -894,6 +839,10 @@ LEFT AREA / DASHBOARD
 .form-right select, 
 .form-right input[type="date"] {
     background-color: #D8E9A8;
+}
+
+.form-group-block {
+    flex-direction: column;
 }
 
 .select-tags {

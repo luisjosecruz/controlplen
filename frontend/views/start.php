@@ -1001,6 +1001,9 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
 
 <?php require_once ('templates/footer.php'); ?>
 
+<link rel="stylesheet" href="<?=URLSERVER.'/assets/daterangepicker/daterangepicker.css';?>">
+<script type="text/javascript" src="<?=URLSERVER.'/assets/daterangepicker/daterangepicker.js';?>"></script>
+
 <script>
 
 // load data into a modal to create a new project
@@ -1019,28 +1022,9 @@ createProject.addEventListener("click", () => {
                             <div class="form-group">
                                 <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción del proyecto"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="inputGoal">Fecha</label>
-                            </div>
-                            <!--div class="form-group select-tags">
-                                <label for="inputGoal">Metas</label>
-                                <div class="create-goals">
-                                    <input class="input-goal" id="inputGoal" type="text" placeholder="Crear metas" autocomplete="off">
-                                    <a id="createGoal" class="add-goal" onclick="addGoal(this)"><span class="lj lj-plus-circle"></span></a>
-                                </div>
-                                <div class="create-goals">
-                                    <div class="create-goals-list"></div>
-                                </div>
-                            </div-->
-                            <div class="form-group select-tags">
-                                <label class="attributes" for="project-tags">Etiquetas</label>
-                                <div class="create-goals">
-                                    <input class="input-goal" id="inputTag" type="text" placeholder="Agregar etiquetas" autocomplete="off">
-                                    <a id="createTag" onclick="addTag(this)" class="add-goal"><span class="lj lj-plus-circle"></span></a>
-                                </div>
-                                <div class="create-goals">
-                                    <div class="create-tags-list"></div>
-                                </div>
+                            <div class="form-group form-group-block">
+                                <label for="inputGoal">Fechas del proyecto</label>
+                                <input type="text" name="daterange">
                             </div>
                         </div>
                         <div class="form-right">
@@ -1049,7 +1033,6 @@ createProject.addEventListener("click", () => {
                                 <span class="lj lj-bookmark"></span>
                             </div>
                             <div class="form-group">
-                                <label class="attributes" for="project-value">Valor</label>
                                 <select name="project-value" id="project-value">
                                     <option value="1" selected>Salud</option>
                                     <option value="2">Arte</option>
@@ -1059,7 +1042,6 @@ createProject.addEventListener("click", () => {
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="attributes" for="project-status">Estado</label>
                                 <select name="project-status" id="project-status">
                                     <option disabled="disabled" value="0">Estado</option>
                                     <option value="Pendiente" selected>Pendiente</option>
@@ -1081,6 +1063,14 @@ createProject.addEventListener("click", () => {
                     <input class="form-btn" onclick="saveProject('formCreateProject')" type="submit" value="Guardar">
                 </div>`
             );
+
+    $(function() {
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'center'
+        }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        }).click();
+    });
 });
 
 // first step
