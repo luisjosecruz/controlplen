@@ -820,6 +820,19 @@ LEFT AREA / DASHBOARD
     color: var(--dark-green);
 } 
 
+input[name="daterange"] {
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+    padding: 0px 10px;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    outline: none;
+    border: 2px solid var(--bg-color);
+    color: var(--black);
+}
+
 .form-right-title {
     width: 100%;
     display: flex;

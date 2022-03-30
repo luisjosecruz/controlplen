@@ -1,6 +1,7 @@
 <?php 
 
 if(!isset($_SESSION)) session_start(); 
+if (!isset($_SESSION["usuarioId"])) header('Location: /signin', true, 302);
 
 require_once ('../backend/bootstrap.php');
 require_once ('../backend/dao/user.php');

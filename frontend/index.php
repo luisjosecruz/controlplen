@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 $URI = $_SERVER['REQUEST_URI'];
 $uriParts = explode("/", $URI);
@@ -10,9 +11,6 @@ define("URLSERVER", (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "h
 date_default_timezone_set('America/El_Salvador');
 setlocale(LC_ALL, 'es-SV');
 $date = utf8_encode(strftime('%A %e de %B, %Y'));
-
-session_start();
-if (!isset($_SESSION["usuarioId"])) header('Location: /signin');
 
 switch($route){
     case '': require_once ('views/start.php');
