@@ -171,6 +171,7 @@ class Project
         $row = $stmt->fetch();
         $goalName = $row['metaDescripcion'];
 
+        $all = self::getCantTaskByStatus($goalId, '%', $conn);
         $pending = self::getCantTaskByStatus($goalId, 'Pendiente', $conn);
         $progress = self::getCantTaskByStatus($goalId, 'En progreso', $conn);
         $completed = self::getCantTaskByStatus($goalId, 'Completado', $conn);
@@ -180,7 +181,7 @@ class Project
             <div class="card-goal-det">
                 <h6 class="card-goal-det-title">'.$goalName.'</h6>
                 <ul class="card-goal-det-list">
-                    <li><p class="card-goal-det-number">'.$pending.'</p><p class="card-goal-det-numtext">Tareas totales</p></li>
+                    <li><p class="card-goal-det-number">'.$all.'</p><p class="card-goal-det-numtext">Tareas totales</p></li>
                     <li><p class="card-goal-det-number">'.$pending.'</p><p class="card-goal-det-numtext">Pendientes</p></li>
                     <li><p class="card-goal-det-number">'.$progress.'</p><p class="card-goal-det-numtext">En progreso</p></li>
                     <li><p class="card-goal-det-number">'.$completed.'</p><p class="card-goal-det-numtext">Completadas</p> </li>
@@ -192,7 +193,7 @@ class Project
     }
 
     public function getCantTaskByStatus ($goalId, $status, $conn) {
-        $stmt = $conn->query("SELECT COUNT(tareas.tareaId) cantareas FROM tareas WHERE tareas.tareaMeta = '$goalId' AND tareas.tareaEstado = '$status'");
+        $stmt = $conn->query("SELECT COUNT(tareas.tareaId) cantareas FROM tareas WHERE tareas.tareaMeta = '$goalId' AND tareas.tareaEstado LIKE '$status'");
         $row = $stmt->fetch();
         return $row['cantareas'];
     }

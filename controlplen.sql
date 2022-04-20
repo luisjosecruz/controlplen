@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2022 a las 18:44:15
+-- Tiempo de generación: 21-04-2022 a las 01:11:13
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -182,11 +182,7 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`logId`, `logAccion`, `logDescripcion`, `logUsuario`, `logFecha`) VALUES
-(00004, 'userLoggedIn', 'Usuario conectado', 00001, '2022-03-16 15:48:06'),
-(00007, 'userLoggedIn', 'Usuario conectado', 00001, '2022-03-16 15:52:05'),
-(00008, 'userLoggedOut', 'Usuario desconectado', 00001, '2022-03-16 20:02:51'),
-(00009, 'userLoggedIn', 'Usuario conectado', 00001, '2022-03-16 20:03:18'),
-(00010, 'userLoggedIn', 'Usuario conectado', 00001, '2022-03-21 15:09:29');
+(00001, 'userLoggedIn', 'Usuario conectado', 00001, '2022-04-20 19:38:51');
 
 -- --------------------------------------------------------
 
@@ -204,6 +200,13 @@ CREATE TABLE `metas` (
   `metaEtiquetas` varchar(255) DEFAULT NULL,
   `metaFecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `metas`
+--
+
+INSERT INTO `metas` (`metaId`, `metaProyecto`, `metaDescripcion`, `metaEstado`, `metaFechaInicio`, `metaFechaFin`, `metaEtiquetas`, `metaFecha`) VALUES
+(00001, 00001, 'Descansar lo suficiente (6 - 8 horas)', 'Pendiente', '2022-04-20', '2022-12-31', NULL, '2022-04-20 20:12:19');
 
 -- --------------------------------------------------------
 
@@ -229,11 +232,19 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`proyectoId`, `proyectoValor`, `proyectoNombre`, `proyectoDescripcion`, `proyectoEstado`, `proyectoEtiquetas`, `proyectoFechaInicio`, `proyectoFechaFin`, `proyectoFecha`, `proyectoLink`) VALUES
-(00002, 00001, 'Hola Mundo', 'asd', 'Pendiente', 'ads', '2022-03-24', '2022-03-25', '2022-03-24 20:28:57', '0656aW2a'),
-(00003, 00002, 'Hola Mundo 2', 'asd', 'Pendiente', 'ads', '2022-03-24', '2022-03-25', '2022-03-24 20:28:57', '0l1o2o1b'),
-(00004, 00003, 'Hola Mundo 3', 'asd', 'Pendiente', 'ads', '2022-03-24', '2022-03-25', '2022-03-24 20:28:57', 'nFN8060I'),
-(00005, 00004, 'Hola Mundo 4', 'asd', 'Pendiente', 'ads', '2022-03-24', '2022-03-25', '2022-03-24 20:28:57', '8rPw6Awl'),
-(00006, 00005, 'Hola Mundo 5', 'asd', 'Pendiente', 'ads', '2022-03-24', '2022-03-25', '2022-03-24 20:28:57', 'pVJGfGr5');
+(00001, 00001, 'Cuerpo Saludable', 'Mantener el equilibrio de mi cuerpo, para mejorar mi autoestima y elevar mis capacidades.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:48:59', 'C0wl5Ms1'),
+(00002, 00003, 'Percepción Externa', 'Mejorar mi estilo y forma de vestir.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:50:09', 'H5XaI4O3'),
+(00003, 00002, 'Hacer arte mediante la música', 'Crear canciones que inspiren a los demás a seguir adelante.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:51:29', '7vtgxYBi'),
+(00004, 00005, 'Filosofía de vida', 'Crear mi propia corriente de pensamiento.', 'Pendiente', NULL, '2022-05-12', '2022-12-31', '2022-04-20 19:55:48', 'lO47tfwT'),
+(00005, 00002, 'Software para mejorar la vida', 'Mejorar mi arte de escribir código para crear sistemas que mejoren la vida de todos.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:53:53', 'm36h26nP'),
+(00006, 00003, 'Busqueda de la felicidad', 'En la vida la felicidad es una variable que todos deseamos convertir en constante. ', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:55:13', 'D4UU5322'),
+(00007, 00001, 'Deporte', 'Hacer deporte para disfrutar de la vida', 'Pendiente', NULL, '2022-04-24', '2022-12-31', '2022-04-20 19:56:46', 'RNqoXbK8'),
+(00008, 00004, 'Apreciar las cosas simples', 'El amor está en todo lo que hacemos.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:58:51', 'Awn8wuk5'),
+(00009, 00003, 'Acumular Riqueza', 'Para sentir que estamos progresando necesitamos ver las cosas que hemos logrado.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:59:43', 'fFkiO7ft'),
+(00010, 00005, 'Aprender Inglés', 'Cominicar de manera excelente en Inglés.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 20:00:41', '67eie741'),
+(00011, 00003, 'Crear y emprender', 'Hacer negocios para mejorar mi calidad de vida y la de mi familia.', 'Pendiente', NULL, '2022-06-01', '2022-12-31', '2022-04-20 20:01:54', 'MDGtF6w2'),
+(00012, 00004, 'El tesoro de las relaciones', 'Las personas que nos rodean nos permiten vivir llenos de amor.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 20:04:18', 'SU7V6D3P'),
+(00013, 00005, 'Crear para dejar mi huella', 'Pintar con palabras, canciones, arte y todo lo que hago vaya encaminado a dejar una huella positiva al mundo.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 20:05:59', 'A5u3nlQ8');
 
 --
 -- Disparadores `proyectos`
@@ -274,6 +285,13 @@ CREATE TABLE `tareas` (
   `tareaTipo` enum('Habito','Una vez') DEFAULT NULL,
   `tareaEtiquetas` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+INSERT INTO `tareas` (`tareaId`, `tareaMeta`, `tareaDescripcion`, `tareaEstado`, `tareaFechaInicio`, `tareaFechaFin`, `tareaHoraInicio`, `tareaHoraFin`, `tareaLugar`, `tareaRecordatorio`, `tareaTipo`, `tareaEtiquetas`) VALUES
+(00001, 00001, 'Establecer un horario para dormir y otro para levantarme', 'En progreso', '2022-04-20', '2022-04-20', NULL, NULL, NULL, NULL, 'Una vez', NULL);
 
 -- --------------------------------------------------------
 
@@ -418,25 +436,25 @@ ALTER TABLE `habitos`
 -- AUTO_INCREMENT de la tabla `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `logId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `logId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `metas`
 --
 ALTER TABLE `metas`
-  MODIFY `metaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `metaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `proyectoId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `proyectoId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `tareaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `tareaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

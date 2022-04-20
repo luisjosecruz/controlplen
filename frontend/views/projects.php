@@ -59,7 +59,7 @@ $completeQty = $complete['qty'];
                                 foreach($result as $element) {
                                     echo '
                                         <div class="home-grid__box home-grid__one">
-                                            <a class="box-cog"><span class="lj lj-cog"></span></a>
+                                            <!--a class="box-cog"><span class="lj lj-cog"></span></a -->
                                             <div class="box-body">
                                                 <div class="box-head">
                                                     <span class="box-icon fa '.$element['valorIcono'].'" style="color:'.$element['valorColor'].';"></span>
@@ -67,9 +67,9 @@ $completeQty = $complete['qty'];
                                                 </div>
                                                 <p class="box-desc">'.$element['proyectoDescripcion'].'</p>
                                                 <div class="box-todo">
-                                                    <span class="box-goals badge">'.$element['cantidad_metas'].' metas</span>
-                                                    <span class="box-status badge">'.$element['proyectoEstado'].'</span>
-                                                    <span class="box-status badge">'.$element['value'].'</span>
+                                                    <span class="box-goals badge" style="color:'.$element['valorColor'].';">'.$element['cantidad_metas'].' metas</span>
+                                                    <span class="box-status badge" style="color:'.$element['valorColor'].';">'.$element['proyectoEstado'].'</span>
+                                                    <span class="box-status badge" style="color:'.$element['valorColor'].';">'.$element['value'].'</span>
                                                 </div>
                                             </div>
                                         </div>

@@ -72,8 +72,7 @@ nav ul li a {
     padding: 12px 0px 12px 20px;
 }
 
-nav ul li a .lj {
-    font-weight: 700;
+nav ul li a .fa {
     margin-right: 5px;
 }
 
@@ -177,10 +176,7 @@ RIGHT AREA
 }
 
 .todo-list ul li {
-    margin-bottom: 2px;
-    padding: 6px 0;
-    background: linear-gradient(335deg, #ced4e8, #eff3f8);
-    padding: 16px;
+    padding: 8px;
     border-radius: 2px;
 }
 
@@ -193,10 +189,14 @@ RIGHT AREA
 }
 
 .todo-list__text input {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
     margin-right: 8px;
     cursor: pointer;
+    -webkit-box-shadow: inset 0px 0px 0px 1px var(--verde-verde);
+    -moz-box-shadow: inset 0px 0px 0px 1px var(--verde-verde);
+    box-shadow: inset 0px 0px 0px 1px var(--verde-verde);
 }
 
 .todo-list__text p {
@@ -1354,9 +1354,9 @@ input[name="daterange"]:focus {
     background: #fff;
     color: #262626;
     border-radius: 4px;
-    height: 45px;
+    height: 30px;
     font-weight: 600;
-    min-width: 100px;
+    min-width: 74px;
     padding: 0px 20px;
     transition: 0.2s ease;
     cursor: pointer;
@@ -1404,8 +1404,8 @@ input[name="daterange"]:focus {
 .btn-day.active::before {
     position: absolute;
     content: '';
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     background: var(--verde-verde);
     border-radius: 4px;
     z-index: -1;
@@ -1436,9 +1436,6 @@ input[name="daterange"]:focus {
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* min-height: 100vh; */
-    /* background: #ecf1f8; */
-    /* padding: 20px 0; */
 }
 
 .calendar-assets {
@@ -1447,13 +1444,13 @@ input[name="daterange"]:focus {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    padding: 0 0 10px;
+    padding: 0 0 8px;
 }
 
 #currentDate{
   text-align: center;
   font-size: 1.4rem;
-  padding: 0 0 16px;
+  padding: 0 0 8px;
 }
 
 .field {
@@ -1478,19 +1475,15 @@ input[name="daterange"]:focus {
 .day-assets {
     display: flex;
     justify-content: space-between;
-    width: 340px;
-}
-
-.day-assets .btn:nth-child(2) i {
-    padding: 0 10px 0 0 !important;
+    width: 240px;
 }
 
 .calendar {
-    height: 300px;
-    width: 340px;
+    height: 240px;
+    width: 240px;
     border-radius: 4px;
     background: #ffffff;
-	padding: 10px;
+	padding: 8px;
 	user-select: none;
     box-shadow: 0 0 6px rgba(0, 0, 0, .087);
 }
@@ -1500,8 +1493,8 @@ input[name="daterange"]:focus {
     justify-content: space-between;
     align-items: center;
     border-radius: 18px 18px 0px 0px;
-    padding: 10px;
-    height: 40px;
+    padding: 8px;
+    height: 20px;
     width: 100%;
     color: #262626;
 }
@@ -1511,9 +1504,9 @@ input[name="daterange"]:focus {
 }
 
 .icon {
-    padding: 10px;
-    font-size: 1em;
-    margin: 0 0 0 5px;
+    padding: 8px;
+    font-size: 1rem;
+    margin: 0 0 0 4px;
     background: #ffffff;
     color: var(--verde-verde);
     border: none;
@@ -1530,11 +1523,11 @@ input[name="daterange"]:focus {
 }
 
 .weekends th {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: gray;
     font-weight: 400;
-    width: 34px;
-    margin: 10px 0;
+    width: 30px;
+    margin: 8px 0 0 0;
 }
 
 #calendar tr {
@@ -1543,18 +1536,17 @@ input[name="daterange"]:focus {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    /* margin: 3px; */
 }
 
 #calendar td {
     display: flex;
-    height: 34px;
-    width: 34px;
+    height: 30px;
+    width: 30px;
     justify-content: center;
     align-items: center;
     text-align: center;
     z-index: 49;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .search-by-date {

@@ -13,7 +13,7 @@ setlocale(LC_ALL, 'es-SV');
 $date = utf8_encode(strftime('%A, %e de %B de %Y'));
 
 switch($route){
-    case '': require_once ('views/start.php');
+    case '': require_once ('views/home.php');
 
         break;
     case 'signin': require_once ('views/login.php');
@@ -30,13 +30,6 @@ switch($route){
             require_once ('views/projects.php');
         }
     
-        break;
-    case 'habits': require_once ('views/habits.php');
-
-        break;
-    
-    case 'calendar': require_once ('views/habits.php');
-
         break;
     default: require_once('views/404.php');
 }
