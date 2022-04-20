@@ -2,6 +2,14 @@
 
 class Value
 {
+    public function getValues ($conn) 
+    {
+        $sql = "SELECT * FROM valores";
+        $stmt = $conn->query($sql);
+
+        return $stmt;
+    }
+
     public function createValue($data, $conn) 
     {            
         $data = [
@@ -25,14 +33,6 @@ class Value
         } else {
             return 0;
         }
-    }
-
-    public function getValues ($conn) 
-    {
-        $sql = "SELECT * FROM valores";
-        $stmt = $conn->query($sql);
-
-        return $stmt;
     }
 
 }

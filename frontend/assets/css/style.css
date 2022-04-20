@@ -39,6 +39,10 @@ article {
     overflow-y: auto;
 }
 
+.sec-100 {
+    width: 100%;
+}
+
 /* 
 LOGO / NAVBAR
 *****************************************************/
@@ -162,11 +166,25 @@ RIGHT AREA
     font-weight: 700;
 }
 
-.habits-list ul li {
+
+.todo-list {
+    padding: 20px 0px;
+}
+
+.todo-divider {
+    width: 100%;
     padding: 6px 0;
 }
 
-.habits-list__text {
+.todo-list ul li {
+    margin-bottom: 2px;
+    padding: 6px 0;
+    background: linear-gradient(335deg, #ced4e8, #eff3f8);
+    padding: 16px;
+    border-radius: 2px;
+}
+
+.todo-list__text {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -174,13 +192,14 @@ RIGHT AREA
     cursor: pointer;
 }
 
-.habits-list__text input {
+.todo-list__text input {
     width: 24px;
     height: 24px;
     margin-right: 8px;
+    cursor: pointer;
 }
 
-.habits-list__text p {
+.todo-list__text p {
     display: flex;
     flex-direction: column;
 }
@@ -366,10 +385,26 @@ LEFT AREA / DASHBOARD
 }
 
 .title-divider .options button {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
-.options button{
+.options .btn-opt {
+    background-color: var(--gris);
+    border-color: var(--gris);
+    width: 30px;
+    height: 30px;
+}
+
+.options .btn-opt.active {
+    background-color: #aaaaaa;
+    border-color: #aaaaaa;
+}
+
+.options .btn-opt i::before {
+    font-size: 1.2rem;
+}
+
+.options .btn-add{
     display: flex;
     align-items: center;
     padding: 6px 10px;
@@ -380,12 +415,12 @@ LEFT AREA / DASHBOARD
     box-shadow: -1px 1px 12px rgba(0,0,0,0.26); 
 }
 
-.options button .small-text {
+.options .btn-add .small-text {
     color: var(--just-white);
     margin-left: 6px;
 }
 
-.options button .fa {
+.options .btn-add .fa {
     color: var(--just-white);
 }
 
@@ -400,8 +435,8 @@ LEFT AREA / DASHBOARD
 
 .home-grid__box {
     position: relative;
-    min-width: 31.8%;
-    max-width: 32%;
+    min-width: 24%;
+    max-width: 24%;
     min-height: 150px;
     margin: 0 0 20px;
     padding: 24px;
@@ -571,62 +606,14 @@ LEFT AREA / DASHBOARD
 .badge {
     font-size: 1.2rem;
     padding: 4px 8px;
-    background: #535353;
-    color: var(--just-white);
+    background: var(--celeste-claro);
+    color: var(--verde-verde);
     border-radius: 4px;
-}
-
-.todo {
-    width: 100%;
-    margin: 20px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.todo-task {
-    width: 70%;
-    padding: 20px;
-    border: 1px solid #eeeeee;
-    border-radius: 10px;
-    background-color: var(--just-white);
-    box-shadow: -2px 2px 6px rgba(0,0,0,0.0575);
-}
-
-.todo-task table tbody tr td {
-    padding: 5px 0;
-}
-
-.todo-metrics {
-    width: 25%;
-}
-
-.todo-metrics__card {
-    margin: 0 0 20px;
-    padding: 10px 10px 10px 15px;
-    border-radius: 10px;
-    background-color: #dfe9f8;
-    box-shadow: -1px 1px 3px rgba(0,0,0,0.0575);
-}
-
-.todo-metrics__card p {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 1.4rem;
-    color: #565656;
-}
-
-.todo-metrics__card p span {
-    width: 22%;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #565656;
 }
 
 .clock {
     color: var(--black);
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 0rem;
     font-family: 'Linearicons-Free';
     letter-spacing: 2px;
@@ -647,6 +634,7 @@ LEFT AREA / DASHBOARD
     top: 50%;
     transform: translate(-50%, -50%);
     background: var(--just-white);
+    border-radius: 4px;
     box-shadow: 0 0 60px 10px rgba(0, 0, 0, .46);
     opacity: 1;
     transition:all 150ms ease-in-out;
@@ -785,7 +773,6 @@ LEFT AREA / DASHBOARD
 .form-group .input-project {
     width: 100%;
     height: 40px;
-    margin: 0px 0px 0px 10px;
     padding: 0px 10px;
     border: none;
     font-size: 2rem;
@@ -793,6 +780,7 @@ LEFT AREA / DASHBOARD
     outline: none;
     border: 2px solid var(--bg-color);
     color: var(--black);
+    transition: all 0.26s;
 }
 
 .form-group textarea {
@@ -804,7 +792,23 @@ LEFT AREA / DASHBOARD
     transition: all 0.26s;
 }
 
-.form-group textarea:focus {
+input[name="daterange"] {
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+    padding: 0px 10px;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    outline: none;
+    border: 2px solid var(--bg-color);
+    color: var(--black);
+    transition: all 0.26s;
+}
+
+.form-group textarea:focus,
+.form-group .input-project:focus,
+input[name="daterange"]:focus {
     border-color: #cacaca;
 }
 
@@ -819,19 +823,6 @@ LEFT AREA / DASHBOARD
     outline: none;
     color: var(--dark-green);
 } 
-
-input[name="daterange"] {
-    width: 100%;
-    height: 40px;
-    margin: 10px 0;
-    padding: 0px 10px;
-    border: none;
-    font-size: 1.4rem;
-    font-weight: 700;
-    outline: none;
-    border: 2px solid var(--bg-color);
-    color: var(--black);
-}
 
 .form-right-title {
     width: 100%;
@@ -852,6 +843,7 @@ input[name="daterange"] {
 .form-right select, 
 .form-right input[type="date"] {
     background-color: #D8E9A8;
+    border-radius: 2px;
 }
 
 .form-group-block {
@@ -943,6 +935,25 @@ input[name="daterange"] {
 .wrapro-title {
     font-size: 3.2rem;
     font-family: 'ProductSans-Medium', Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapro-title i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background-color: var(--claro);
+    box-shadow: 0 0 12px rgba(0, 0, 0, .087);
+}
+
+.wrapro-title i::before {
+    font-size: 2rem;
 }
 
 .wrapro-desc {
@@ -966,13 +977,14 @@ input[name="daterange"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 0 10px;
+    padding: 0 0 6px;
     border-bottom: 2px solid #dddddd;
 }
 
 .wrapro-section h6 {
     color: #434343;
     font-family: 'ProductSans-Light', Arial, Helvetica, sans-serif;
+    cursor: pointer;
 }
 
 .wrapro-section-options {
@@ -982,7 +994,9 @@ input[name="daterange"] {
 }
 
 .wrapro-section-options .goal-dates {
-    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .wrapro-section-options .goal-dates p {
@@ -1019,26 +1033,39 @@ input[name="daterange"] {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
+    padding-right: 12px;
     background-color: #f7f7f7;
     border-bottom: 1px solid #eeeeee;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task .task-desc {
-    width: 50%;
+    width: 60%;
+    padding: 10px 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task .task-desc p {
     font-size: 1.4rem;
     color: #535353;
+    transition: all .26s;
+}
+
+.wrapro-subsection ul li:hover .wrapro-subsection-item .task .task-desc p {
+    color: var(--negro);
+}
+
+.wrapro-subsection ul li:hover .wrapro-subsection-item .task {
+    background-color: var(--celeste-claro);
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task .task-desc input {
     margin: 0px 6px 0px 0px;
+    width: 16px;
+    height: 16px;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .subtasks {
@@ -1065,7 +1092,7 @@ input[name="daterange"] {
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task-opts {
-    width: 50%;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1074,10 +1101,12 @@ input[name="daterange"] {
 .wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-dates {
     width: 50%;
     margin: 0 6px 0 0;
+    text-align: right;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-dates p {
     font-size: 1.2rem;
+    color: #535353;
 }
 
 .wrapro-subsection ul li .wrapro-subsection-item .task-opts .task-attrs {
@@ -1096,52 +1125,154 @@ input[name="daterange"] {
     padding: 10px 0;
 }
 
-.project-info .project-info-dates table {
+.project-info .project-info-dates table,
+.project-info .project-info-data table {
     width: 100%;
 }
 
 .add-goals {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
+.add-goals .add-goals-btn {
+    width: 5%;
+    height: 40px;
+    border: 1px solid var(--verde-verde);
+}
+
 .add-goals input {
-    width: 100%;
+    width: 60%;
     height: 40px;
     border: 1px solid #eeeeee;
     border-radius: 4px;
     padding: 0 16px;
     outline: none;
+    transition: box-shadow .26s;
 }
 
-.add-goals button {
-    margin-left: 20px;
+.add-goals input:focus {
+    box-shadow: 0 0 6px rgba(0, 0, 0, .057);
 }
 
 .add-goals button span {
     font-weight: bold;
 }
 
-.add-goals input[type="date"] {
+.add-goals input[name="daterange"] {
+    width: 30%;
     height: 40px;
     padding: 0px 16px;
-    width: 30%;
 }
 
-.btn {
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    border: 1px solid #434343;
+.wrapro-section h6.goal-selected {
+    color: #2185D5;
 }
 
-.btn-classic {
-    padding: 8px 12px;
-    border: 1px solid var(--claro);
-    border-radius: 4px;
-    color: var(--just-white);
-    background-color: var(--dark-green);
-    cursor: pointer;
-    box-shadow: 0 0 12px rgba(0, 0, 0, rgba(0, 0, 0, .087));
+.card-goal-det {
+    padding: 20px;
+    background: linear-gradient(335deg, #8ca1a5, #2f2e41);
+    border-radius: 8px;
+}
+
+.card-goal-det-title {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+    color: var(--claro);
+}
+
+.card-goal-det-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-goal-det-list li {
+    width: 24%;
+    text-align: center;
+}
+
+.card-goal-det-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #eeeeee;
+}
+
+.card-goal-det-numtext {
+    font-size: 1.2rem;
+    color: var(--azul-negro);
+    color: #dddddd;
+}
+
+.create-task-group input, 
+.form-group.create-task-group select {
+    width: 100%;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 1.4rem;
+    color: var(--negro-general);
+    border: 1px solid #ced4e8;
+    border-radius: 2px;
+    font-weight: normal;
+    outline: none;
+    transition: all .26s;
+}
+
+.form-group.create-task-group select {
+    margin: 0 0 6px 0;
+    background-color: var(--claro);
+}
+
+.form-group.create-task-group select:first-child {
+    margin-right: 10px;
+}
+
+.create-task-group input:focus {
+    box-shadow: 0 0 12px rgba(0, 0, 0, .057);
+    border-color: #eeeeee;
+}
+
+.create-task-group input[type='submit'] {
+    margin-top: 20px;
+    width: auto;
+    color: var(--claro);
+    border: 1px solid var(--verde-verde);
+    letter-spacing: 1px;
+}
+
+.create-task-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.goal-details {
+    padding: 0px 20px;
+}
+
+#appendhabit {
+    margin-top: 6px;
+    display: none;
+}
+
+.fgroup-habitsdays {
+    justify-content: space-between;
+    padding: 6px;
+    align-items: center;
+}
+
+.fgroup-habitsdays label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 33%;
+}
+
+.fgroup-habitsdays input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1150,6 +1281,25 @@ input[name="daterange"] {
 
 .textaleft {
     text-align: left;
+}
+
+.btn {
+    border: 1px solid var(--claro);
+    border-radius: 4px;
+    color: var(--just-white);
+    background-color: var(--dark-green);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 0, 0, rgba(0, 0, 0, .087));
+}
+
+.btn-icon {
+    padding: 10px 16px;
+    color: var(--just-white);
+    background-color: var(--dark-green);
+}
+
+.hide {
+    display: none;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -1195,8 +1345,8 @@ input[name="daterange"] {
 
 /* Basis */
 
-.btn {
-    font-size: 1em;
+.btn-calendar {
+    font-size: 1.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1204,17 +1354,17 @@ input[name="daterange"] {
     background: #fff;
     color: #262626;
     border-radius: 4px;
-    height: 50px;
+    height: 45px;
     font-weight: 600;
     min-width: 100px;
     padding: 0px 20px;
     transition: 0.2s ease;
     cursor: pointer;
     outline: 0;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .087);
+    box-shadow: 0 0 6px rgba(0, 0, 0, .087);
 }
 
-.btn:hover {
+.btn-calendar:hover {
     color: #FFF;
     background: var(--verde-verde);
 }
@@ -1245,9 +1395,10 @@ input[name="daterange"] {
 }
 
 .btn-day.active {
+    position: relative;
     color: #FFF;
     font-weight: 600;
-    z-index: 99;
+    z-index: 49;
 }
 
 .btn-day.active::before {
@@ -1301,8 +1452,8 @@ input[name="daterange"] {
 
 #currentDate{
   text-align: center;
-  font-size: 1.6rem;
-  padding: 0 0 20px;
+  font-size: 1.4rem;
+  padding: 0 0 16px;
 }
 
 .field {
@@ -1327,23 +1478,21 @@ input[name="daterange"] {
 .day-assets {
     display: flex;
     justify-content: space-between;
-    width: 324px;
+    width: 340px;
 }
-
-
 
 .day-assets .btn:nth-child(2) i {
     padding: 0 10px 0 0 !important;
 }
 
 .calendar {
-    height: 310px;
-    width: 324px;
+    height: 300px;
+    width: 340px;
     border-radius: 4px;
     background: #ffffff;
 	padding: 10px;
 	user-select: none;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .087);
+    box-shadow: 0 0 6px rgba(0, 0, 0, .087);
 }
 
 .header {
@@ -1404,10 +1553,16 @@ input[name="daterange"] {
     justify-content: center;
     align-items: center;
     text-align: center;
-    z-index: 99;
+    z-index: 49;
     font-size: 1.4rem;
 }
 
 .search-by-date {
     display: none;
+}
+
+.cancelBtn, .applyBtn  {
+    background-color: var(--dark-green);
+    color: var(--claro);
+    border-radius: 2px;
 }

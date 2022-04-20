@@ -46,7 +46,7 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                             <p>Prioridades</p>
                             <div class="options">
                                 <a href="<?=URLSERVER."/projects";?>" class="a-link">Ver todos</a>
-                                <button class="open-button createProject">
+                                <button class="btn-add createProject">
                                     <span class="fa fa-plus"></span> 
                                     <span class="small-text">Nuevo proyecto</span>
                                 </buttonclass=>
@@ -845,7 +845,7 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                                             <option value='fa-youtube-play'>&#xf16a;</option>
                                             <option value='fa-youtube-square'>&#xf166;</option>
                                         </select>
-                                        <button class="btn-classic" type="submit"><span class="fa fa-plus"></span></button>
+                                        <button class="btn btn-icon" type="submit"><span class="fa fa-plus"></span></button>
                                     </form>
                                 </div>  
                                 <div class="show-values" id="showValues">
@@ -919,30 +919,6 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                                 ?>
                             </div>
                         </div>
-                        <!-- <div class="todo">
-                            <div class="todo-task">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <label class="habits-list__text">
-                                                    <input type="checkbox"> 
-                                                    <p>
-                                                        <span class="normal-text">---</span> 
-                                                        <span class="small-text">...</span>
-                                                    </p>
-                                                </label>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="todo-metrics">
-                                <div class="todo-metrics__card">
-                                    <p><span>-</span> ---</p>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </section>
@@ -956,13 +932,13 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                                 <label for="date">Buscar por fecha</label>
                                 <form class="form-input" id="date-search" onsubmit="return setDate(this)">
                                     <input type="date" class="text-field" name="date" id="date" required>
-                                    <button type="submit" class="btn btn-small" title="Pesquisar"><i class="fas fa-search"></i></button>
+                                    <button type="submit" class="btn-calendar btn-small" title="Pesquisar"><i class="fas fa-search"></i></button>
                                 </form>
                             </div>
                             <div class="day-assets">
-                                <button class="btn" onclick="prevDay()" title="Dia anterior"><i class="fas fa-chevron-left"></i> </button>
-                                <button class="btn" onclick="resetDate()" title="Dia atual"><i class="fas fa-calendar-day"></i> Hoy</button>
-                                <button class="btn" onclick="nextDay()" title="Próximo dia"><i class="fas fa-chevron-right"></i> </button>
+                                <button class="btn-calendar" onclick="prevDay()" title="Dia anterior"><i class="fas fa-chevron-left"></i> </button>
+                                <button class="btn-calendar" onclick="resetDate()" title="Dia actual">Hoy</button>
+                                <button class="btn-calendar" onclick="nextDay()" title="Próximo dia"><i class="fas fa-chevron-right"></i> </button>
                             </div>
                         </div>
                         <div class="calendar" id="table">
@@ -979,12 +955,58 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                         </div>
                     </div>
 
-
                     <!-- <p class="widget-title"><i class="fa-solid fa-calendar-check"></i> <?=$date;?></p> -->
-                    <!-- <div class="habits-list">
+
+                    <div class="todo-list">
+                        <p class="todo-divider">Tareas por hacer</p>
                         <ul>
                             <li>
-                                <label class="habits-list__text">
+                                <label class="todo-list__text">
+                                    <input type="checkbox"> 
+                                    <p>
+                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
+                                        <span class="small-text">Mañana</span>
+                                    </p>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="todo-list__text">
+                                    <input type="checkbox"> 
+                                    <p>
+                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
+                                        <span class="small-text">Mañana</span>
+                                    </p>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="todo-list__text">
+                                    <input type="checkbox"> 
+                                    <p>
+                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
+                                        <span class="small-text">Mañana</span>
+                                    </p>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="todo-list__text">
+                                    <input type="checkbox"> 
+                                    <p>
+                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
+                                        <span class="small-text">Mañana</span>
+                                    </p>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="todo-list__text">
+                                    <input type="checkbox"> 
+                                    <p>
+                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
+                                        <span class="small-text">Mañana</span>
+                                    </p>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="todo-list__text">
                                     <input type="checkbox"> 
                                     <p>
                                         <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
@@ -993,7 +1015,19 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                                 </label>
                             </li>
                         </ul>
-                    </div> -->
+                        <p class="todo-divider">Completado</p>
+                        <ul>
+                            <li>
+                                <label class="todo-list__text">
+                                    <input type="checkbox"> 
+                                    <p>
+                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
+                                        <span class="small-text">Mañana</span>
+                                    </p>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </article>
@@ -1016,14 +1050,13 @@ createProject.addEventListener("click", () => {
                     <form id="formCreateProject" class="modal-form">
                         <div class="form-left">
                             <div class="form-group">
-                                <label for="project-name">Nombre:</label>
                                 <input class="input-project" id="project-name" name="project-name" type="text" placeholder="Proyecto" autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <textarea name="project-description" id="project-description" cols="10" rows="2" placeholder="Descripción del proyecto"></textarea>
                             </div>
                             <div class="form-group form-group-block">
-                                <label for="inputGoal">Fechas del proyecto</label>
+                                <label for="inputGoal">Fecha</label>
                                 <input type="text" name="daterange">
                             </div>
                         </div>
@@ -1034,11 +1067,7 @@ createProject.addEventListener("click", () => {
                             </div>
                             <div class="form-group">
                                 <select name="project-value" id="project-value">
-                                    <option value="1" selected>Salud</option>
-                                    <option value="2">Arte</option>
-                                    <option value="3">Felicidad</option>
-                                    <option value="4">Amor y Paz</option>
-                                    <option value="5">Aprendizaje</option>
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1059,17 +1088,31 @@ createProject.addEventListener("click", () => {
                             </div-->
                         </div>
                     </form>
-                    <p id="modalMessage" class="modal-message"></p>
+                    <!--p id="modalMessage" class="modal-message"></p-->
                     <input class="form-btn" onclick="saveProject('formCreateProject')" type="submit" value="Guardar">
                 </div>`
             );
 
+    for (let i = 1; i < $(".value-item").length; i++) {
+        $("#project-value").append(`<option value="${$(".value-item:nth-child("+i+") p").text()}">${$(".value-item:nth-child("+i+") p").text()}</option>`);
+    }   
+    
     $(function() {
         $('input[name="daterange"]').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        }).click();
+            opens: 'left',
+            "locale":{
+                "format": "DD-MM-YYYY",
+                "separator": " - ",
+                "applyLabel": "Aplicar",
+                "cancelLabel": "Cancelar",
+                "daysOfWeek": ["Dom","Lun","Mar", "Mie","Jue","Vie","Sab"],
+                "monthNames": ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+                "firstDay": 0
+            },
+            function(start, end, label) {
+                console.log(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+            }
+        });
     });
 });
 
@@ -1106,7 +1149,11 @@ saveValue.addEventListener('submit', (e) => {
     e.preventDefault();
     let formData = new FormData(saveValue);
     formData.append("ajax", "add-value");
-    sendAjax('/src/ajax.php', formData);
+    if (document.getElementsByName('value-name').length === 0) {
+        sendAjax('/src/ajax.php', formData);
+    } else {
+        loast.show("Ingresar el valor", "warning");
+    }
 });
 
 /* -------------------------------- CALENDAR -------------------------------- */

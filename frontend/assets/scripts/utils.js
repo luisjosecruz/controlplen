@@ -19,7 +19,7 @@ const sendAjax = (url, data) => {
 const handleAjax = (data) => {
 	console.log(data); // return false;
 
-	switch (data) {
+	switch (data.trim()) {
 		case 'login 200': 
 			loast.show("Accediento a la plataforma ...", "success");
 			setTimeout(() => window.location.href = "/", 1000);
@@ -77,12 +77,12 @@ const handleAjax = (data) => {
 
 			break;
 		case 'created-goal':
-			setTimeout(() => {
-				document.querySelector("#modal").classList.add("closed");
-				document.querySelector("#modal-overlay").classList.add("closed");
-				location.reload();
-			}, 1000);
+			loast.show('Meta agregada correctamente.', 'success');
+			setTimeout(() => location.reload(), 1000);
 			
+			break;
+		case 'error-create-goal': loast.show('Error inesperado al crear la meta.', 'error');
+
 			break;
 		case 'created-project':
 			setTimeout(() => {
@@ -91,6 +91,14 @@ const handleAjax = (data) => {
 				location.reload();
 			}, 1000);
 			
+			break;
+		case 'created-task':
+			loast.show('Tarea agregada correctamente.', 'success');
+			setTimeout(() => location.reload(), 1000);
+
+			break;
+		case 'error-create-task': loast.show('Error inesperado al crear la tarea.', 'error');
+
 			break;
 		default: 
 			loast.show(data, "error");
@@ -118,9 +126,7 @@ function validateData(data) {
 			
 			break;
 		case 'save-project':
-			if (data.get('project-name').trim().length <= 0 || data.get('project-description').trim().length <= 0 || data.get('project-end-date').trim().length <= 0) {
-				let modalMessage = document.getElementById("modalMessage");
-				// modalMessage.textContent = "Existen datos requeridos sin completar.";
+			if (data.get('project-name').trim().length <= 0 || data.get('project-description').trim().length <= 0) {
 				loast.show("Existen datos requeridos sin completar", "warning");
 			} else {
 				return true;
@@ -138,15 +144,8 @@ function saveProject(id) {
 	formData.append('ajax', 'save-project');
 
 	if (validateData(formData)) {
-		let modalMessage = document.getElementById("modalMessage");
-		// modalMessage.textContent = "Guardando información ...";
-		console.log("Guardando información ...");
-		let cantags = document.getElementsByClassName("fast-tag");
-		let cantgoals = document.getElementsByClassName("fast-goal");
-		formData.append('cantags', cantags.length);
-		formData.append('cantgoals', cantgoals.length);
-		
 		sendAjax('/src/ajax.php', formData);
+		loast.show("Guardando información ...", "success");
 
 		let btn = document.querySelector('.form-btn')
 		btn.disabled = true;
@@ -180,23 +179,6 @@ function showTime(){
     
     setTimeout(showTime, 1000);
     
-}
-
-// create goals (modal add project)
-function addGoal(i) {
-    let inputGoal = document.getElementById("inputGoal");
-    let goalsList = document.querySelector(".create-goals-list");
-    if (inputGoal.value.trim().length > 0) {
-        const input = document.createElement('input');
-        let cant = document.getElementsByClassName("fast-goal");
-        input.setAttribute("type", "text");
-        input.setAttribute("class", "fast-goal");
-        input.setAttribute("name", "fast-goal_" + (cant.length + 1));
-        input.setAttribute("readonly", "true");
-        input.setAttribute("value", "— " + inputGoal.value);
-        goalsList.appendChild(input);
-        inputGoal.value = "";
-    }
 }
 
 // create project tags (modal add project)
@@ -274,16 +256,6 @@ function closeModal () {
 
 	modal.classList.toggle("closed");
     modalOverlay.classList.toggle("closed");
-}
-
-// edit goals 
-function editGoal (goal) {
-	
-}
-
-function addOneGoal (formData) {
-	formData.append('ajax', 'save-goal');
-	sendAjax('/src/ajax.php', formData);
 }
 
 // Function to print console logs with colors

@@ -25,6 +25,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         case 'save-goal': handleSaveGoal($_POST, $conn);
 
             break;
+        case 'save-task': handleSaveTask($_POST, $conn);
+
+            break;
+        case 'show-goal-det': handleShowGoalDet($_POST, $conn);
+
+            break;
         default:
             echo 'ajax 404 '.$_POST['ajax'];
             break;

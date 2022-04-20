@@ -10,7 +10,7 @@ define("URLSERVER", (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "h
 
 date_default_timezone_set('America/El_Salvador');
 setlocale(LC_ALL, 'es-SV');
-$date = utf8_encode(strftime('%A %e de %B, %Y'));
+$date = utf8_encode(strftime('%A, %e de %B de %Y'));
 
 switch($route){
     case '': require_once ('views/start.php');

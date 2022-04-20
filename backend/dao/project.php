@@ -8,13 +8,13 @@ class Project
             FROM proyectos AS p
             LEFT JOIN metas AS m ON p.proyectoId = m.metaProyecto
             INNER JOIN valores AS v ON p.proyectoValor = v.valorId
-            GROUP BY p.proyectoId ORDER BY p.proyectoId DESC LIMIT 5");
+            GROUP BY p.proyectoId ORDER BY p.proyectoId DESC LIMIT 7");
         return $stmt;
     }
 
     public function getAllProjects($conn){
         $stmt = $conn->query("
-            SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value FROM proyectos AS p
+            SELECT p.*, COUNT(m.metaId) cantidad_metas, v.valorNombre value, valorColor, valorIcono FROM proyectos AS p
             LEFT JOIN metas AS m ON p.proyectoId = m.metaProyecto
             INNER JOIN valores AS v ON p.proyectoValor = v.valorId
             GROUP BY p.proyectoId ORDER BY p.proyectoId DESC
@@ -24,7 +24,7 @@ class Project
 
     public function getProjectByRandom($random, $conn){
         $stmt = $conn->query("
-            SELECT proyectos.*, valores.valorNombre FROM proyectos 
+            SELECT proyectos.*, valores.valorNombre, valores.valorIcono icon, valores.valorColor color FROM proyectos 
             LEFT JOIN valores ON valores.valorId = proyectos.proyectoValor WHERE proyectoLink = '$random'");
         return $stmt;
     }
@@ -51,93 +51,150 @@ class Project
         return $qty;
     }
 
-    public function createProject($data, $conn) {
-        $value = $data['project-value'];
+    public function createProject($data, $conn) 
+    {
+        if (is_string($data['project-value'])) {
+            $queryGetValueId = "SELECT valorId FROM valores WHERE valorNombre LIKE '".$data['project-value']."'";
+            $stmt = $conn->query($queryGetValueId);
+            $rowGetValueId = $stmt->fetch();
+            $value = $rowGetValueId['valorId'];
+        } else {
+            $value = $data['project-value'];
+        }
+
         $name = $data['project-name'];
         $desc = $data['project-description'];
         $status = $data['project-status'];
-        $start = $data['project-start-date'];
-        $end = $data['project-end-date'];
-        $cantags = $data['cantags'];
-        $cantgoals = $data['cantgoals'];
-        
-        $tags = "";
-        for ($i=1; $i <= $cantags; $i++) { 
-            $tags .= $data['fast-tag_' . $i];
-            $tags .= ($i == $cantags ? "" : ", ");
-        }
-        $tags = str_replace("— ", "", $tags);
+        $dates = $data['daterange'];
 
-        $query = "INSERT INTO proyectos VALUES (null, $value, '$name', '$desc', '$status', '$tags', '$start', '$end', null, null);";
+        $date = explode(' - ', $dates);
+        $dstart = date('Y-m-d', date(strtotime($date[0])));
+        $dend = date('Y-m-d', date(strtotime($date[1])));
+
+        $query = "INSERT INTO proyectos VALUES (null, $value, '$name', '$desc', '$status', null, '$dstart', '$dend', null, null);";
         
         if ($conn->query($query)) {
             $projectId = $conn->lastInsertId();
-            if ($cantgoals >= 1) {
-                return self::createGoal($data, $projectId,  $conn);
-            } else {
-                return 'created-project';
-            }
+            return 'created-project';
         } else {
-            return 'error-create-project '.$query;
+            return 'error-create-project';
         }
-    }
-
-    // — Eliminar la grasa de mi cuerpo
-    // — Reducir el consumo de alimientos no saludables
-    // — Disminuir mis niveles de estres
-    // — Eliminar las ojeras
-    // — Eliminar los puntos negros de mi cara
-    // — Mejorar el aspecto de mis manos
-    // — Mejorar el aspecto de mis pies
-    // — Mantener un cabello saludable
-    
-
-
-    public function createGoal($data, $projectId, $conn) {
-        $cantgoals = $data['cantgoals'];
-        $status = $data['project-status'];
-        $start = $data['project-start-date'];
-        $end = $data['project-end-date'];
-        $cont = 0;
-
-        for ($i=1; $i <= $cantgoals; $i++) { 
-            $goal = $data['fast-goal_' . $i];
-            $goal = str_replace("— ", "", $goal);
-            $query = "INSERT INTO metas VALUES (null, $projectId, '$goal', '$status', '$start', '$end', 'proyecto', null);";
-            if ($conn->query($query)) {
-                $cont = $i;
-            } 
-        }
-
-        return ($cont > 0) ? 'created-goal' : 'error-create-goal Cont: ';
     }
 
     /* GOALS */
-    public function getGoalsByRandom($random, $conn){
+    public function getGoalsByRandom($random, $conn)
+    {
         $stmt = $conn->query("
             SELECT metas.* FROM metas INNER JOIN proyectos ON proyectos.proyectoId = metas.metaProyecto 
             WHERE proyectos.proyectoLink = '$random'");
         return $stmt;
     }
 
-    public function addGoal($data, $conn) {
-        $goal = $data['goal-desc'];
+    public function createGoal($data, $conn) 
+    {
+        $goal = $data['goalname'];
         $link = $data['project-link'];
-        $dateEnd = $data['goal-date'];
+        $date = $data['daterange'];
+        $status = "";
 
-        // $query = "INSERT INTO metas VALUES (null, $projectId, '$goal', 'Pendiente', 'NOW()', 'NOW()', 'proyecto', null);";
-        // if ($conn->query($query)) {
-        //     $cont = $i;
-        // } 
+        if (isset($projectId)) {
+            $projectId = $projectId;
+            $status = $data['project-status'];
+        } else {
+            $stmt = $conn->query("SELECT * FROM proyectos WHERE proyectos.proyectoLink = '".$link."'");
+            $row = $stmt->fetch();
+            $projectId = $row['proyectoId'];
+            $status = $row['proyectoEstado'];
+        }
 
-        // return ($cont > 0) ? 'created-goal' : 'error-create-goal Cont: ';
-        return $goal;
+        $dates = explode(' - ', $date);
+        $dstart = date('Y-m-d', date(strtotime($dates[0])));
+        $dend = date('Y-m-d', date(strtotime($dates[1])));
+
+        $query = "INSERT INTO metas VALUES (null, $projectId, '$goal', 'Pendiente', '$dstart', '$dend', null, null);";
+        if ($conn->query($query)) {
+            return 'created-goal';
+        } else {
+            return 'error-create-goal';
+        }
     }
     
     /* TASKS */
     public function getTasksByMeta($goalId, $conn){
         $stmt = $conn->query("SELECT tareas.* FROM tareas INNER JOIN metas ON metaId = tareaMeta WHERE metaId = '$goalId'");
         return $stmt;
+    }
+
+    public function createTask($data, $conn) 
+    {   
+        $goalId = $data['goalId'];
+        $task = $data['taskname'];
+        $date = $data['daterange'];
+        $status = $data['taskstatus'];
+        $type = $data['taskstype'];
+
+        $dates = explode(' - ', $date);
+        $dstart = date('Y-m-d', date(strtotime($dates[0])));
+        $dend = date('Y-m-d', date(strtotime($dates[1])));
+
+        $query = "INSERT INTO tareas VALUES (null, $goalId, '$task', '$status', '$dstart', '$dend', null, null, null, null, '$type', null);";
+        if ($conn->query($query)) {
+            $taskId = $conn->lastInsertId();
+            if ($type === 'Habito') {
+                $habitType = $_POST['habitType'];
+                $habitStatus = $_POST['habitStatus'];
+                $days = "";
+                $days .= (isset($_POST['Lunes'])) ? $_POST['Lunes'] . "," : "";
+                $days .= (isset($_POST['Martes'])) ? $_POST['Martes'] . "," : "";
+                $days .= (isset($_POST['Miercoles'])) ? $_POST['Miercoles'] . "," : "";
+                $days .= (isset($_POST['Jueves'])) ? $_POST['Jueves'] . "," : "";
+                $days .= (isset($_POST['Viernes'])) ? $_POST['Viernes'] . "," : "";
+                $days .= (isset($_POST['Sabado'])) ? $_POST['Sabado'] . "," : "";
+                $days .= (isset($_POST['Domingo'])) ? $_POST['Domingo'] . "," : "";
+
+                $query = "INSERT INTO habitos VALUES (null, $taskId, '$habitStatus', '$habitType', '$days', null, null);";
+                if ($conn->query($query)) {
+                    return 'created-habit';
+                }
+            } else {
+                return 'created-task';
+            }
+        } else {
+            return 'error-create-task';
+        }
+    }
+
+    public function showGoalDet($data, $conn) {
+        $goalId = $data['goalId'];
+
+        $stmt = $conn->query("SELECT metas.* FROM metas WHERE metaId = '$goalId'");
+        $row = $stmt->fetch();
+        $goalName = $row['metaDescripcion'];
+
+        $pending = self::getCantTaskByStatus($goalId, 'Pendiente', $conn);
+        $progress = self::getCantTaskByStatus($goalId, 'En progreso', $conn);
+        $completed = self::getCantTaskByStatus($goalId, 'Completado', $conn);
+        
+        $html = '';
+        $html .= '
+            <div class="card-goal-det">
+                <h6 class="card-goal-det-title">'.$goalName.'</h6>
+                <ul class="card-goal-det-list">
+                    <li><p class="card-goal-det-number">'.$pending.'</p><p class="card-goal-det-numtext">Tareas totales</p></li>
+                    <li><p class="card-goal-det-number">'.$pending.'</p><p class="card-goal-det-numtext">Pendientes</p></li>
+                    <li><p class="card-goal-det-number">'.$progress.'</p><p class="card-goal-det-numtext">En progreso</p></li>
+                    <li><p class="card-goal-det-number">'.$completed.'</p><p class="card-goal-det-numtext">Completadas</p> </li>
+                </ul>
+            </div>
+        ';
+
+        return $html;
+    }
+
+    public function getCantTaskByStatus ($goalId, $status, $conn) {
+        $stmt = $conn->query("SELECT COUNT(tareas.tareaId) cantareas FROM tareas WHERE tareas.tareaMeta = '$goalId' AND tareas.tareaEstado = '$status'");
+        $row = $stmt->fetch();
+        return $row['cantareas'];
     }
 
 }

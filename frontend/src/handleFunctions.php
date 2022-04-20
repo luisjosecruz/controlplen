@@ -47,11 +47,30 @@ function handleSaveProject($data, $conn)
     echo $stmt;
 }
 
+/* --------------------------------- GOALS --------------------------------- */
+
 function handleSaveGoal($data, $conn) {
     $project = new Project();
-    $stmt = $project->addGoal($data, $conn);
+    $stmt = $project->createGoal($data, $conn);
     
     echo $stmt;
 }
 
+/* --------------------------------- TASKS --------------------------------- */
+
+function handleSaveTask($data, $conn) {
+    $project = new Project();
+    $stmt = $project->createTask($data, $conn);
+    
+    echo $stmt;
+}
+
+function handleShowGoalDet($data, $conn) {
+    $project = new Project();
+    $stmt = $project->showGoalDet($data, $conn);
+
+    echo $stmt;
+}
+
 ?>
+
