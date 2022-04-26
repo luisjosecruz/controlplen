@@ -100,6 +100,11 @@ const handleAjax = (data) => {
 		case 'error-create-task': loast.show('Error inesperado al crear la tarea.', 'error');
 
 			break;
+		case 'created-habit':
+			loast.show('Hábito agregado correctamente.', 'success');
+			setTimeout(() => location.reload(), 1000);
+
+			break;
 		default: 
 			loast.show(data, "error");
 			console.log('Handle Ajax Switch Default');

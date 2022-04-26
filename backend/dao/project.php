@@ -151,6 +151,7 @@ class Project
                 $days .= (isset($_POST['Viernes'])) ? $_POST['Viernes'] . "," : "";
                 $days .= (isset($_POST['Sabado'])) ? $_POST['Sabado'] . "," : "";
                 $days .= (isset($_POST['Domingo'])) ? $_POST['Domingo'] . "," : "";
+                $days = ($habitType === 'Diario' && $days === "") ? 'Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo' : $days; 
 
                 $query = "INSERT INTO habitos VALUES (null, $taskId, '$habitStatus', '$habitType', '$days', null, null);";
                 if ($conn->query($query)) {
@@ -196,6 +197,19 @@ class Project
         $stmt = $conn->query("SELECT COUNT(tareas.tareaId) cantareas FROM tareas WHERE tareas.tareaMeta = '$goalId' AND tareas.tareaEstado LIKE '$status'");
         $row = $stmt->fetch();
         return $row['cantareas'];
+    }
+
+    public function getTaskByDate ($conn, $date) {
+        $stmt = $conn->query("
+            SELECT t.tareaId, t.tareaMeta, t.tareaDescripcion, t.tareaEstado, t.tareaFechaInicio, 
+            t.tareaFechaFin, t.tareaTipo, h.habitoId, h.habitoEstado, h.habitoEstado, h.habitoTipo, h.habitoDias
+            FROM tareas t LEFT JOIN habitos h ON t.tareaId = h.habitoTarea
+            WHERE '$date' BETWEEN t.tareaFechaInicio AND t.tareaFechaFin 
+            OR '$date' = t.tareaFechaInicio AND t.tareaFechaFin
+            ORDER BY t.tareaFechaFin ASC
+        ");
+        // $qty = $stmt->fetch();
+        return $stmt;
     }
 
 }

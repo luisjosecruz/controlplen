@@ -176,7 +176,7 @@ RIGHT AREA
 }
 
 .todo-list ul li {
-    padding: 8px;
+    padding: 4px 0px;
     border-radius: 2px;
 }
 
@@ -202,6 +202,14 @@ RIGHT AREA
 .todo-list__text p {
     display: flex;
     flex-direction: column;
+}
+
+.todo-list__text p .normal-text {
+    font-size: 1.4rem;
+}
+
+.todo-list__text p .small-text {
+    padding: 4px 0; 
 }
 
 /* 
@@ -1180,6 +1188,7 @@ input[name="daterange"]:focus {
     font-size: 1.8rem;
     padding-bottom: 20px;
     color: var(--claro);
+    font-weight: normal;
 }
 
 .card-goal-det-list {
@@ -1404,8 +1413,8 @@ input[name="daterange"]:focus {
 .btn-day.active::before {
     position: absolute;
     content: '';
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background: var(--verde-verde);
     border-radius: 4px;
     z-index: -1;
