@@ -966,13 +966,14 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                             $result = $tasks->fetchAll();
                             if ($tasks->rowCount() > 0) {
                                 foreach($result as $t) {
-                                    echo '
+                                    $date = ($t['tareaFechaInicio'] == $t['tareaFechaFin']) ? $t['tareaFechaFin'] : $t['tareaFechaInicio'] . ' - ' . $t['tareaFechaFin'];
+                                     echo '
                                         <li>
                                             <label class="todo-list__text">
                                                 <input type="checkbox" class="inputTask" tasktype="'.$t['tareaTipo'].'" taskid="'.$t['tareaId'].'" habitoId="'.$t['habitoId'].'"> 
                                                 <p>
                                                     <span class="normal-text">'.$t['tareaDescripcion'].'</span> 
-                                                    <span class="small-text">'.$t['tareaFechaFin'].' • '.$t['tareaTipo'].' </span>
+                                                    <span class="small-text">'.$date.' • '.$t['tareaTipo'].' </span>
                                                 </p>
                                             </label>
                                         </li>

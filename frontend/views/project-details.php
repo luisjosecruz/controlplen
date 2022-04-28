@@ -68,7 +68,7 @@ $project = new Project();
                                                             <div class="task">
                                                                 <label class="task-desc">
                                                                     <p class="line"></p>
-                                                                    <input type="checkbox" onclick="checkTask(this, '.$task['tareaId'].')">
+                                                                    <input type="checkbox" onclick="checkTask(this, \''.$task['tareaId'].'\', \''.$task['tareaTipo'].'\', \''.$task['habitoId'].'\')">
                                                                     <p>'.$task['tareaDescripcion'].'</p>
                                                                 </label>
                                                                 <div class="task-opts">
@@ -255,9 +255,22 @@ function goalDetails (i) {
 	ajax.send(formData);
 }
 
-// check task
-function checkTask(i, taskId) {
-    console.log('Task Id '+taskId);
-}
+/* ------------------------------- check task ------------------------------- */
+function checkTask (i, taskid, tasktype, habitoid) {
+    
+    let formData = new FormData();
+    formData.append('ajax', 'task-update');
+
+    if ($(i).is(':checked')) {
+        formData.append('taskid', taskid);
+        formData.append('tasktype', tasktype);
+        formData.append('habitoid', habitoid);
+        formData.append('status', 'completed');
+    } else {
+        formData.append('status', 'pending');
+    }
+
+    sendAjax('/src/ajax.php', formData);
+}  
 
 </script>

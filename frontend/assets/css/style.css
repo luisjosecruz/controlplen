@@ -1443,14 +1443,14 @@ input[name="daterange"]:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
 }
 
 .calendar-assets {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
     width: 100%;
     padding: 0 0 8px;

@@ -72,5 +72,12 @@ function handleShowGoalDet($data, $conn) {
     echo $stmt;
 }
 
+function handleTaskUpdate($data, $conn) {
+    $project = new Project();
+    $stmt = $project->updateStatusTask($data, $conn);
+
+    echo $stmt;
+}
+
 ?>
 

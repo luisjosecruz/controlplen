@@ -120,8 +120,14 @@ class Project
     }
     
     /* TASKS */
-    public function getTasksByMeta($goalId, $conn){
-        $stmt = $conn->query("SELECT tareas.* FROM tareas INNER JOIN metas ON metaId = tareaMeta WHERE metaId = '$goalId'");
+    public function getTasksByMeta($goalId, $conn)
+    {
+        $stmt = $conn->query("
+        SELECT tareas.*, habitos.habitoId
+        FROM tareas 
+        INNER JOIN metas ON metaId = tareaMeta 
+        LEFT JOIN habitos ON tareas.tareaId = habitos.habitoTarea
+        WHERE metaId = '$goalId' AND tareas.tareaEstado <> 'Completado'");
         return $stmt;
     }
 
@@ -165,7 +171,8 @@ class Project
         }
     }
 
-    public function showGoalDet($data, $conn) {
+    public function showGoalDet($data, $conn) 
+    {
         $goalId = $data['goalId'];
 
         $stmt = $conn->query("SELECT metas.* FROM metas WHERE metaId = '$goalId'");
@@ -193,23 +200,56 @@ class Project
         return $html;
     }
 
-    public function getCantTaskByStatus ($goalId, $status, $conn) {
-        $stmt = $conn->query("SELECT COUNT(tareas.tareaId) cantareas FROM tareas WHERE tareas.tareaMeta = '$goalId' AND tareas.tareaEstado LIKE '$status'");
+    public function getCantTaskByStatus ($goalId, $status, $conn) 
+    {
+        $stmt = $conn->query("  SELECT COUNT(tareas.tareaId) cantareas 
+                                FROM tareas WHERE tareas.tareaMeta = '$goalId' 
+                                AND tareas.tareaEstado LIKE '$status'");
         $row = $stmt->fetch();
         return $row['cantareas'];
     }
 
-    public function getTaskByDate ($conn, $date) {
+    public function getTaskByDate ($conn, $date) 
+    {
         $stmt = $conn->query("
-            SELECT t.tareaId, t.tareaMeta, t.tareaDescripcion, t.tareaEstado, t.tareaFechaInicio, 
-            t.tareaFechaFin, t.tareaTipo, h.habitoId, h.habitoEstado, h.habitoEstado, h.habitoTipo, h.habitoDias
+            SELECT t.tareaId, t.tareaMeta, t.tareaDescripcion, t.tareaEstado, 
+            DATE_FORMAT(t.tareaFechaInicio, '%d/%m/%Y') tareaFechaInicio, 
+            DATE_FORMAT(t.tareaFechaFin, '%d/%m/%Y') tareaFechaFin,
+            t.tareaTipo, h.habitoId, h.habitoEstado, h.habitoEstado, h.habitoTipo, h.habitoDias
             FROM tareas t LEFT JOIN habitos h ON t.tareaId = h.habitoTarea
-            WHERE '$date' BETWEEN t.tareaFechaInicio AND t.tareaFechaFin 
+            WHERE t.tareaEstado <> 'Completado'
+            AND '$date' BETWEEN t.tareaFechaInicio AND t.tareaFechaFin 
             OR '$date' = t.tareaFechaInicio AND t.tareaFechaFin
             ORDER BY t.tareaFechaFin ASC
         ");
-        // $qty = $stmt->fetch();
         return $stmt;
+    }
+
+    public function updateStatusTask ($data, $conn) 
+    {
+        $taskid = $data['taskid'];
+        $tasktype = $data['tasktype'];
+        $habitoid = $data['habitoid'];
+        $taskstatus = $data['status'];
+
+        if ($taskstatus === 'completed') {
+            if ($tasktype === 'Habito') {
+
+            }
+            if ($tasktype === 'Una vez') {
+                
+            }
+        }
+
+        if ($taskstatus === 'pending') {
+            if ($tasktype === 'Habito') {
+
+            }
+            if ($tasktype === 'Una vez') {
+                
+            }
+        }
+
     }
 
 }

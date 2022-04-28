@@ -31,6 +31,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         case 'show-goal-det': handleShowGoalDet($_POST, $conn);
 
             break;
+
+        case 'task-update': handleTaskUpdate($_POST, $conn);
+
+            break;
         default:
             echo 'ajax 404 '.$_POST['ajax'];
             break;
