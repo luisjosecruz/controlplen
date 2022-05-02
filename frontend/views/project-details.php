@@ -63,14 +63,16 @@ $project = new Project();
                                                 
                                                 foreach($tareasResult as $task) { 
                                                 $fechaas = ($task['tareaFechaInicio'] == $task['tareaFechaFin']) ? date_format(date_create($task['tareaFechaFin']), 'd/m/Y') : date_format(date_create($task['tareaFechaInicio']), 'd/m/Y').' — '.date_format(date_create($task['tareaFechaFin']), 'd/m/Y');
+                                                $checked = ($task['tareaEstado'] === 'Completado') ? 'checked' : '';
+                                                $tag = ($task['tareaEstado'] === 'Completado') ? 'div' : 'label';
                                                 echo'<li>
                                                         <div class="wrapro-subsection-item">
                                                             <div class="task">
-                                                                <label class="task-desc">
+                                                                <'.$tag.' class="task-desc">
                                                                     <p class="line"></p>
-                                                                    <input type="checkbox" onclick="checkTask(this, \''.$task['tareaId'].'\', \''.$task['tareaTipo'].'\', \''.$task['habitoId'].'\')">
+                                                                    <input '.$checked.' type="checkbox" onclick="checkTask(this, \''.$task['tareaId'].'\', \''.$task['tareaTipo'].'\', \''.$task['habitoId'].'\')">
                                                                     <p>'.$task['tareaDescripcion'].'</p>
-                                                                </label>
+                                                                </'.$tag.'>
                                                                 <div class="task-opts">
                                                                     <div class="task-dates">
                                                                         <p>'.$fechaas.'</p>
@@ -90,6 +92,7 @@ $project = new Project();
                                                         </div>
                                                     </li>';
                                                 }
+
                                             echo'</ul>
                                             </div>
                                         ';
@@ -144,11 +147,7 @@ $project = new Project();
                             <input type="text" name="daterange" autocomplete="off" placeholder="Fecha" value="">
                         </div>
                         <div class="form-group create-task-group">
-                            <select name="taskstatus">
-                                <option value="Pendiente">Pendiente</option>
-                                <option value="En progreso">En progreso</option>
-                                <option value="Completado">Completado</option>
-                            </select>
+                            <input type="text" name="taskstatus" class="hide" value="Pendiente">
                             <select name="taskstype" id="selectTaskType">
                                 <option value="Una vez">Una vez</option>
                                 <option value="Habito">Hábito</option>
@@ -166,17 +165,17 @@ $project = new Project();
                                 </select>
                             </div>
                             <div class="form-group create-task-group fgroup-habitsdays">
-                                <label for="Lunes"><input type="checkbox" name="Lunes" value="Lunes" id="Lunes"> Lunes</label>  
-                                <label for="Martes"><input type="checkbox" name="Martes" value="Martes" id="Martes"> Martes</label>    
-                                <label for="Miercoles"><input type="checkbox" name="Miercoles" value="Miercoles" id="Miercoles"> Miercoles</label>    
+                                <label for="lunes"><input type="checkbox" name="lunes" value="lunes" id="Lunes"> Lunes</label>  
+                                <label for="martes"><input type="checkbox" name="martes" value="martes" id="Martes"> Martes</label>    
+                                <label for="miercoles"><input type="checkbox" name="miércoles" value="miércoles" id="Miercoles"> Miércoles</label>    
                             </div>
                             <div class="form-group create-task-group fgroup-habitsdays">
-                                <label for="Jueves"><input type="checkbox" name="Jueves" value="Jueves" id="Jueves"> Jueves</label>   
-                                <label for="Viernes"><input type="checkbox" name="Viernes" value="Viernes" id="Viernes"> Viernes</label>
-                                <label for="Sabado"><input type="checkbox" name="Sabado" value="Sabado" id="Sabado"> Sabado</label>
+                                <label for="jueves"><input type="checkbox" name="jueves" value="jueves" id="jueves"> Jueves</label>   
+                                <label for="viernes"><input type="checkbox" name="viernes" value="viernes" id="viernes"> Viernes</label>
+                                <label for="sabado"><input type="checkbox" name="sábado" value="sábado" id="sábado"> Sábado</label>
                             </div>
                             <div class="form-group create-task-group fgroup-habitsdays">
-                                <label for="Domingo"><input type="checkbox" name="Domingo" value="Domingo" id="Domingo"> Domingo</label>  
+                                <label for="domingo"><input type="checkbox" name="domingo" value="domingo" id="domingo"> Domingo</label>  
                             </div>
                         </div>
                         <div class="form-group create-task-group">
@@ -255,22 +254,7 @@ function goalDetails (i) {
 	ajax.send(formData);
 }
 
-/* ------------------------------- check task ------------------------------- */
-function checkTask (i, taskid, tasktype, habitoid) {
-    
-    let formData = new FormData();
-    formData.append('ajax', 'task-update');
 
-    if ($(i).is(':checked')) {
-        formData.append('taskid', taskid);
-        formData.append('tasktype', tasktype);
-        formData.append('habitoid', habitoid);
-        formData.append('status', 'completed');
-    } else {
-        formData.append('status', 'pending');
-    }
 
-    sendAjax('/src/ajax.php', formData);
-}  
 
 </script>

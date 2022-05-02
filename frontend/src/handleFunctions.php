@@ -76,7 +76,7 @@ function handleTaskUpdate($data, $conn) {
     $project = new Project();
     $stmt = $project->updateStatusTask($data, $conn);
 
-    echo $stmt;
+    echo trim($stmt);
 }
 
 ?>

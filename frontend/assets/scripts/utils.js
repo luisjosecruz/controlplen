@@ -105,6 +105,15 @@ const handleAjax = (data) => {
 			setTimeout(() => location.reload(), 1000);
 
 			break;
+		case 'updated-task':
+			loast.show('Tarea actualizada correctamente.', 'success');
+			setTimeout(() => location.reload(), 500);
+
+			break;
+		case 'error-update-task': loast.show('Error inesperado al actualizar tarea.', 'error');
+
+			break;
+
 		default: 
 			loast.show(data, "error");
 			console.log('Handle Ajax Switch Default');
@@ -285,4 +294,24 @@ function config (arg){
         'url': window.location.origin
     }
     return dataConf[arg];
+}
+
+/* ------------------------------- check task ------------------------------- */
+
+function checkTask (i, taskid, tasktype, habitoid) {
+    let status = undefined;
+    if ($(i).is(':checked')) {
+        status = 'completed';
+    } else {
+        status = 'pending';
+    }
+
+    let formData = new FormData();
+    formData.append('ajax', 'task-update');
+    formData.append('taskid', taskid);
+    formData.append('tasktype', tasktype);
+    formData.append('habitoid', habitoid);
+    formData.append('status', status);
+
+    sendAjax('/src/ajax.php', formData);
 }

@@ -194,9 +194,9 @@ RIGHT AREA
     margin-top: 2px;
     margin-right: 8px;
     cursor: pointer;
-    -webkit-box-shadow: inset 0px 0px 0px 1px var(--verde-verde);
-    -moz-box-shadow: inset 0px 0px 0px 1px var(--verde-verde);
-    box-shadow: inset 0px 0px 0px 1px var(--verde-verde);
+    -webkit-box-shadow: inset 0px 0px 0px 1px var(--azul-negro);
+    -moz-box-shadow: inset 0px 0px 0px 1px var(--azul-negro);
+    box-shadow: inset 0px 0px 0px 1px var(--azul-negro);
 }
 
 .todo-list__text p {

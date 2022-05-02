@@ -962,36 +962,83 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                         <ul>
 
                         <?php 
-                            $tasks = $project->getTaskByDate($conn, date('Y-m-d'));
-                            $result = $tasks->fetchAll();
-                            if ($tasks->rowCount() > 0) {
-                                foreach($result as $t) {
+                            $todayId = $project->getCalendar($conn);
+                            
+                            $tasksPending = $project->getTaskByDate($conn, date('Y-m-d'), 'Pendiente');
+                            $resultPending = $tasksPending->fetchAll();
+                            if ($tasksPending->rowCount() > 0) {
+                                foreach($resultPending as $t) {
                                     $date = ($t['tareaFechaInicio'] == $t['tareaFechaFin']) ? $t['tareaFechaFin'] : $t['tareaFechaInicio'] . ' - ' . $t['tareaFechaFin'];
-                                     echo '
-                                        <li>
-                                            <label class="todo-list__text">
-                                                <input type="checkbox" class="inputTask" tasktype="'.$t['tareaTipo'].'" taskid="'.$t['tareaId'].'" habitoId="'.$t['habitoId'].'"> 
-                                                <p>
-                                                    <span class="normal-text">'.$t['tareaDescripcion'].'</span> 
-                                                    <span class="small-text">'.$date.' • '.$t['tareaTipo'].' </span>
-                                                </p>
-                                            </label>
-                                        </li>
-                                    ';
+                                    $checked = ($t['tareaEstado'] === 'Completado') ? 'checked' : '';
+
+                                    if ($t['tareaTipo'] === "Una vez") {
+                                        echo '
+                                            <li>
+                                                <label class="todo-list__text">
+                                                    <input '.$checked.' type="checkbox" class="inputTask" tasktype="'.$t['tareaTipo'].'" taskid="'.$t['tareaId'].'" habitoId="'.$t['habitoId'].'"> 
+                                                    <p>
+                                                        <span class="normal-text">'.$t['tareaDescripcion'].'</span> 
+                                                        <span class="small-text">'.$date.' • '.$t['tareaTipo'].'</span>
+                                                    </p>
+                                                </label>
+                                            </li>
+                                        ';
+                                    }
+                                    // validate just habits filtered days
+                                    $hoy = utf8_encode(strftime('%A'));
+                                    $arr_days = explode(',', $t['habitoDias']);
+                                    if ($t['tareaTipo'] === "Habito" && trim($t['habitoId']) != "" && in_array($hoy, $arr_days)) {
+                                        
+                                        if ($todayId !== $t['calendarId'] || $t['bitacoraEstado'] === 'No completado') {
+                                            echo '
+                                                <li>
+                                                    <label class="todo-list__text">
+                                                        <input '.$checked.' type="checkbox" class="inputTask" tasktype="'.$t['tareaTipo'].'" taskid="'.$t['tareaId'].'" habitoId="'.$t['habitoId'].'"> 
+                                                        <p>
+                                                            <span class="normal-text">'.$t['tareaDescripcion'].'</span> 
+                                                            <span class="small-text">'.$date.' • '.$t['tareaTipo'].'
+                                                             
+                                                            </span>
+                                                        </p>
+                                                    </label>
+                                                </li>
+                                            ';
+                                        }
+                                    }  
                                 }
                             }
                         ?>
+
                         <p class="todo-divider">Completado</p>
                         <ul>
-                            <li>
-                                <label class="todo-list__text">
-                                    <input type="checkbox"> 
-                                    <p>
-                                        <span class="normal-text">Hacer ejercicio por 30 minutos</span> 
-                                        <span class="small-text">Mañana</span>
-                                    </p>
-                                </label>
-                            </li>
+
+                        <?php 
+                            $tasksCompleted = $project->getTaskByDate($conn, date('Y-m-d'), 'Completado');
+                            $resultCompleted = $tasksCompleted->fetchAll();
+                            if ($tasksCompleted->rowCount() > 0) {
+                                foreach($resultCompleted as $t) {
+                                    $date = ($t['tareaFechaInicio'] == $t['tareaFechaFin']) ? $t['tareaFechaFin'] : $t['tareaFechaInicio'] . ' - ' . $t['tareaFechaFin'];
+                                    $checked = ($t['tareaEstado'] === 'Completado') ? 'checked' : '';
+
+                                    if ($todayId === $t['calendarId'] && $t['bitacoraEstado'] === 'Completado') {
+                                        echo '
+                                            <li>
+                                                <div class="todo-list__text">
+                                                    <input checked type="checkbox" class="inputTask" tasktype="'.$t['tareaTipo'].'" taskid="'.$t['tareaId'].'" habitoId="'.$t['habitoId'].'"> 
+                                                    <p>
+                                                        <span class="normal-text">'.$t['tareaDescripcion'].'</span> 
+                                                        <span class="small-text">'.$date.' • '.$t['tareaTipo'].'
+                                                        
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        ';
+                                    }
+                                }
+                            } 
+                        ?>
+
                         </ul>
                     </div>
                 </div>
@@ -1333,12 +1380,5 @@ $('.inputTask').click(function() {
     checkTask($(this), taskid, tasktype, habitoid);
 });
 
-function checkTask (i, taskid, tasktype, habitoid) {
-    if ($(i).is(':checked')) {
-        console.log('Checked');
-    } else {
-        console.log('No');
-    }
-}   
 
 </script>

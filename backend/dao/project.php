@@ -1,4 +1,5 @@
 <?php 
+require_once ('utils.php');
 
 class Project
 {
@@ -127,7 +128,8 @@ class Project
         FROM tareas 
         INNER JOIN metas ON metaId = tareaMeta 
         LEFT JOIN habitos ON tareas.tareaId = habitos.habitoTarea
-        WHERE metaId = '$goalId' AND tareas.tareaEstado <> 'Completado'");
+        WHERE metaId = '$goalId'
+        ORDER BY tareaFechaFin ASC");
         return $stmt;
     }
 
@@ -150,17 +152,18 @@ class Project
                 $habitType = $_POST['habitType'];
                 $habitStatus = $_POST['habitStatus'];
                 $days = "";
-                $days .= (isset($_POST['Lunes'])) ? $_POST['Lunes'] . "," : "";
-                $days .= (isset($_POST['Martes'])) ? $_POST['Martes'] . "," : "";
-                $days .= (isset($_POST['Miercoles'])) ? $_POST['Miercoles'] . "," : "";
-                $days .= (isset($_POST['Jueves'])) ? $_POST['Jueves'] . "," : "";
-                $days .= (isset($_POST['Viernes'])) ? $_POST['Viernes'] . "," : "";
-                $days .= (isset($_POST['Sabado'])) ? $_POST['Sabado'] . "," : "";
-                $days .= (isset($_POST['Domingo'])) ? $_POST['Domingo'] . "," : "";
-                $days = ($habitType === 'Diario' && $days === "") ? 'Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo' : $days; 
+                $days .= (isset($_POST['lunes'])) ? $_POST['lunes'] . "," : "";
+                $days .= (isset($_POST['martes'])) ? $_POST['martes'] . "," : "";
+                $days .= (isset($_POST['miércoles'])) ? $_POST['miércoles'] . "," : "";
+                $days .= (isset($_POST['jueves'])) ? $_POST['jueves'] . "," : "";
+                $days .= (isset($_POST['viernes'])) ? $_POST['viernes'] . "," : "";
+                $days .= (isset($_POST['sábado'])) ? $_POST['sábado'] . "," : "";
+                $days .= (isset($_POST['domingo'])) ? $_POST['domingo'] . "," : "";
 
-                $query = "INSERT INTO habitos VALUES (null, $taskId, '$habitStatus', '$habitType', '$days', null, null);";
-                if ($conn->query($query)) {
+                $days = ($habitType === 'Diario' && $days === "") ? 'lunes,martes,miércoles,jueves,viernes,sábado,domingo' : $days; 
+
+                $sql = "INSERT INTO habitos VALUES (null, $taskId, '$habitStatus', '$habitType', '".rtrim($days, ',')."', null, null);";
+                if ($conn->query($sql)) {
                     return 'created-habit';
                 }
             } else {
@@ -209,18 +212,33 @@ class Project
         return $row['cantareas'];
     }
 
-    public function getTaskByDate ($conn, $date) 
+    public function getTaskByDate ($conn, $date, $status) 
     {
+        if ($status == 'Completado') {
+            $and = "AND t.tareaEstado LIKE '$status' OR t.tareaEstado LIKE 'En progreso'
+                    AND bitacora.bitacoraFechaEjecucion IN 
+                    ((SELECT c.calendarId FROM calendario c WHERE c.year = YEAR(NOW()) AND c.month = MONTH(NOW()) AND c.day = DAY(NOW())))
+            ";
+        } else {
+            $and = "AND t.tareaEstado LIKE '$status' OR t.tareaEstado LIKE 'En progreso'";
+        }
+ 
         $stmt = $conn->query("
             SELECT t.tareaId, t.tareaMeta, t.tareaDescripcion, t.tareaEstado, 
-            DATE_FORMAT(t.tareaFechaInicio, '%d/%m/%Y') tareaFechaInicio, 
-            DATE_FORMAT(t.tareaFechaFin, '%d/%m/%Y') tareaFechaFin,
-            t.tareaTipo, h.habitoId, h.habitoEstado, h.habitoEstado, h.habitoTipo, h.habitoDias
-            FROM tareas t LEFT JOIN habitos h ON t.tareaId = h.habitoTarea
-            WHERE t.tareaEstado <> 'Completado'
-            AND '$date' BETWEEN t.tareaFechaInicio AND t.tareaFechaFin 
-            OR '$date' = t.tareaFechaInicio AND t.tareaFechaFin
-            ORDER BY t.tareaFechaFin ASC
+                DATE_FORMAT(t.tareaFechaInicio, '%d/%m/%Y') tareaFechaInicio, 
+                DATE_FORMAT(t.tareaFechaFin, '%d/%m/%Y') tareaFechaFin,
+                t.tareaTipo, h.habitoId, h.habitoEstado, h.habitoEstado, 
+                h.habitoTipo, h.habitoDias, bitacora.bitacoraId, calendario.calendarId,
+                (SELECT c.calendarId FROM calendario c WHERE c.year = YEAR(NOW()) AND c.month = MONTH(NOW()) AND c.day = DAY(NOW())) 
+                today, bitacora.bitacoraEstado
+            FROM tareas t 
+                LEFT JOIN habitos h ON t.tareaId = h.habitoTarea
+                LEFT JOIN bitacora ON bitacora.bitacoraTarea = t.tareaId
+                LEFT JOIN calendario ON bitacora.bitacoraFechaEjecucion = calendario.calendarId
+            WHERE '$date' BETWEEN t.tareaFechaInicio AND t.tareaFechaFin 
+            $and
+            GROUP BY t.tareaId
+            ORDER BY t.tareaFechaFin, h.habitoTipo ASC
         ");
         return $stmt;
     }
@@ -231,27 +249,79 @@ class Project
         $tasktype = $data['tasktype'];
         $habitoid = $data['habitoid'];
         $taskstatus = $data['status'];
+        $estado = '';
 
         if ($taskstatus === 'completed') {
             if ($tasktype === 'Habito') {
-
+                $estado = 'En progreso';
+                self::saveBitacora($taskid, $habitoid, 'Hábito del día completado', 'Completado', $conn);
             }
             if ($tasktype === 'Una vez') {
-                
+                $estado = 'Completado';
+                self::saveBitacora($taskid, $habitoid, 'Tarea del día completado', 'Completado', $conn);
             }
         }
 
         if ($taskstatus === 'pending') {
             if ($tasktype === 'Habito') {
-
+                $estado = 'En progreso';
+                self::saveBitacora($taskid, null, 'Hábito no completado', 'No completado', $conn);
             }
             if ($tasktype === 'Una vez') {
-                
+                $estado = 'Pendiente';
+                self::saveBitacora($taskid, null, 'Tarea no completado', 'No completado', $conn);
             }
         }
 
+        if ($estado !== "") {
+            $sql = "UPDATE tareas SET tareaEstado = '$estado' WHERE tareaId = $taskid";
+
+            if ($conn->query($sql)) {
+                return 'updated-task';
+            } else {
+                return 'error-update-task';
+            }
+        }
+    }
+
+    public function saveBitacora ($task, $habit, $desc, $status, $conn) 
+    {
+        $habit = ($habit == "") ? 'null' : $habit;
+        $date = self::getCalendar($conn);
+
+        $sqlGetBit = "SELECT * FROM bitacora WHERE bitacoraTarea = $task AND bitacoraFechaEjecucion = $date";
+        $stmt = $conn->query($sqlGetBit);
+
+        if ($stmt->rowCount() > 0) {
+            $sql = "UPDATE bitacora SET bitacoraDescripcion = '$desc', bitacoraEstado = '$status' WHERE bitacoraTarea = $task";
+        } else {
+            $sql = "INSERT INTO bitacora VALUES (null, $task, $habit, '$desc', $date, '$status', null);";
+        }
+        
+        if ($conn->query($sql)) {
+            return true;
+        } else {
+            session_start(); 
+            $log = Utils::registerLog('errorLogBiracora', "$sql", $_SESSION["usuarioId"], $conn);
+            return ($log) ? 'bitacora 200' : 'bitacota 500';
+        }
+    }
+
+    public function getCalendar ($conn) 
+    {
+        $sql = "SELECT * FROM calendario c WHERE c.year = YEAR(NOW()) AND c.month = MONTH(NOW()) AND c.day = DAY(NOW());";
+        $stmt = $conn->query($sql);
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch();
+            return $row['calendarId'];
+        } else {
+            session_start(); 
+            $log = Utils::registerLog('errorLogCalendar', 'Error al obtener datos del calendario', $_SESSION["usuarioId"], $conn);
+            return ($log) ? 'calendar 200' : 'calendar 500';
+        }
     }
 
 }
+
 
 ?>
