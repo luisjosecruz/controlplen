@@ -22,6 +22,7 @@ $userRow = $userData->fetch();
     <ul>
         <li><a href="<?=URLSERVER.'/';?>" class="item-menu"><span class="fa fa-house-chimney"></span> Inicio</a></li>
         <li><a href="<?=URLSERVER.'/projects';?>" class="item-menu"><span class="fa fa-bars-progress"></span> Proyectos</a></li>
+        <!-- <li><a href="<?=URLSERVER.'/today';?>" class="item-menu"><span class="fa fa-calendar-day"></span> Ahora mismo</a></li> -->
         <!-- <li><a href="<?=URLSERVER.'/tasks';?>" class="item-menu"><span class="lj lj-spell-check"></span> Tareas</a></li>
         <li><a href="<?=URLSERVER.'/habits';?>" class="item-menu"><span class="lj lj-magic-wand"></span> Hábitos</a></li> -->
         <!-- <li><a href="<?=URLSERVER.'/calendar';?>" class="item-menu"><span class="lj lj-calendar-full"></span> Calendario</a></li>

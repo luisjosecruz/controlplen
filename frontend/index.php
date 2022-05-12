@@ -31,6 +31,9 @@ switch($route){
         }
     
         break;
+    case 'today': require_once ('views/today.php');
+    
+        break;
     default: require_once('views/404.php');
 }
 

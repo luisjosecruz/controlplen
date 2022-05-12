@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-05-2022 a las 16:09:43
--- Versión del servidor: 10.4.13-MariaDB
--- Versión de PHP: 7.4.8
+-- Tiempo de generación: 21-04-2022 a las 01:11:13
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -144,99 +145,7 @@ INSERT INTO `calendario` (`calendarId`, `day`, `dayName`, `month`, `monthName`, 
 (00056, 25, 'viernes', 2, 'febrero', 2022, NULL),
 (00057, 26, 'sábado', 2, 'febrero', 2022, NULL),
 (00058, 27, 'domingo', 2, 'febrero', 2022, NULL),
-(00059, 28, 'lunes', 2, 'febrero', 2022, NULL),
-(00060, 1, 'martes', 3, 'marzo', 2022, NULL),
-(00061, 2, 'miercoles', 3, 'marzo', 2022, NULL),
-(00062, 3, 'jueves', 3, 'marzo', 2022, NULL),
-(00063, 4, 'viernes', 3, 'marzo', 2022, NULL),
-(00064, 5, 'sabado', 3, 'marzo', 2022, NULL),
-(00065, 6, 'domingo', 3, 'marzo', 2022, NULL),
-(00066, 7, 'lunes', 3, 'marzo', 2022, NULL),
-(00067, 8, 'martes', 3, 'marzo', 2022, NULL),
-(00068, 9, 'miercoles', 3, 'marzo', 2022, NULL),
-(00069, 10, 'jueves', 3, 'marzo', 2022, NULL),
-(00070, 11, 'viernes', 3, 'marzo', 2022, NULL),
-(00071, 12, 'sabado', 3, 'marzo', 2022, NULL),
-(00072, 13, 'domingo', 3, 'marzo', 2022, NULL),
-(00073, 14, 'lunes', 3, 'marzo', 2022, NULL),
-(00074, 15, 'martes', 3, 'marzo', 2022, NULL),
-(00075, 16, 'miercoles', 3, 'marzo', 2022, NULL),
-(00076, 17, 'jueves', 3, 'marzo', 2022, NULL),
-(00077, 18, 'viernes', 3, 'marzo', 2022, NULL),
-(00078, 19, 'sabado', 3, 'marzo', 2022, NULL),
-(00079, 20, 'domingo', 3, 'marzo', 2022, NULL),
-(00080, 21, 'lunes', 3, 'marzo', 2022, NULL),
-(00081, 22, 'martes', 3, 'marzo', 2022, NULL),
-(00082, 23, 'miercoles', 3, 'marzo', 2022, NULL),
-(00083, 24, 'jueves', 3, 'marzo', 2022, NULL),
-(00084, 25, 'viernes', 3, 'marzo', 2022, NULL),
-(00085, 26, 'sabado', 3, 'marzo', 2022, NULL),
-(00086, 27, 'domingo', 3, 'marzo', 2022, NULL),
-(00087, 28, 'lunes', 3, 'marzo', 2022, NULL),
-(00088, 29, 'martes', 3, 'marzo', 2022, NULL),
-(00089, 30, 'miercoles', 3, 'marzo', 2022, NULL),
-(00090, 31, 'jueves', 3, 'marzo', 2022, NULL),
-(00091, 1, 'viernes', 4, 'abril', 2022, NULL),
-(00092, 2, 'sabado', 4, 'abril', 2022, NULL),
-(00093, 3, 'domingo', 4, 'abril', 2022, NULL),
-(00094, 4, 'lunes', 4, 'abril', 2022, NULL),
-(00095, 5, 'martes', 4, 'abril', 2022, NULL),
-(00096, 6, 'miercoles', 4, 'abril', 2022, NULL),
-(00097, 7, 'jueves', 4, 'abril', 2022, NULL),
-(00098, 8, 'viernes', 4, 'abril', 2022, NULL),
-(00099, 9, 'sabado', 4, 'abril', 2022, NULL),
-(00100, 10, 'domingo', 4, 'abril', 2022, NULL),
-(00101, 11, 'lunes', 4, 'abril', 2022, NULL),
-(00102, 12, 'martes', 4, 'abril', 2022, NULL),
-(00103, 13, 'miercoles', 4, 'abril', 2022, NULL),
-(00104, 14, 'jueves', 4, 'abril', 2022, NULL),
-(00105, 15, 'viernes', 4, 'abril', 2022, NULL),
-(00106, 16, 'sabado', 4, 'abril', 2022, NULL),
-(00107, 17, 'domingo', 4, 'abril', 2022, NULL),
-(00108, 18, 'lunes', 4, 'abril', 2022, NULL),
-(00109, 19, 'martes', 4, 'abril', 2022, NULL),
-(00110, 20, 'miercoles', 4, 'abril', 2022, NULL),
-(00111, 21, 'jueves', 4, 'abril', 2022, NULL),
-(00112, 22, 'viernes', 4, 'abril', 2022, NULL),
-(00113, 23, 'sabado', 4, 'abril', 2022, NULL),
-(00114, 24, 'domingo', 4, 'abril', 2022, NULL),
-(00115, 25, 'lunes', 4, 'abril', 2022, NULL),
-(00116, 26, 'martes', 4, 'abril', 2022, NULL),
-(00117, 27, 'miercoles', 4, 'abril', 2022, NULL),
-(00118, 28, 'jueves', 4, 'abril', 2022, NULL),
-(00119, 29, 'viernes', 4, 'abril', 2022, NULL),
-(00120, 30, 'sabado', 4, 'abril', 2022, NULL),
-(00121, 1, 'domingo', 5, 'mayo', 2022, NULL),
-(00122, 2, 'lunes', 5, 'mayo', 2022, NULL),
-(00123, 3, 'martes', 5, 'mayo', 2022, NULL),
-(00124, 4, 'miercoles', 5, 'mayo', 2022, NULL),
-(00125, 5, 'jueves', 5, 'mayo', 2022, NULL),
-(00126, 6, 'viernes', 5, 'mayo', 2022, NULL),
-(00127, 7, 'sabado', 5, 'mayo', 2022, NULL),
-(00128, 8, 'domingo', 5, 'mayo', 2022, NULL),
-(00129, 9, 'lunes', 5, 'mayo', 2022, NULL),
-(00130, 10, 'martes', 5, 'mayo', 2022, NULL),
-(00131, 11, 'miercoles', 5, 'mayo', 2022, NULL),
-(00132, 12, 'jueves', 5, 'mayo', 2022, NULL),
-(00133, 13, 'viernes', 5, 'mayo', 2022, NULL),
-(00134, 14, 'sabado', 5, 'mayo', 2022, NULL),
-(00135, 15, 'domingo', 5, 'mayo', 2022, NULL),
-(00136, 16, 'lunes', 5, 'mayo', 2022, NULL),
-(00137, 17, 'martes', 5, 'mayo', 2022, NULL),
-(00138, 18, 'miercoles', 5, 'mayo', 2022, NULL),
-(00139, 19, 'jueves', 5, 'mayo', 2022, NULL),
-(00140, 20, 'viernes', 5, 'mayo', 2022, NULL),
-(00141, 21, 'sabado', 5, 'mayo', 2022, NULL),
-(00142, 22, 'domingo', 5, 'mayo', 2022, NULL),
-(00143, 23, 'lunes', 5, 'mayo', 2022, NULL),
-(00144, 24, 'martes', 5, 'mayo', 2022, NULL),
-(00145, 25, 'miercoles', 5, 'mayo', 2022, NULL),
-(00146, 26, 'jueves', 5, 'mayo', 2022, NULL),
-(00147, 27, 'viernes', 5, 'mayo', 2022, NULL),
-(00148, 28, 'sabado', 5, 'mayo', 2022, NULL),
-(00149, 29, 'domingo', 5, 'mayo', 2022, NULL),
-(00150, 30, 'lunes', 5, 'mayo', 2022, NULL),
-(00151, 31, 'martes', 5, 'mayo', 2022, NULL);
+(00059, 28, 'lunes', 2, 'febrero', 2022, NULL);
 
 -- --------------------------------------------------------
 
@@ -253,14 +162,6 @@ CREATE TABLE `habitos` (
   `habitoDescripcion` varchar(255) DEFAULT NULL,
   `habitoFecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `habitos`
---
-
-INSERT INTO `habitos` (`habitoId`, `habitoTarea`, `habitoEstado`, `habitoTipo`, `habitoDias`, `habitoDescripcion`, `habitoFecha`) VALUES
-(00001, 00002, 'Activo', 'Semanal', 'lunes', NULL, '2022-05-02 05:01:56'),
-(00002, 00003, 'Activo', 'Semanal', 'martes', NULL, '2022-05-02 05:03:24');
 
 -- --------------------------------------------------------
 
@@ -281,7 +182,7 @@ CREATE TABLE `logs` (
 --
 
 INSERT INTO `logs` (`logId`, `logAccion`, `logDescripcion`, `logUsuario`, `logFecha`) VALUES
-(00001, 'userLoggedIn', 'Usuario conectado', 00001, '2022-05-02 04:50:05');
+(00001, 'userLoggedIn', 'Usuario conectado', 00001, '2022-04-20 19:38:51');
 
 -- --------------------------------------------------------
 
@@ -305,8 +206,7 @@ CREATE TABLE `metas` (
 --
 
 INSERT INTO `metas` (`metaId`, `metaProyecto`, `metaDescripcion`, `metaEstado`, `metaFechaInicio`, `metaFechaFin`, `metaEtiquetas`, `metaFecha`) VALUES
-(00001, 00001, 'Hacer una lista de elementos a eliminar', 'Pendiente', '2022-05-02', '2022-05-02', NULL, '2022-05-02 04:54:47'),
-(00002, 00001, 'Comer frutas y verduras', 'Pendiente', '2022-05-01', '2022-12-31', NULL, '2022-05-02 04:58:30');
+(00001, 00001, 'Descansar lo suficiente (6 - 8 horas)', 'Pendiente', '2022-04-20', '2022-12-31', NULL, '2022-04-20 20:12:19');
 
 -- --------------------------------------------------------
 
@@ -332,7 +232,19 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`proyectoId`, `proyectoValor`, `proyectoNombre`, `proyectoDescripcion`, `proyectoEstado`, `proyectoEtiquetas`, `proyectoFechaInicio`, `proyectoFechaFin`, `proyectoFecha`, `proyectoLink`) VALUES
-(00001, 00001, 'Cuerpo saludable', 'Mantener un cuerpo salidable con alimentación equilibrada y ejercicios frecuentes. ', 'En progreso', NULL, '2022-05-01', '2022-12-31', '2022-05-02 04:53:14', '7oMt3miF');
+(00001, 00001, 'Cuerpo Saludable', 'Mantener el equilibrio de mi cuerpo, para mejorar mi autoestima y elevar mis capacidades.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:48:59', 'C0wl5Ms1'),
+(00002, 00003, 'Percepción Externa', 'Mejorar mi estilo y forma de vestir.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:50:09', 'H5XaI4O3'),
+(00003, 00002, 'Hacer arte mediante la música', 'Crear canciones que inspiren a los demás a seguir adelante.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:51:29', '7vtgxYBi'),
+(00004, 00005, 'Filosofía de vida', 'Crear mi propia corriente de pensamiento.', 'Pendiente', NULL, '2022-05-12', '2022-12-31', '2022-04-20 19:55:48', 'lO47tfwT'),
+(00005, 00002, 'Software para mejorar la vida', 'Mejorar mi arte de escribir código para crear sistemas que mejoren la vida de todos.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:53:53', 'm36h26nP'),
+(00006, 00003, 'Busqueda de la felicidad', 'En la vida la felicidad es una variable que todos deseamos convertir en constante. ', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:55:13', 'D4UU5322'),
+(00007, 00001, 'Deporte', 'Hacer deporte para disfrutar de la vida', 'Pendiente', NULL, '2022-04-24', '2022-12-31', '2022-04-20 19:56:46', 'RNqoXbK8'),
+(00008, 00004, 'Apreciar las cosas simples', 'El amor está en todo lo que hacemos.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:58:51', 'Awn8wuk5'),
+(00009, 00003, 'Acumular Riqueza', 'Para sentir que estamos progresando necesitamos ver las cosas que hemos logrado.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 19:59:43', 'fFkiO7ft'),
+(00010, 00005, 'Aprender Inglés', 'Cominicar de manera excelente en Inglés.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 20:00:41', '67eie741'),
+(00011, 00003, 'Crear y emprender', 'Hacer negocios para mejorar mi calidad de vida y la de mi familia.', 'Pendiente', NULL, '2022-06-01', '2022-12-31', '2022-04-20 20:01:54', 'MDGtF6w2'),
+(00012, 00004, 'El tesoro de las relaciones', 'Las personas que nos rodean nos permiten vivir llenos de amor.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 20:04:18', 'SU7V6D3P'),
+(00013, 00005, 'Crear para dejar mi huella', 'Pintar con palabras, canciones, arte y todo lo que hago vaya encaminado a dejar una huella positiva al mundo.', 'En progreso', NULL, '2022-04-20', '2022-12-31', '2022-04-20 20:05:59', 'A5u3nlQ8');
 
 --
 -- Disparadores `proyectos`
@@ -379,9 +291,7 @@ CREATE TABLE `tareas` (
 --
 
 INSERT INTO `tareas` (`tareaId`, `tareaMeta`, `tareaDescripcion`, `tareaEstado`, `tareaFechaInicio`, `tareaFechaFin`, `tareaHoraInicio`, `tareaHoraFin`, `tareaLugar`, `tareaRecordatorio`, `tareaTipo`, `tareaEtiquetas`) VALUES
-(00001, 00001, 'Crear una lista en One Note de comida chatarra a eliminar.', 'Pendiente', '2022-05-02', '2022-05-02', NULL, NULL, NULL, NULL, 'Una vez', NULL),
-(00002, 00002, 'Comprar manzanas cada lunes por la mañana', 'Pendiente', '2022-05-02', '2022-12-31', NULL, NULL, NULL, NULL, 'Habito', NULL),
-(00003, 00002, 'Comprar guineos cada martes', 'Pendiente', '2022-05-03', '2022-12-31', NULL, NULL, NULL, NULL, 'Habito', NULL);
+(00001, 00001, 'Establecer un horario para dormir y otro para levantarme', 'En progreso', '2022-04-20', '2022-04-20', NULL, NULL, NULL, NULL, 'Una vez', NULL);
 
 -- --------------------------------------------------------
 
@@ -407,7 +317,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuarioId`, `usuarioNombre`, `usuarioApellido`, `usuarioUnico`, `usuarioCorreo`, `usuarioClave`, `usuarioTipo`, `usuarioAvatar`, `usuarioEstado`, `usuarioFecha`) VALUES
-(00001, 'Luis José', 'Cruz Martínez', 'luismart', 'luisjosecruzmart@gmail.com', '$2y$16$iWKR8Zar0eGKLtAKqih0ze4j/.gml8cdcFfL1OYyCpdxyHvwwPg5q', 'standard', NULL, 'Activo', '2022-05-02 04:49:42');
+(00001, 'Luis José', 'Cruz Martínez', 'lcruzleh', 'luisjosecruzmart@gmail.com', '$2y$16$iWKR8Zar0eGKLtAKqih0ze4j/.gml8cdcFfL1OYyCpdxyHvwwPg5q', 'standard', NULL, 'Activo', '2022-03-16 15:47:40');
 
 -- --------------------------------------------------------
 
@@ -514,13 +424,13 @@ ALTER TABLE `bitacora`
 -- AUTO_INCREMENT de la tabla `calendario`
 --
 ALTER TABLE `calendario`
-  MODIFY `calendarId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `calendarId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `habitos`
 --
 ALTER TABLE `habitos`
-  MODIFY `habitoId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `habitoId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `logs`
@@ -532,19 +442,19 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT de la tabla `metas`
 --
 ALTER TABLE `metas`
-  MODIFY `metaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `metaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
 --
 ALTER TABLE `proyectos`
-  MODIFY `proyectoId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `proyectoId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `tareaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tareaId` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
