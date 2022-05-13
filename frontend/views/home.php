@@ -985,7 +985,9 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                                         ';
                                     }
                                     // validate just habits filtered days
+                                    setlocale(LC_TIME, 'es_ES','es_ES.UTF-8');
                                     $hoy = utf8_encode(strftime('%A'));
+                                    
                                     $arr_days = explode(',', $t['habitoDias']);
                                     if ($t['tareaTipo'] === "Habito" && trim($t['habitoId']) != "" && in_array($hoy, $arr_days)) {
                                         

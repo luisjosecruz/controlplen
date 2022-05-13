@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Plen | Inicio de sesión</title>
+    <title>Centralplan | Login</title>
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/base.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/loast.css';?>">
     <link rel="stylesheet" href="<?=URLSERVER.'/assets/css/login.css';?>">
@@ -16,7 +16,7 @@
         <article class="login-box">
             <section class="login-img">
                 <div class="login-intro">
-                    <h3 class="title">Control Plen</h3>
+                    <h3 class="title">Centralplan</h3>
                     <h3>Es el momento para tomar el control.</h3>
                     <p>Sabemos que el tiempo es lo mas valioso que tenemos, 
                         entonces no lo desperdiciemos buscando múltiples herramientas para organizarnos.
@@ -28,7 +28,7 @@
                 </div>
             </section>
             <section class="login-form">
-                <p>Control Plen</p>
+                <p>Centralplan</p>
                 <form id="loginForm">
                     <input type="text" id="username" name="username" placeholder="Usuario" autocomplete="off">
                     <input type="password" id="password" name="password" placeholder="Contraseña">

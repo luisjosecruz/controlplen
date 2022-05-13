@@ -8,7 +8,7 @@ $userRow = $userData->fetch();
 <nav>
     <div class="logo">
         <img src="<?=URLSERVER.'/assets/images/logo.png';?>" alt="logo">
-        <p>Control Plen</p> 
+        <p>Centralplan</p> 
     </div>
     <div class="user-area">
         <div class="user-area__account">
