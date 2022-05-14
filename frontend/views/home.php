@@ -992,6 +992,9 @@ $cantTareasCompletas = $totals['cantTareasCompletas'];
                                     if ($t['tareaTipo'] === "Habito" && trim($t['habitoId']) != "" && in_array($hoy, $arr_days)) {
                                         
                                         if ($todayId !== $t['calendarId'] || $t['bitacoraEstado'] === 'No completado') {
+                                            // echo $todayId ." - ";
+                                            // echo $t['calendarId'] . ' - ';
+                                            // echo $t['bitacoraEstado'];
                                             echo '
                                                 <li>
                                                     <label class="todo-list__text">

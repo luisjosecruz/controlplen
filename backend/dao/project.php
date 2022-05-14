@@ -228,7 +228,7 @@ class Project
                 DATE_FORMAT(t.tareaFechaInicio, '%d/%m/%Y') tareaFechaInicio, 
                 DATE_FORMAT(t.tareaFechaFin, '%d/%m/%Y') tareaFechaFin,
                 t.tareaTipo, h.habitoId, h.habitoEstado, h.habitoEstado, 
-                h.habitoTipo, h.habitoDias, bitacora.bitacoraId, calendario.calendarId,
+                h.habitoTipo, h.habitoDias, bitacora.bitacoraId, MAX(calendario.calendarId) calendarId,
                 (SELECT c.calendarId FROM calendario c WHERE c.year = YEAR(NOW()) AND c.month = MONTH(NOW()) AND c.day = DAY(NOW())) 
                 today, bitacora.bitacoraEstado
             FROM tareas t 
